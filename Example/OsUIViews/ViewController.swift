@@ -11,6 +11,7 @@ import OsTools
 import OsUIViews
 
 class ViewController: UIViewController {
+    @IBOutlet var papaView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,8 +20,77 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        Tools.asyncMainTimedFunc(popFactsDialog, 2)
-        Tools.asyncMainTimedFunc(popHelpDialog, 2)
+        Tools.asyncMainTimedFunc(popFactsDialog, 2)
+        
+//        tv.setText(text: "wjat is the time")
+//        tv.setClickablePart(linkedText: "wjat", youtubeFullLink: "youtube://www.youtube.com/channel/UCBvgqUEIxJHR7o2q3CJ-4Wg")
+        
+//        let tv = LinkableUITextView()
+//        tv.translatesAutoresizingMaskIntoConstraints = false
+//        tv.setHeight(height: 150)
+//        tv.setWidth(width: 250)
+//        papaView.addSubview(tv)
+//        tv.centralizeVerticalInParent()
+//        tv.centralizeHorizontalInParent()
+//        tv.text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."
+////        tv.setText(text: "what is the time???")
+    }
+    
+    private var dv: UIDynamicView!
+    
+    private func popFactsDialog() {
+        
+        // build the dynamic view with all of the props
+        dv = UIDynamicView()
+        dv.prepareView(parentView: view,
+                       padding: 14,
+                       margin: 14,
+                       maxWidthPercentFromParent: 0.65)
+        dv.dropShadow(shadowRadius: 5.0)
+        
+//        // add the title
+        let topTitleProps = InitialLabelProps(text: "New Features",
+                                              textAlignment: .center,
+                                              font: UIFont.systemFont(ofSize: 20, weight: .bold))
+        dv.addView(initialProps: topTitleProps)
+
+//        let props = InitialLinkableUITextViewProps(fullText: "what is the time", textAlignment: .center, tag: 9, isEditable: false)
+        let props = InitialLinkableUITextViewProps(fullText: "* If, for some reason, you can't find the option in your device, check out our Youtube channel at https://www.youtube.com/channel/UCBvgqUEIxJHR7o2q3CJ-4Wg for the newest guides. Furthermore, you can reach us via email at support@os-apps.com", textAlignment: .center, font: UIFont.systemFont(ofSize: 15), lineHeightMultiply: 1.5)
+//
+        let tv = dv.addView(initialProps: props)
+        tv.setClickablePart(linkedText: "If, for some reason", youtubeFullLink: "youtube://www.youtube.com/channel/UCBvgqUEIxJHR7o2q3CJ-4Wg")
+        tv.setClickablePart(linkedText: "find the option", emailRecipient: "ozshabat@gmail.com", emailSubject: "what")
+//        // add the image
+//        let imgProps = InitialUIImageViewProps(imageName: "tt",
+//                                               widthPercentFromParent: 0.3,
+//                                               tag: 99,
+//                                               alignment: .center)
+//        dv.addView(initialProps: imgProps)
+//
+//        // add the description
+//        let descriptionProps =  InitialLabelProps(text:
+//            """
+//            Teletubbies is a British children's television series
+//            created by Ragdoll Productions' Anne Wood and Andrew
+//            Davenport for BBC.
+//            """,
+//            textAlignment: .left,
+//            font: UIFont.systemFont(ofSize: 17)
+//        )
+//        dv.addView(initialProps: descriptionProps)
+//
+//        // add the footer buttons
+//        let nextFactButton = InitialButtonProps(labelText: "Previous Fact",
+//        alignment: .left,
+//        tapSelector: #selector(onNextFactTap))
+//
+//        let niceBtn = InitialButtonProps(labelText: "Next Fact!",
+//                                             alignment: .right,
+//                                             tapSelector: #selector(onNiceTap))
+//        let footerStackViewProps = InitialStackViewProps(subviewsInitialPropsList: [nextFactButton, niceBtn])
+//
+//        dv.addView(initialProps: footerStackViewProps)
+        dv.attachView(parentView: view)
     }
     
     private func popHelpDialog() {
@@ -79,60 +149,6 @@ class ViewController: UIViewController {
 //
 //        dv.addView(initialProps: okBtnProps)
 //        dv.attachView(parentView: view)
-    }
-    
-    
-    
-    
-    private var dv: UIDynamicView!
-    
-    private func popFactsDialog() {
-        
-        // build the dynamic view with all of the props
-        dv = UIDynamicView()
-        dv.prepareView(parentView: view,
-                       padding: 14,
-                       margin: 14,
-                       maxWidthPercentFromParent: 0.65)
-        dv.dropShadow(shadowRadius: 5.0)
-        
-        // add the title
-        let topTitleProps = InitialLabelProps(text: "New Features",
-                                              textAlignment: .center,
-                                              font: UIFont.systemFont(ofSize: 20, weight: .bold))
-        dv.addView(initialProps: topTitleProps)
-        
-        // add the image
-        let imgProps = InitialUIImageViewProps(imageName: "tt",
-                                               widthPercentFromParent: 0.3,
-                                               tag: 99,
-                                               alignment: .center)
-        dv.addView(initialProps: imgProps)
-        
-        // add the description
-        let descriptionProps =  InitialLabelProps(text:
-            """
-            Teletubbies is a British children's television series
-            created by Ragdoll Productions' Anne Wood and Andrew
-            Davenport for BBC.
-            """,
-            textAlignment: .left,
-            font: UIFont.systemFont(ofSize: 17)
-        )
-        dv.addView(initialProps: descriptionProps)
-        
-        // add the footer buttons
-        let nextFactButton = InitialButtonProps(labelText: "Previous Fact",
-        alignment: .left,
-        tapSelector: #selector(onNextFactTap))
-        
-        let niceBtn = InitialButtonProps(labelText: "Next Fact!",
-                                             alignment: .right,
-                                             tapSelector: #selector(onNiceTap))
-        let footerStackViewProps = InitialStackViewProps(subviewsInitialPropsList: [nextFactButton, niceBtn])
-        
-        dv.addView(initialProps: footerStackViewProps)
-        dv.attachView(parentView: view)
     }
     
     @objc func onNiceTap() {

@@ -3,6 +3,7 @@ use_frameworks!
 target 'OsUIViews_Example' do
   pod 'OsUIViews', :path => '../'
   
+  # pods
   pod 'OsTools'
   pod 'youtube-ios-player-helper', '~> 0.1.4'
   

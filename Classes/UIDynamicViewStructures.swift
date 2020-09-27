@@ -37,23 +37,26 @@ public struct InitialLabelProps: InitialProps {
     }
 }
 
-/// Will create a struct containing the initial props for a UITextView
-public struct InitialUITextViewProps: InitialProps {
+/// Will create a struct containing the initial props for a LinkableUITextView.
+/// a LinkableUITextView is a UITextView with the ability to make a text clickable and navigate to a certain apps (intent) using URLScheme.
+/// NOTICE: in order to make the text clickable, initially set the full text you want to be shown in UITextView. Later, after adding the view to the parent,
+///  call view.setClickablePart() to set the clickable part. Also, if you get a layer exception, give original name for the variable and not just "view": let view = InitialLinkableUITextViewProps()"
+public struct InitialLinkableUITextViewProps: InitialProps {
     
-    var text: String
+    var fullText: String
     var textAlignment: UIViewAlignment
     var tag: Int
     var font: UIFont
     var lineHeightMultiply: CGFloat
     var isEditable: Bool
     
-    public init(text: String,
+    public init(fullText: String,
                 textAlignment: UIViewAlignment = .center,
                 tag: Int = 0,
                 font: UIFont = UIFont.systemFont(ofSize: 17),
                 lineHeightMultiply: CGFloat = 1.25,
                 isEditable: Bool = false) {
-        self.text = text
+        self.fullText = fullText
         self.textAlignment = textAlignment
         self.tag = tag
         self.font = font
@@ -61,7 +64,7 @@ public struct InitialUITextViewProps: InitialProps {
         self.isEditable = isEditable
     }
     public func getType() -> UIViewType {
-        return .textView
+        return .linkableTextView
     }
 }
 
@@ -221,7 +224,7 @@ public enum UIViewType {
     case youtubeVideo
     case button
     case stackView
-    case textView
+    case linkableTextView
 }
 
 public enum UIViewAlignment {

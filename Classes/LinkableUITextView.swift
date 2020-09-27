@@ -42,11 +42,7 @@ public class LinkableUITextView: UITextView {
         youtubeLink.removePrefix("https://")
         youtubeLink.removePrefix("http://")
         let url = URL(string: "youtube://\(youtubeLink)")!
-        guard let range = self.text.range(of: text) else {return}
-        
-        let newAttText = attributedText.mutableCopy() as! NSMutableAttributedString
-        newAttText.setAttributes([.link: url], range: NSRange(range, in: text))
-        attributedText = newAttText
+        setClickableRange(url: url, linkedText: linkedText)
     }
     
     /// Call this function after you set the text using setText. Decide which part of the text will navigate to an email message with receipients
@@ -59,10 +55,14 @@ public class LinkableUITextView: UITextView {
             recipients = _cc.joined(separator: ",")
         }
         let url = URL(string: "mailto:\(emailRecipient)?cc=\(recipients)&subject=\(emailSubject)")!
-        guard let range = self.text.range(of: text) else {return}
+        setClickableRange(url: url, linkedText: linkedText)
+    }
+    
+    private func setClickableRange(url: URL, linkedText: String) {
+        guard let range = self.text.range(of: linkedText) else {return}
         
         let newAttText = attributedText.mutableCopy() as! NSMutableAttributedString
-        newAttText.setAttributes([.link: url], range: NSRange(range, in: text))
+        newAttText.addAttributes([.link: url], range: NSRange(range, in: text))
         attributedText = newAttText
     }
     
