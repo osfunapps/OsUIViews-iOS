@@ -1,0 +1,6 @@
+framework module OsUIViews {
+  umbrella header "OsUIViews-umbrella.h"
+
+  export *
+  module * { export * }
+}
