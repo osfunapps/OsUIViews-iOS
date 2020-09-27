@@ -22,7 +22,7 @@ pod 'OsUIViews'
 
 ## Author
 
-osfunapps, osfunapps@gmail.com
+osfunapps, admin@os-apps.com
 
 ## License
 
