@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'OsUIViews'
-  s.version          = '0.1.0'
+  s.version          = '0.1.2'
   s.summary          = 'This pod contains all of custom views used in OsApps iOS apps'
 
 # This description is used to generate tags and improve search results.
@@ -19,9 +19,12 @@ Pod::Spec.new do |s|
 
   s.description      = <<-DESC
   This pod contains all of open sourced custom views used in OsApps iOS apps
-  
                        DESC
-  s.dependency 'UIDynamicView'
+  
+  # dependencies
+  s.dependency 'youtube-ios-player-helper'
+  s.dependency 'OsTools'
+  
   s.homepage         = 'https://github.com/osfunapps/OsUIViews-iOS'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'osfunapps' => 'admin@os-apps.com' }

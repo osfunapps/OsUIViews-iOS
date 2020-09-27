@@ -1,10 +1,13 @@
 {
   "name": "OsUIViews",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "This pod contains all of custom views used in OsApps iOS apps",
   "description": "This pod contains all of open sourced custom views used in OsApps iOS apps",
   "dependencies": {
-    "UIDynamicView": [
+    "youtube-ios-player-helper": [
+
+    ],
+    "OsTools": [
 
     ]
   },
@@ -18,7 +21,7 @@
   },
   "source": {
     "git": "https://github.com/osfunapps/OsUIViews-iOS.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "swift_versions": "5.0",
   "platforms": {

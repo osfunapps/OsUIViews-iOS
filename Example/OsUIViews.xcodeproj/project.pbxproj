@@ -198,14 +198,12 @@
 				"${PODS_ROOT}/Target Support Files/Pods-OsUIViews_Example/Pods-OsUIViews_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/OsTools/OsTools.framework",
 				"${BUILT_PRODUCTS_DIR}/OsUIViews/OsUIViews.framework",
-				"${BUILT_PRODUCTS_DIR}/UIDynamicView/UIDynamicView.framework",
 				"${BUILT_PRODUCTS_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OsTools.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OsUIViews.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIDynamicView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/youtube_ios_player_helper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
