@@ -9,7 +9,8 @@
 import Foundation
 
 /// This class represents a UITextView but can act as a UILabel.
-/// Use this UIView if you want to implement a text with certain link areas like: If you want to contact us, click here) and a tap on the "here" text will do something
+/// Use this UIView if you want to implement a text with certain link areas like: If you want to contact us, click here) and a tap on the "here" text will do something.4
+/// To use the class call setText and then setClickablePart with the text you want to make a link and the action attached to the text
 public class LinkableUITextView: UITextView {
 
     public override init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -42,6 +43,12 @@ public class LinkableUITextView: UITextView {
         youtubeLink.removePrefix("https://")
         youtubeLink.removePrefix("http://")
         let url = URL(string: "youtube://\(youtubeLink)")!
+        setClickableRange(url: url, linkedText: linkedText)
+    }
+    
+    /// Call this function after you set the text using setText. Decide which part of the text will navigate to a location decided by the OS. Most of the times it will just use Safari
+    public func setClickablePart(linkedText: String, link: String) {
+        let url = URL(string: link)!
         setClickableRange(url: url, linkedText: linkedText)
     }
     

@@ -203,8 +203,8 @@ public class UIDynamicView: UIView {
         return label
     }
     
-    /// Will append a LinkableUITextView. a LinkableUITextView is a UITextView with the ability to make a text clickable and navigate to a certain apps (intent) using URLScheme
-    /// NOTICE: in order to make the text clickable, catch the view from the return and call view.setClickablePart() to set the clickable part on it. When doing so, give original name for the variable and not just "view": let originalName = InitialLinkableUITextViewProps()" cause let view will make the app crash if you create the view from the view controller
+    /// Will append a LinkableUITextView. a LinkableUITextView is a UITextView with the ability to make a text clickable and navigate to a certain apps (intent) using URLSchemes.
+    /// NOTICE: in order to make the text clickable, save the view from the return and call view.setClickablePart() to set the clickable part on it. When doing so, give original name for the variable and not just "view": let originalName = InitialLinkableUITextViewProps()" cause let view will make the app crash if you create the view from the view controller.
     ///
     /// - Parameter initialProps: The initial props of the LinkableUITextView
     /// - Parameter invalidate: Set to true if you want to add the view to the parent
