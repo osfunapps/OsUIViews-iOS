@@ -15,6 +15,7 @@ public class ListPickerView {
     private var dv: UIDynamicView?
     private var items: [ListPickerItem]?
     
+    public init(){}
     public func pop(delegate: ListPickerViewDelegate, parentView: UIView, title: String, lst: [ListPickerItem]) {
         self.delegate = delegate
         self.items = lst
