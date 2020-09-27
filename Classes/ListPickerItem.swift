@@ -10,8 +10,8 @@ import Foundation
 
 /// Will represent a single item in the list picker
 public struct ListPickerItem {
-    var title: String
-    var tag: String?
+    public var title: String
+    public var tag: String?
     
     public init(title: String, tag: String? = nil) {
         self.tag = tag

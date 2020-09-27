@@ -66,7 +66,7 @@ public protocol ListPickerViewDelegate {
     func onPickerDismissed()
 }
 
-extension ListPickerViewDelegate {
+public extension ListPickerViewDelegate {
     func onPickerItemSelected(item: ListPickerItem){}
     func onPickerDismissed(){}
 }
