@@ -59,7 +59,7 @@ class ViewController: UIViewController {
 //
         let tv = dv.addView(initialProps: props)
         tv.setClickablePart(linkedText: "If, for some reason", youtubeFullLink: "youtube://www.youtube.com/channel/UCBvgqUEIxJHR7o2q3CJ-4Wg")
-        tv.setClickablePart(linkedText: "find the option", emailRecipient: "ozshabat@gmail.com")
+        tv.setClickablePart(linkedText: "find the option", emailSubject: "what is")
 //        // add the image
 //        let imgProps = InitialUIImageViewProps(imageName: "tt",
 //                                               widthPercentFromParent: 0.3,
