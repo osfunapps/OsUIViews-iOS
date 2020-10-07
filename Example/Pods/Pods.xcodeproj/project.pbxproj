@@ -34,7 +34,7 @@
 		E156F959067C1557A35E35D46AD20C3C /* OsTools-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DB277DFCCD4A38958BCF7F7707F8F2D /* OsTools-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE7F2630225F66E534DC612950ADBAEE /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5D004B018E85EC75DA2D2B4311646D0B /* Assets.bundle */; };
 		F15065E5255C0A3BE1A6BE6FD4697C92 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 110B9C633C501163D357B726F9F1642A /* YTPlayerView.m */; };
-		F47DE832252DB61600B8C268 /* DialogsPopper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47DE831252DB61600B8C268 /* DialogsPopper.swift */; };
+		F47DE832252DB61600B8C268 /* UIDialogPopper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47DE831252DB61600B8C268 /* UIDialogPopper.swift */; };
 		F8418472B89365C6A9357FBCC6B206E5 /* OsUIViews-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C6484C7F2B45CA5B0888AC17E463801A /* OsUIViews-dummy.m */; };
 /* End PBXBuildFile section */
 
@@ -131,7 +131,7 @@
 		EE426D8137B8F63713969EFB7821ED33 /* youtube-ios-player-helper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "youtube-ios-player-helper.debug.xcconfig"; sourceTree = "<group>"; };
 		F0066C223FD3CF3EE814E899BF4FC811 /* OsTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OsTools-prefix.pch"; sourceTree = "<group>"; };
 		F060A7E0CC38DAD066E2B6CE32C8CA5A /* ListPickerItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ListPickerItem.swift; path = Classes/ListPickerItem.swift; sourceTree = "<group>"; };
-		F47DE831252DB61600B8C268 /* DialogsPopper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DialogsPopper.swift; path = Classes/DialogsPopper.swift; sourceTree = "<group>"; };
+		F47DE831252DB61600B8C268 /* UIDialogPopper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDialogPopper.swift; path = Classes/UIDialogPopper.swift; sourceTree = "<group>"; };
 		FD330FEA2BA15D564C76A9538F3BE65C /* Pods-OsUIViews_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OsUIViews_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -228,7 +228,7 @@
 		4C4058CF00BAEE79CC540EFA0C1BD29D /* OsUIViews */ = {
 			isa = PBXGroup;
 			children = (
-				F47DE831252DB61600B8C268 /* DialogsPopper.swift */,
+				F47DE831252DB61600B8C268 /* UIDialogPopper.swift */,
 				E2D3A8358B28DDB22A481E404BAB52FA /* LinkableUITextView.swift */,
 				F060A7E0CC38DAD066E2B6CE32C8CA5A /* ListPickerItem.swift */,
 				CE6405D7520AE39F203B019F30C2FAF9 /* ListPickerView.swift */,
@@ -548,7 +548,7 @@
 				9F570EDA02DF637AE2A276AE06460743 /* ListPickerView.swift in Sources */,
 				F8418472B89365C6A9357FBCC6B206E5 /* OsUIViews-dummy.m in Sources */,
 				DFDF741A76B8A5FA2C5064FDA8C9F65E /* UIDialogWrapper.swift in Sources */,
-				F47DE832252DB61600B8C268 /* DialogsPopper.swift in Sources */,
+				F47DE832252DB61600B8C268 /* UIDialogPopper.swift in Sources */,
 				D31332B0335DB27D8F8186B9405E3BD6 /* UIDynamicView.swift in Sources */,
 				1AF0CF5798302E7BE85B4F7DF811967D /* UIDynamicView.xib in Sources */,
 				4DEA933B52550402CE269635A310516E /* UIDynamicViewStructures.swift in Sources */,

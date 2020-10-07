@@ -1,5 +1,5 @@
 //
-//  LoadingDialogPopper.swift
+//  UIDialogPopper.swift
 //  BuildDynamicUi
 //
 //  Created by Oz Shabat on 12/01/2019.
@@ -9,10 +9,10 @@
 import UIKit
 
 // This class will pop a simple dialogs (choice, information, etc)
-class DialogsPopper {
+public class UIDialogPopper {
     
     /// Will pop an information dialog with one button
-    static func showInformationDialog(_ viewController: UIViewController,
+    public static func showInformationDialog(_ viewController: UIViewController,
                                       title: String = "",
                                       msg: String = "",
                                       btnTitle: String = "Ok",
@@ -35,7 +35,7 @@ class DialogsPopper {
     }
     
     /// Will pop a choice dialog  (two buttons dialog)
-    static func popChoiceDialog(viewController: UIViewController,
+    public static func popChoiceDialog(viewController: UIViewController,
                                       title: String = "",
                                       msg: String = "",
                                       proceedBtnTitle: String = "Proceed",
