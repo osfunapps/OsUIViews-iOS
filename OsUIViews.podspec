@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'OsUIViews'
-  s.version          = '0.1.9'
-  s.summary          = 'This pod contains all of custom views used in OsApps iOS apps'
+  s.version          = '0.2.0'
+  s.summary          = 'This pod contains all of custom views used in osApps iOS apps'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?

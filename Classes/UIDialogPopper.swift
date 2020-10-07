@@ -17,14 +17,14 @@ public class UIDialogPopper {
                                       msg: String = "",
                                       btnTitle: String = "Ok",
                                       dismissOnBtnTap: Bool = true,
-                                      completion: @escaping (() -> Void) = { }){
+                                      btnDidTap: @escaping (() -> Void) = { }){
         
         // create the alert
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         
         // add the actions (buttons)
         alert.addAction(UIAlertAction(title: btnTitle, style: UIAlertAction.Style.default, handler: { action in
-            completion()
+            btnDidTap()
             if dismissOnBtnTap {
                 alert.dismiss(animated: true)
             }
@@ -41,14 +41,14 @@ public class UIDialogPopper {
                                       proceedBtnTitle: String = "Proceed",
                                       cancelBtnTitle: String = "Cancel",
                                       dismissOnBtnTap: Bool = true,
-                                      onCancelTap: @escaping (() -> Void) = { },
-                                      onProceedTap: @escaping (() -> Void) = { }){
+                                      cancelDidTap: @escaping (() -> Void) = { },
+                                      proceedDidTap: @escaping (() -> Void) = { }){
         // create the alert
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         
         // add the actions (buttons)
         alert.addAction(UIAlertAction(title: proceedBtnTitle, style: .destructive , handler: { action in
-            onProceedTap()
+            proceedDidTap()
             if dismissOnBtnTap {
                 alert.dismiss(animated: true)
             }
@@ -56,7 +56,7 @@ public class UIDialogPopper {
         
         // add the actions (buttons)
         alert.addAction(UIAlertAction(title: cancelBtnTitle, style: .cancel , handler: { action in
-            onCancelTap()
+            cancelDidTap()
             if dismissOnBtnTap {
                 alert.dismiss(animated: true)
             }
