@@ -34,6 +34,7 @@
 		E156F959067C1557A35E35D46AD20C3C /* OsTools-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DB277DFCCD4A38958BCF7F7707F8F2D /* OsTools-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE7F2630225F66E534DC612950ADBAEE /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5D004B018E85EC75DA2D2B4311646D0B /* Assets.bundle */; };
 		F15065E5255C0A3BE1A6BE6FD4697C92 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 110B9C633C501163D357B726F9F1642A /* YTPlayerView.m */; };
+		F47DE832252DB61600B8C268 /* DialogsPopper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47DE831252DB61600B8C268 /* DialogsPopper.swift */; };
 		F8418472B89365C6A9357FBCC6B206E5 /* OsUIViews-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C6484C7F2B45CA5B0888AC17E463801A /* OsUIViews-dummy.m */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +83,7 @@
 		0948E86A2C389564B6864FBBE5EC0FB6 /* OsUIViews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OsUIViews.debug.xcconfig; sourceTree = "<group>"; };
 		0B8CDA1B96A4B20CD9D862E4F17D4980 /* UIDynamicViewStructures.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIDynamicViewStructures.swift; path = Classes/UIDynamicViewStructures.swift; sourceTree = "<group>"; };
 		0C8150760A1F21713904370697EDF82F /* OsTools.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OsTools.debug.xcconfig; sourceTree = "<group>"; };
-		0C949F857AE55759620EFB0C18FAB5CB /* OsUIViews.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = OsUIViews.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		0C949F857AE55759620EFB0C18FAB5CB /* OsUIViews.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = OsUIViews.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		0D6AACF9547494193CF7684945DEBF5D /* Pods-OsUIViews_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-OsUIViews_Example.modulemap"; sourceTree = "<group>"; };
 		0E2BC5051F0C489DFC24D7C22F195F22 /* OsTools.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OsTools.release.xcconfig; sourceTree = "<group>"; };
 		0FDE1C3B9D66B5DF2AAD95C3BDD3C34D /* PointerExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PointerExtensions.swift; path = Classes/PointerExtensions.swift; sourceTree = "<group>"; };
@@ -100,23 +101,23 @@
 		504BDFBF8864A5C1AA62D2D668ECC655 /* OsTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OsTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D004B018E85EC75DA2D2B4311646D0B /* Assets.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = Assets.bundle; path = "youtube-ios-player-helper/Assets.bundle"; sourceTree = "<group>"; };
 		69265E376E9463BA51FE1B6667667A23 /* youtube-ios-player-helper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "youtube-ios-player-helper-prefix.pch"; sourceTree = "<group>"; };
-		6D1053BC7436962306D8C346ABDF077B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		6D1053BC7436962306D8C346ABDF077B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		6F32E1142823A2669CD13599C2C9CA0B /* UIDynamicView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIDynamicView.swift; path = Classes/UIDynamicView.swift; sourceTree = "<group>"; };
 		770CD6FF8810E4FB2F8CF4E4DDBBC797 /* UIDynamicView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = UIDynamicView.xib; path = Classes/UIDynamicView.xib; sourceTree = "<group>"; };
 		77D0F70EC4F2E42B6C3A39E36B6B8355 /* YTPlayerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YTPlayerView.h; path = Classes/YTPlayerView.h; sourceTree = "<group>"; };
 		8473B0C48A9226F26C478CC634C610E4 /* Pods-OsUIViews_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OsUIViews_Example-dummy.m"; sourceTree = "<group>"; };
-		8498A1B2C60117E181CA67921DDAE0B6 /* youtube_ios_player_helper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = youtube_ios_player_helper.framework; path = "youtube-ios-player-helper.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		893BF54A31DE3EABB67FEE6A63EBBDD9 /* Pods_OsUIViews_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OsUIViews_Example.framework; path = "Pods-OsUIViews_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8498A1B2C60117E181CA67921DDAE0B6 /* youtube_ios_player_helper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = youtube_ios_player_helper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		893BF54A31DE3EABB67FEE6A63EBBDD9 /* Pods_OsUIViews_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OsUIViews_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8955C450338B85819688CC6312FDF224 /* youtube-ios-player-helper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "youtube-ios-player-helper.release.xcconfig"; sourceTree = "<group>"; };
 		8A9E3956776CF8F79E999980B1FED97B /* Pods-OsUIViews_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OsUIViews_Example-frameworks.sh"; sourceTree = "<group>"; };
 		8CC2FA2B6EA6D567A34C41BE5A732730 /* OsTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "OsTools-dummy.m"; sourceTree = "<group>"; };
-		9632528485F62CCC4953BE08721B6C02 /* OsTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OsTools.framework; path = OsTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9632528485F62CCC4953BE08721B6C02 /* OsTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OsTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C0C272AA3794C04562C0E2314317471 /* Pods-OsUIViews_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OsUIViews_Example-Info.plist"; sourceTree = "<group>"; };
 		9D72389F3CE1B60F8F69D80B7582B087 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0DA211A7674E147CDF24DDC6BB33033 /* youtube-ios-player-helper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "youtube-ios-player-helper-umbrella.h"; sourceTree = "<group>"; };
 		AFBCCF02206D88AC2CEF73B3BF95CA79 /* OsTools.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = OsTools.modulemap; sourceTree = "<group>"; };
-		B541C712263F1264E019B7823E71CB57 /* OsUIViews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OsUIViews.framework; path = OsUIViews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B541C712263F1264E019B7823E71CB57 /* OsUIViews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OsUIViews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3744FFF9A3C7027694E2E0F525124A0 /* OsUIViews-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OsUIViews-prefix.pch"; sourceTree = "<group>"; };
 		C6484C7F2B45CA5B0888AC17E463801A /* OsUIViews-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "OsUIViews-dummy.m"; sourceTree = "<group>"; };
 		CA004B6E03B3161FAAB35C71C386C758 /* UIDialogWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIDialogWrapper.swift; path = Classes/UIDialogWrapper.swift; sourceTree = "<group>"; };
@@ -126,10 +127,11 @@
 		D40379AAB1FC56FDFF2AF91890847484 /* youtube_ios_player_helper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = youtube_ios_player_helper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFEDB9042EA14766DCB56A3486D3C645 /* Pods-OsUIViews_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OsUIViews_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		E2D3A8358B28DDB22A481E404BAB52FA /* LinkableUITextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LinkableUITextView.swift; path = Classes/LinkableUITextView.swift; sourceTree = "<group>"; };
-		E621256B52E6CF9D642F0A105129ABE7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		E621256B52E6CF9D642F0A105129ABE7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EE426D8137B8F63713969EFB7821ED33 /* youtube-ios-player-helper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "youtube-ios-player-helper.debug.xcconfig"; sourceTree = "<group>"; };
 		F0066C223FD3CF3EE814E899BF4FC811 /* OsTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OsTools-prefix.pch"; sourceTree = "<group>"; };
 		F060A7E0CC38DAD066E2B6CE32C8CA5A /* ListPickerItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ListPickerItem.swift; path = Classes/ListPickerItem.swift; sourceTree = "<group>"; };
+		F47DE831252DB61600B8C268 /* DialogsPopper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DialogsPopper.swift; path = Classes/DialogsPopper.swift; sourceTree = "<group>"; };
 		FD330FEA2BA15D564C76A9538F3BE65C /* Pods-OsUIViews_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OsUIViews_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,7 +207,6 @@
 				049DEA8C53F093DAA611010858F00FFD /* Tools.swift */,
 				45932039778571591DFDBFC3E08ADD9C /* Support Files */,
 			);
-			name = OsTools;
 			path = OsTools;
 			sourceTree = "<group>";
 		};
@@ -227,6 +228,7 @@
 		4C4058CF00BAEE79CC540EFA0C1BD29D /* OsUIViews */ = {
 			isa = PBXGroup;
 			children = (
+				F47DE831252DB61600B8C268 /* DialogsPopper.swift */,
 				E2D3A8358B28DDB22A481E404BAB52FA /* LinkableUITextView.swift */,
 				F060A7E0CC38DAD066E2B6CE32C8CA5A /* ListPickerItem.swift */,
 				CE6405D7520AE39F203B019F30C2FAF9 /* ListPickerView.swift */,
@@ -278,7 +280,6 @@
 				D925701A55727B6114BB852B4030D6BA /* Resources */,
 				E0F007055A5D8FBF4B65F7A80E99A53A /* Support Files */,
 			);
-			name = "youtube-ios-player-helper";
 			path = "youtube-ios-player-helper";
 			sourceTree = "<group>";
 		};
@@ -547,6 +548,7 @@
 				9F570EDA02DF637AE2A276AE06460743 /* ListPickerView.swift in Sources */,
 				F8418472B89365C6A9357FBCC6B206E5 /* OsUIViews-dummy.m in Sources */,
 				DFDF741A76B8A5FA2C5064FDA8C9F65E /* UIDialogWrapper.swift in Sources */,
+				F47DE832252DB61600B8C268 /* DialogsPopper.swift in Sources */,
 				D31332B0335DB27D8F8186B9405E3BD6 /* UIDynamicView.swift in Sources */,
 				1AF0CF5798302E7BE85B4F7DF811967D /* UIDynamicView.xib in Sources */,
 				4DEA933B52550402CE269635A310516E /* UIDynamicViewStructures.swift in Sources */,
@@ -897,8 +899,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
