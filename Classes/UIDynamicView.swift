@@ -116,9 +116,9 @@ public class UIDynamicView: UIView {
             case .center:
                 view.centralizeHorizontalInParent()
             case .left:
-                view.toLeadingOfParent(constant: padding)
+                view.pinToLeadingOfParent(constant: padding)
             case .right:
-                view.toTrailingOfParent(constant: padding)
+                view.pinToTrailingOfParent(constant: padding)
             }
         }
     }

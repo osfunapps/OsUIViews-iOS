@@ -12,7 +12,7 @@ import UIKit
 public class UIDialogPopper {
     
     /// Will pop an information dialog with one button
-    public static func showInformationDialog(_ viewController: UIViewController,
+    public static func popInformationDialog(_ viewController: UIViewController,
                                       title: String = "",
                                       msg: String = "",
                                       btnTitle: String = "Ok",
