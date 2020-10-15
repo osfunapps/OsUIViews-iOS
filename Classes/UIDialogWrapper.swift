@@ -27,12 +27,16 @@ public class UIDialogWrapper {
     
     public init(parentView: UIView,
                 padding: CGFloat = UIDynamicView.DEF_PADDING,
-                margin: CGFloat = UIDynamicView.DEF_MARGIN,
+                sidesMargin: CGFloat = UIDynamicView.DEF_MARGIN,
+                bottomMargin: CGFloat = 0,
+                topMargin: CGFloat = 0,
                 maxWidthPercentFromParent: CGFloat = 1.0) {
         dynamicContainer = UIDynamicView()
         dynamicContainer!.prepareView(parentView: parentView,
                                       padding: padding,
-                                      topMargin: 12,
+                                      sidesMargin: sidesMargin,
+                                      bottomMargin: bottomMargin,
+                                      topMargin: topMargin,
                                       maxWidthPercentFromParent: maxWidthPercentFromParent)
         dynamicContainer!.dropShadow()
     }
@@ -136,8 +140,12 @@ public class UIDialogWrapper {
         dynamicContainer!.addView(initialProps: initialProps)
     }
     
-    public func attachView(parentView: UIView, preventInteractionWithOtherViews: Bool = true) {
-        dynamicContainer!.attachView(parentView: parentView, preventInteractionWithOtherViews: preventInteractionWithOtherViews)
+    public func attachView(parentView: UIView,
+                           toParentTopSafeArea: Bool = true,
+                           toParentBottomSafeArea: Bool = true,
+                           preventInteractionWithOtherViews: Bool = true) {
+        dynamicContainer!.attachView(parentView: parentView,
+                                     toParentTopSafeArea: toParentTopSafeArea, toParentBottomSafeArea: toParentBottomSafeArea, preventInteractionWithOtherViews: preventInteractionWithOtherViews)
     }
     
     // TODO: control the fade out duration
