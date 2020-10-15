@@ -73,6 +73,11 @@ public class UIDialogWrapper {
         dynamicContainer!.addView(initialProps: initialProps)
     }
     
+    /// You should call this function if there is a change in the height of the parent view (if you're adding ads, for example) after the view has already been inflated
+    public func updateHeight() {
+        dynamicContainer?.updateHeight()
+    }
+    
     
     public func setImageView(imageName: String, widthPercentFromParent: CGFloat = 1.0) {
         let initialProps = InitialUIImageViewProps(imageName: imageName,
