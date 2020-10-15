@@ -440,16 +440,15 @@ public class UIDynamicView: UIView {
             return 0
         }
         if let parentView = superview {
-            if #available(iOS 11.0, *) {
-                return parentView.safeAreaInsets.top
-            } else {
+//            if #available(iOS 11.0, *) {
+//                return parentView.safeAreaInsets.top
+//            } else {
                 if let parentTopGuide = parentView.parentViewController?.topLayoutGuide.length {
                     return parentTopGuide
                 } else {
                     return 44
                 }
             }
-        }
         
         return 0
     }
