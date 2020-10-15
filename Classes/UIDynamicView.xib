@@ -13,8 +13,8 @@
             <connections>
                 <outlet property="containerViewTopConstr" destination="izx-Gx-DZs" id="6g5-Im-dQb"/>
                 <outlet property="contentView" destination="Rak-3i-wOz" id="n2I-FG-oO2"/>
-                <outlet property="parentView" destination="vlD-sz-JTw" id="8N0-Ce-c71"/>
                 <outlet property="scrollView" destination="uoa-7W-hg3" id="a7X-w6-jr4"/>
+                <outlet property="scrollViewParentView" destination="vlD-sz-JTw" id="04N-T9-IA8"/>
                 <outlet property="viewsContainer" destination="NfT-Od-wXH" id="yqw-sz-eNB"/>
             </connections>
         </placeholder>
@@ -24,13 +24,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlD-sz-JTw" userLabel="Container View">
-                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uoa-7W-hg3">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             <subviews>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NfT-Od-wXH" userLabel="Inner Views Parent">
-                                    <rect key="frame" x="87" y="0.0" width="240" height="852"/>
+                                    <rect key="frame" x="87" y="0.0" width="240" height="896"/>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -58,7 +58,7 @@
                 <constraint firstItem="vlD-sz-JTw" firstAttribute="centerX" secondItem="Rak-3i-wOz" secondAttribute="centerX" id="4vQ-tR-DOI"/>
                 <constraint firstAttribute="bottom" secondItem="vlD-sz-JTw" secondAttribute="bottom" id="Ij1-QS-9Eq"/>
                 <constraint firstItem="vlD-sz-JTw" firstAttribute="width" secondItem="Rak-3i-wOz" secondAttribute="width" priority="250" id="QDA-3K-PbY"/>
-                <constraint firstItem="vlD-sz-JTw" firstAttribute="top" secondItem="zgn-Wa-8bg" secondAttribute="top" id="izx-Gx-DZs"/>
+                <constraint firstItem="vlD-sz-JTw" firstAttribute="top" secondItem="Rak-3i-wOz" secondAttribute="top" id="izx-Gx-DZs"/>
                 <constraint firstItem="vlD-sz-JTw" firstAttribute="height" secondItem="Rak-3i-wOz" secondAttribute="height" priority="250" id="wvV-C0-rXd"/>
             </constraints>
             <point key="canvasLocation" x="648" y="-650"/>

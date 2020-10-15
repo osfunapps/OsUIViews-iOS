@@ -12,7 +12,9 @@ import OsUIViews
 
 class ViewController: UIViewController {
     @IBOutlet var papaView: UIView!
+    private var dv: UIDynamicView!
     
+    @IBOutlet weak var dialogContainer: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -20,31 +22,130 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Tools.asyncMainTimedFunc(popFactsDialog, 2)
-        
-//        tv.setText(text: "wjat is the time")
-//        tv.setClickablePart(linkedText: "wjat", youtubeFullLink: "youtube://www.youtube.com/channel/UCBvgqUEIxJHR7o2q3CJ-4Wg")
-        
-//        let tv = LinkableUITextView()
-//        tv.translatesAutoresizingMaskIntoConstraints = false
-//        tv.setHeight(height: 150)
-//        tv.setWidth(width: 250)
-//        papaView.addSubview(tv)
-//        tv.centralizeVerticalInParent()
-//        tv.centralizeHorizontalInParent()
-//        tv.text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."
-////        tv.setText(text: "what is the time???")
+        popDodo()
+        Tools.asyncMainTimedFunc(raiseConstr, 2)
+//        Tools.asyncMainTimedFunc(popFactsDialog, 2)
     }
     
-    private var dv: UIDynamicView!
+    private func raiseConstr() {
+        bottomConstr.constant = 30
+        dv.updateHeight()
+    }
     
+    @IBOutlet weak var bottomConstr: NSLayoutConstraint!
+    private func popDodo() {
+        
+        // build the dynamic view with all of the props
+        dv = UIDynamicView()
+        dv.prepareView(parentView: dialogContainer,
+                       padding: 0,
+                       sidesMargin: 12,
+                       maxWidthPercentFromParent: 1.0)
+        
+//        dv.dropShadow(shadowRadius: 0)
+        //        dv.scrollView.flashScrollIndicators()
+        // add the title
+            var props = InitialLabelProps(text: "bla",
+                                          textAlignment: .center,
+                                          font: UIFont.systemFont(ofSize: 20, weight: .bold))
+            dv.addView(initialProps: props)
+        
+            props = InitialLabelProps(text: "Top explanation",
+                                          textAlignment: .center,
+                                          font: UIFont.systemFont(ofSize: 16))
+            dv.addView(initialProps: props)
+        
+//            // add the video
+//            let youtubeProps = InitialYoutubeVideoProps(videoId: "BywDOO99Ia0", alignment: .center)
+//            dv.addView(initialProps: youtubeProps)
+//
+        // bottom explanation
+            props = InitialLabelProps(text: "bottom explain", textAlignment: .left, font: UIFont.systemFont(ofSize: 14))
+            dv.addView(initialProps: props)
+        
+        props = InitialLabelProps(text: """
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+""", textAlignment: .left, font: UIFont.systemFont(ofSize: 14))
+        dv.addView(initialProps: props)
+        
+//            let tfProps = InitialUITextFieldProps(approximateCharCount: 17,
+//                                                  placeHolder: "00:00:00:00:00:00",
+//                                                  alignment: .center,
+//                                                  keyboardType: .namePhonePad,
+//                                                  tag: 12,
+//                                                  font: UIFont.systemFont(ofSize: 18, weight: .bold))
+//        let v = dv.addView(initialProps: tfProps)
+//
+//
+        let btnProps = InitialButtonProps(labelText: "Check and save", alignment: .center, tapSelector: #selector(onMacCheckTap), font: UIFont.systemFont(ofSize: 18, weight: .bold))
+        dv.addView(initialProps: btnProps)
+        
+        
+            let nextBtnProps = InitialButtonProps(labelText: "Next >",
+                                              alignment: .right,
+                                              tapSelector: #selector(onNextTap),
+                                              font: UIFont.systemFont(ofSize: 18),
+                                              tag: 50)
+        
+        dv.addView(initialProps: nextBtnProps)
+        
+        // if you can't find menus in the os, send us an email
+        
+        let TVprops = InitialLinkableUITextViewProps(fullText: "* If, for some reason, you can't find the option in your device, check out our Youtube channel for the newest guides. Furthermore, you can always reach us via email.",
+                                                   textAlignment: .center,
+                                                   font: UIFont.systemFont(ofSize: 13),
+                                                   lineHeightMultiply: 1.25)
+        
+        let tv = dv.addView(initialProps: TVprops)
+//        tv.addTopBorder(percentsFromWidth: 0.88)
+        
+        
+        tv.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        tv.setClickablePart(linkedText: "Youtube channel",
+                            youtubeFullLink: "https://www.youtube.com/channel/UCBvgqUEIxJHR7o2q3CJ-4Wg")
+        
+        tv.setClickablePart(linkedText: "via email",
+                            emailRecipient: "support@os-apps.com",
+                            emailSubject: "a problem with an iOS app")
+        
+        //        v.setHeight(height: 150)
+        //        v.refreshLayout()
+        
+        dv.alpha = 0
+        dv.isUserInteractionEnabled = true
+        dv.attachView(parentView: dialogContainer,
+                      toParentTopSafeArea: true,
+                      toParentBottomSafeArea: true,
+                      preventInteractionWithOtherViews: true)
+//
+        dv.fadeIn {
+            
+        }
+    }
+    
+    @objc func onMacCheckTap() {
+        
+    }
+    
+    @objc func onNextTap() {
+        
+    }
     private func popFactsDialog() {
         
         // build the dynamic view with all of the props
         dv = UIDynamicView()
         dv.prepareView(parentView: view,
                        padding: 14,
-                       margin: 14,
                        maxWidthPercentFromParent: 0.65)
         dv.dropShadow(shadowRadius: 5.0)
         

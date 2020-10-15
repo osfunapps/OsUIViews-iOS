@@ -19,24 +19,29 @@ public class UIDynamicView: UIView {
     @IBOutlet private var contentView: UIView!
     
     /// The scroll view holder
-    @IBOutlet public weak var parentView: UIView!
+    @IBOutlet weak var scrollViewParentView: UIView!
     @IBOutlet weak var containerViewTopConstr: NSLayoutConstraint!
     
     // indications
     public var padding: CGFloat!
-    public var margin: CGFloat!
+    public var topMargin: CGFloat!
+    public var bottomMargin: CGFloat!
+    public var sidesMargin: CGFloat!
+    var toParentTopSafeArea = false
+    var toParentBottomSafeArea = false
     public var spaceBetweenViews = DEF_SPACE_BETWEEN_VIEWS
     private var maxInnerSize: CGFloat = 0
     private var latestViewAdded: UIView? = nil
     private var containerViewTopConstrConst: CGFloat!
     private var siblingViewsInteractable = true
     private var preventClicksOnOtherViews = false
-    
+    private var viewsContainerBottomConstr: NSLayoutConstraint? = nil
     private var currViewsContainerWidth: CGFloat = 0
     private var currViewsContainerHeight: CGFloat = 0
     private var viewsContainerWidthConstr: NSLayoutConstraint = NSLayoutConstraint()
     private var viewsContainerHeightConstr: NSLayoutConstraint = NSLayoutConstraint()
     private var maxViewsContainerWidth: CGFloat!
+    var viewDistanceFromTop: CGFloat?
     
     // constants
     public static let DEF_PADDING: CGFloat = 14
@@ -54,12 +59,16 @@ public class UIDynamicView: UIView {
     /// - Parameter maxWidthPercentFromParent: The maximum width of the view, related to it's parent view
     public func prepareView(parentView: UIView,
                             padding: CGFloat = DEF_PADDING,
-                            margin: CGFloat = DEF_MARGIN,
+                            sidesMargin: CGFloat = DEF_MARGIN,
+                            bottomMargin: CGFloat = 0,
+                            topMargin: CGFloat = 0,
                             maxWidthPercentFromParent: CGFloat = 1.0) {
         self.padding = padding
-        self.margin = margin
+        self.sidesMargin = sidesMargin
+        self.topMargin = topMargin
+        self.bottomMargin = bottomMargin
         parentView.refreshLayout()
-        maxViewsContainerWidth = (parentView.frame.width) * maxWidthPercentFromParent - margin * 2
+        maxViewsContainerWidth = (parentView.frame.width) * maxWidthPercentFromParent - sidesMargin * 2
         maxInnerSize = maxViewsContainerWidth - padding * 2
         currViewsContainerHeight = padding
     }
@@ -385,13 +394,19 @@ public class UIDynamicView: UIView {
     /// Will attach the view to it's parent view. Call this function when you're done adding views and you want to pop the view
     ///
     /// - Parameter parentView: The parent view to attach to
-    public func attachView(parentView: UIView, preventInteractionWithOtherViews: Bool = true) {
+    public func attachView(parentView: UIView,
+                           toParentTopSafeArea: Bool = false,
+                           toParentBottomSafeArea: Bool = false,
+                           preventInteractionWithOtherViews: Bool = true) {
         // refresh the container
         viewsContainer.refreshLayout()
         
         // add the view and attach it to the top and centrelaize x
         parentView.addSubview(self)
-        pinToParentTop(constant: margin)
+        
+        self.toParentTopSafeArea = toParentTopSafeArea
+        self.toParentBottomSafeArea = toParentBottomSafeArea
+        pinToParentTop(toMargins: toParentTopSafeArea, constant: topMargin)
         centralizeHorizontalInParent()
         
         // disable touches with other views, if required
@@ -401,10 +416,43 @@ public class UIDynamicView: UIView {
         
         
         // attach bottom to bottom if height is too great
-        if viewsContainer.frame.height > parentView.frame.height {
-            pinToParentBottom()
-        }
+        updateHeight()
         subscribeKeyboardObservers()
+    }
+    
+    /// You should call this function if there is a change in the height of the parent view (if you're adding ads, for example) after the view has already been inflated
+    public func updateHeight() {
+        if let parentView = superview {
+            let distanceFromTop = calcDistanceFromTopSafeArea()
+            if let bottomConstr = viewsContainerBottomConstr {
+                bottomConstr.isActive = false
+            }
+            if viewsContainer.frame.height + topMargin + distanceFromTop > parentView.frame.height {
+                viewsContainerBottomConstr = pinToParentBottom(toMargins: toParentBottomSafeArea, constant: bottomMargin)
+                
+            } else {
+                viewsContainerBottomConstr = setHeight(height: viewsContainer.frame.height + topMargin)
+            }
+        }
+    }
+    
+    private func calcDistanceFromTopSafeArea() ->  CGFloat {
+        if !toParentTopSafeArea {
+            return 0
+        }
+        if let parentView = superview {
+            if #available(iOS 11.0, *) {
+                return parentView.safeAreaInsets.top
+            } else {
+                if let parentTopGuide = parentView.parentViewController?.topLayoutGuide.length {
+                    return parentTopGuide
+                } else {
+                    return 44
+                }
+            }
+        }
+        
+        return 0
     }
     
     
@@ -487,4 +535,5 @@ extension Array where Element == UIViewAlignment {
         
     }
 }
+
 

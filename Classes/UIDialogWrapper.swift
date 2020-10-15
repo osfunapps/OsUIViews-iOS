@@ -30,7 +30,10 @@ public class UIDialogWrapper {
                 margin: CGFloat = UIDynamicView.DEF_MARGIN,
                 maxWidthPercentFromParent: CGFloat = 1.0) {
         dynamicContainer = UIDynamicView()
-        dynamicContainer!.prepareView(parentView: parentView, padding: padding, margin: margin, maxWidthPercentFromParent: maxWidthPercentFromParent)
+        dynamicContainer!.prepareView(parentView: parentView,
+                                      padding: padding,
+                                      topMargin: 12,
+                                      maxWidthPercentFromParent: maxWidthPercentFromParent)
         dynamicContainer!.dropShadow()
     }
     
