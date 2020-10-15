@@ -368,7 +368,7 @@ public class UIDynamicView: UIView {
         
         // sv
         let sv = UIStackView()
-        sv.tag = tag
+        sv.tag = initialProps.tag
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = initialProps.axis
         sv.distribution = initialProps.distribution
