@@ -395,8 +395,8 @@ public class UIDynamicView: UIView {
     ///
     /// - Parameter parentView: The parent view to attach to
     public func attachView(parentView: UIView,
-                           toParentTopSafeArea: Bool = false,
-                           toParentBottomSafeArea: Bool = false,
+                           toParentTopSafeArea: Bool = true,
+                           toParentBottomSafeArea: Bool = true,
                            preventInteractionWithOtherViews: Bool = true) {
         // refresh the container
         viewsContainer.refreshLayout()
