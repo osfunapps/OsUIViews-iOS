@@ -103,7 +103,6 @@ public class UIDynamicView: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        tag = UIDynamicView.VIEW_TAG
     }
     
     /// Will initiate the process of adding a view to the views container
@@ -494,7 +493,7 @@ public class UIDynamicView: UIView {
     private func toggleInteractionWithSiblingViews(interactable: Bool) {
         siblingViewsInteractable = interactable
         superview!.subviews.forEach { it in
-            if it.tag != UIDynamicView.VIEW_TAG {
+            if it != self {
                 it.isUserInteractionEnabled = interactable
             }
         }
@@ -519,7 +518,6 @@ public class UIDynamicView: UIView {
     }
     
     
-    public static let VIEW_TAG = 95207
 }
 
 

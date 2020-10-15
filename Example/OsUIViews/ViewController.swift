@@ -54,11 +54,11 @@ class ViewController: UIViewController {
                                           textAlignment: .center,
                                           font: UIFont.systemFont(ofSize: 16))
             dv.addView(initialProps: props)
-        
-//            // add the video
-//            let youtubeProps = InitialYoutubeVideoProps(videoId: "BywDOO99Ia0", alignment: .center)
-//            dv.addView(initialProps: youtubeProps)
-//
+
+            // add the video
+            let youtubeProps = InitialYoutubeVideoProps(videoId: "BywDOO99Ia0", alignment: .center)
+            dv.addView(initialProps: youtubeProps)
+
         // bottom explanation
             props = InitialLabelProps(text: "bottom explain", textAlignment: .left, font: UIFont.systemFont(ofSize: 14))
             dv.addView(initialProps: props)
@@ -75,18 +75,26 @@ bo sadasd dasadadsad sda sd as das asdttom explain
 bo sadasd dasadadsad sda sd as das asdttom explain
 bo sadasd dasadadsad sda sd as das asdttom explain
 bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
+bo sadasd dasadadsad sda sd as das asdttom explain
 """, textAlignment: .left, font: UIFont.systemFont(ofSize: 14))
         dv.addView(initialProps: props)
         
-//            let tfProps = InitialUITextFieldProps(approximateCharCount: 17,
-//                                                  placeHolder: "00:00:00:00:00:00",
-//                                                  alignment: .center,
-//                                                  keyboardType: .namePhonePad,
-//                                                  tag: 12,
-//                                                  font: UIFont.systemFont(ofSize: 18, weight: .bold))
-//        let v = dv.addView(initialProps: tfProps)
-//
-//
+            let tfProps = InitialUITextFieldProps(approximateCharCount: 17,
+                                                  placeHolder: "00:00:00:00:00:00",
+                                                  alignment: .center,
+                                                  keyboardType: .namePhonePad,
+                                                  tag: 12,
+                                                  font: UIFont.systemFont(ofSize: 18, weight: .bold))
+         dv.addView(initialProps: tfProps)
+
+
         let btnProps = InitialButtonProps(labelText: "Check and save", alignment: .center, tapSelector: #selector(onMacCheckTap), font: UIFont.systemFont(ofSize: 18, weight: .bold))
         dv.addView(initialProps: btnProps)
         
@@ -237,11 +245,11 @@ bo sadasd dasadadsad sda sd as das asdttom explain
 //        )
 //        dv.addView(initialProps: descriptionProps)
 //
-//        // add the youtube video
-//        let videoProps = InitialYoutubeVideoProps(videoId: "BywDOO99Ia0",
-//                                                  widthPercentFromParent: 0.75,
-//                                                  alignment: .center)
-//        dv.addView(initialProps: videoProps)
+        // add the youtube video
+        let videoProps = InitialYoutubeVideoProps(videoId: "BywDOO99Ia0",
+                                                  widthPercentFromParent: 0.75,
+                                                  alignment: .center)
+        dv.addView(initialProps: videoProps)
 //
 //        // add the footer button
 //        let okBtnProps = InitialButtonProps(labelText: "OK",
