@@ -166,8 +166,8 @@ public struct InitialButtonProps: InitialProps {
     
     public init(labelText: String,
                 alignment: UIViewAlignment = .center,
-                tapSelector: Selector,
                 tapTarget: Any? = nil,
+                tapSelector: Selector,
                 font: UIFont = UIFont.systemFont(ofSize: 15),
                 tag: Int = 0) {
         self.labelText = labelText

@@ -22,9 +22,23 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        popDodo()
-        Tools.asyncMainTimedFunc(raiseConstr, 2)
+//        popDodo()
+        popSelection()
+//        Tools.asyncMainTimedFunc(raiseConstr, 2)
 //        Tools.asyncMainTimedFunc(popFactsDialog, 2)
+    }
+    
+    private func popSelection() {
+        ListPickerViewPopper.shared.pop(parentView: view,
+                                                  title: "Select country",
+                                                  items: [
+                                                    ListPickerItem(title: "USA"),
+                                                    ListPickerItem(title: "Israel"),
+                                                    ListPickerItem(title: "Baghdad"),
+                                                    ListPickerItem(title: "Liverpool"),
+                                                  ]) { country in
+            print(country)
+        }
     }
     
     private func raiseConstr() {
@@ -55,31 +69,15 @@ class ViewController: UIViewController {
                                           font: UIFont.systemFont(ofSize: 16))
             dv.addView(initialProps: props)
 
-            // add the video
-            let youtubeProps = InitialYoutubeVideoProps(videoId: "BywDOO99Ia0", alignment: .center)
-            dv.addView(initialProps: youtubeProps)
+//            // add the video
+//            let youtubeProps = InitialYoutubeVideoProps(videoId: "BywDOO99Ia0", alignment: .center)
+//            dv.addView(initialProps: youtubeProps)
 
         // bottom explanation
             props = InitialLabelProps(text: "bottom explain", textAlignment: .left, font: UIFont.systemFont(ofSize: 14))
             dv.addView(initialProps: props)
         
         props = InitialLabelProps(text: """
-bo sadasd dasadadsad sda sd as das asdttom explain
-bo sadasd dasadadsad sda sd as das asdttom explain
-bo sadasd dasadadsad sda sd as das asdttom explain
-bo sadasd dasadadsad sda sd as das asdttom explain
-bo sadasd dasadadsad sda sd as das asdttom explain
-bo sadasd dasadadsad sda sd as das asdttom explain
-bo sadasd dasadadsad sda sd as das asdttom explain
-bo sadasd dasadadsad sda sd as das asdttom explain
-bo sadasd dasadadsad sda sd as das asdttom explain
-bo sadasd dasadadsad sda sd as das asdttom explain
-bo sadasd dasadadsad sda sd as das asdttom explain
-bo sadasd dasadadsad sda sd as das asdttom explain
-bo sadasd dasadadsad sda sd as das asdttom explain
-bo sadasd dasadadsad sda sd as das asdttom explain
-bo sadasd dasadadsad sda sd as das asdttom explain
-bo sadasd dasadadsad sda sd as das asdttom explain
 bo sadasd dasadadsad sda sd as das asdttom explain
 bo sadasd dasadadsad sda sd as das asdttom explain
 bo sadasd dasadadsad sda sd as das asdttom explain
@@ -124,7 +122,8 @@ bo sadasd dasadadsad sda sd as das asdttom explain
         
         tv.setClickablePart(linkedText: "via email",
                             emailRecipient: "support@os-apps.com",
-                            emailSubject: "a problem with an iOS app")
+                            emailSubject: "a problem with an iOS app",
+                            emailContent: "what is the issue with those guys? hah?")
         
         //        v.setHeight(height: 150)
         //        v.refreshLayout()
@@ -206,17 +205,17 @@ bo sadasd dasadadsad sda sd as das asdttom explain
         
         
         // prepare the dialog
-        let dialogWrapper = UIDialogWrapper(parentView: view, margin: 20, maxWidthPercentFromParent: 0.85)
+        let dialogWrapper = UIDialogWrapper(parentView: view, maxWidthPercentFromParent: 0.85)
         
         // set title and description
-        dialogWrapper.setTitle(text: "Turn on your TV", size: 18)
-        dialogWrapper.setTopDesription(text: """
-                   In the future, allow this TV to be turned on by the phone
-                   """, size: 16)
-        dialogWrapper.setFooter(leftBtnText: "Later",
-                                rightBtnText: "Allow",
-                                leftBtnTapSelector: #selector(onNiceTap),
-                                rightBtnTapSelector: #selector(onNextFactTap))
+        dialogWrapper.setTitle(text: "Turn on your TV")
+//        dialogWrapper.setTopDesription(text: """
+//                   In the future, allow this TV to be turned on by the phone
+//                   """, size: 16)
+//        dialogWrapper.setFooter(leftBtnText: "Later",
+//                                rightBtnText: "Allow",
+//                                leftBtnTapSelector: #selector(onNiceTap),
+//                                rightBtnTapSelector: #selector(onNextFactTap))
         
         // attach the view to it's parent
         dialogWrapper.attachView(parentView: view)

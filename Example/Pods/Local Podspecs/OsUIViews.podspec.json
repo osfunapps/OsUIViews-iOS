@@ -1,6 +1,6 @@
 {
   "name": "OsUIViews",
-  "version": "0.2.1",
+  "version": "0.2.8",
   "summary": "This pod contains all of custom views used in osApps iOS apps",
   "description": "This pod contains all of open sourced custom views used in OsApps iOS apps",
   "dependencies": {
@@ -21,7 +21,7 @@
   },
   "source": {
     "git": "https://github.com/osfunapps/OsUIViews-iOS.git",
-    "tag": "0.2.1"
+    "tag": "0.2.8"
   },
   "swift_versions": "5.0",
   "platforms": {

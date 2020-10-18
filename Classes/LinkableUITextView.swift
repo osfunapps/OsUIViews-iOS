@@ -55,13 +55,15 @@ public class LinkableUITextView: UITextView {
     /// Call this function after you set the text using setText. Decide which part of the text will navigate to an email message with receipients
     public func setClickablePart(linkedText: String,
                                  emailRecipient: String = "",
+                                 cc: [String]? = nil,
                                  emailSubject: String = "",
-                                 cc: [String]? = nil) {
+                                 emailContent: String = ""
+    ) {
         var recipients = ""
         if let _cc = cc {
             recipients = _cc.joined(separator: ",")
         }
-        let ans = "mailto:\(emailRecipient)?cc=\(recipients)&subject=\(emailSubject)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let ans = "mailto:\(emailRecipient)?cc=\(recipients)&subject=\(emailSubject)&body=\(emailContent)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: ans)!
         setClickableRange(url: url, linkedText: linkedText)
     }
