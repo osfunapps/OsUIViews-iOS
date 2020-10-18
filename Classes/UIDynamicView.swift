@@ -32,7 +32,7 @@ public class UIDynamicView: UIView {
     public var spaceBetweenViews = DEF_SPACE_BETWEEN_VIEWS
     private var maxInnerSize: CGFloat = 0
     private var latestViewAdded: UIView? = nil
-    private var containerViewTopConstrConst: CGFloat!
+    private var containerViewTopConstrConst: CGFloat = 0
     private var siblingViewsInteractable = true
     private var preventClicksOnOtherViews = false
     private var viewsContainerBottomConstr: NSLayoutConstraint? = nil
