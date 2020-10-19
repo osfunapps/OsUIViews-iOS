@@ -97,6 +97,11 @@ public class UIDynamicView: UIView {
         setFrame()
     }
     
+    /// Will change the background color of the dialog
+    public func setBackgroundColor(color: UIColor) {
+        scrollViewParentView.backgroundColor = color
+    }
+    
     /// Will prepare the frame for first init
     private func setFrame() {
         translatesAutoresizingMaskIntoConstraints = false
@@ -202,6 +207,9 @@ public class UIDynamicView: UIView {
         attributes[NSAttributedString.Key.paragraphStyle] = paragraphStyle
         label.attributedText = NSAttributedString(string: initialProps.text, attributes: attributes)
         
+        if let color = initialProps.textColor {
+            label.textColor = color
+        }
         label.numberOfLines = initialProps.numberOfLines
         label.font = initialProps.font
         label.sizeToFit()
@@ -218,18 +226,20 @@ public class UIDynamicView: UIView {
     /// - Parameter invalidate: Set to true if you want to add the view to the parent
     @discardableResult
     public func addView(initialProps: InitialLinkableUITextViewProps, invalidate: Bool = true) -> LinkableUITextView {
-        let view = LinkableUITextView()
-        view.tag = initialProps.tag
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.setText(text: initialProps.fullText, lineHeightMultiple: initialProps.lineHeightMultiply)
-        view.isEditable = initialProps.isEditable
-        view.font = initialProps.font
-        view.sizeToFit()
-        if invalidate {
-            beginViewAddProcedure(view, [initialProps.textAlignment])
+        let tv = LinkableUITextView()
+        tv.tag = initialProps.tag
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        if let color = initialProps.textColor {
+            tv.textColor = color
         }
-        return view
+        tv.setText(text: initialProps.fullText, lineHeightMultiple: initialProps.lineHeightMultiply)
+        tv.isEditable = initialProps.isEditable
+        tv.font = initialProps.font
+        tv.sizeToFit()
+        if invalidate {
+            beginViewAddProcedure(tv, [initialProps.textAlignment])
+        }
+        return tv
     }
     
     
@@ -246,6 +256,9 @@ public class UIDynamicView: UIView {
         button.setAllStatesTitle(initialProps.labelText)
         button.addTarget(initialProps.tapTarget, action: initialProps.tapSelector, for: .touchUpInside)
         button.titleLabel!.font = initialProps.font
+        if let color = initialProps.textColor {
+            button.titleLabel?.textColor = color
+        }
         button.titleLabel!.sizeToFit()
         button.sizeToFit()
         if invalidate {

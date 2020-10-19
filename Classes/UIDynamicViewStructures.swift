@@ -18,9 +18,11 @@ public struct InitialLabelProps: InitialProps {
     var tag: Int
     var font: UIFont
     var lineHeightMultiply: CGFloat
+    var textColor: UIColor?
     
     public init(text: String,
                 textAlignment: UIViewAlignment = .center,
+                textColor: UIColor? = nil,
                 numberOfLines: Int = 0,
                 tag: Int = 0,
                 font: UIFont = UIFont.systemFont(ofSize: 17),
@@ -28,6 +30,7 @@ public struct InitialLabelProps: InitialProps {
         self.text = text
         self.textAlignment = textAlignment
         self.numberOfLines = numberOfLines
+        self.textColor = textColor
         self.tag = tag
         self.font = font
         self.lineHeightMultiply = lineHeightMultiply
@@ -49,15 +52,18 @@ public struct InitialLinkableUITextViewProps: InitialProps {
     var font: UIFont
     var lineHeightMultiply: CGFloat
     var isEditable: Bool
+    var textColor: UIColor?
     
     public init(fullText: String,
                 textAlignment: UIViewAlignment = .center,
+                textColor: UIColor? = nil,
                 tag: Int = 0,
                 font: UIFont = UIFont.systemFont(ofSize: 17),
                 lineHeightMultiply: CGFloat = 1.25,
                 isEditable: Bool = false) {
         self.fullText = fullText
         self.textAlignment = textAlignment
+        self.textColor = textColor
         self.tag = tag
         self.font = font
         self.lineHeightMultiply = lineHeightMultiply
@@ -163,15 +169,18 @@ public struct InitialButtonProps: InitialProps {
     var tapTarget: Any?
     var font: UIFont
     var tag: Int
+    var textColor: UIColor?
     
     public init(labelText: String,
                 alignment: UIViewAlignment = .center,
                 tapTarget: Any? = nil,
+                textColor: UIColor? = nil,
                 tapSelector: Selector,
                 font: UIFont = UIFont.systemFont(ofSize: 15),
                 tag: Int = 0) {
         self.labelText = labelText
         self.alignment = alignment
+        self.textColor = textColor
         self.tapSelector = tapSelector
         self.tapTarget = tapTarget
         self.tag = tag
