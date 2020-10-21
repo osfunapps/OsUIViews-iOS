@@ -11,21 +11,24 @@ import OsTools
 import OsUIViews
 
 class ViewController: UIViewController {
+    
     @IBOutlet var papaView: UIView!
     private var dv: UIDynamicView!
-    
+    @IBOutlet weak var testLabel: UILabel!
     @IBOutlet weak var dialogContainer: UIView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 //        popDodo()
-        popSelection()
+//        popSelection()
+        setTestLabel()
 //        Tools.asyncMainTimedFunc(raiseConstr, 2)
 //        Tools.asyncMainTimedFunc(popFactsDialog, 2)
+    }
+    
+    private func setTestLabel() {
+        
     }
     
     private func popSelection() {
@@ -273,4 +276,3 @@ bo sadasd dasadadsad sda sd as das asdttom explain
         }
     }
 }
-

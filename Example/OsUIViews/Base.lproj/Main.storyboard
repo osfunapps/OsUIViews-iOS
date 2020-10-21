@@ -19,7 +19,19 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4jm-AM-rUW" userLabel="DialogContainer">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVp-QG-JSt">
+                                        <rect key="frame" x="166.5" y="323" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="yVp-QG-JSt" firstAttribute="centerY" secondItem="4jm-AM-rUW" secondAttribute="centerY" id="R5X-qH-mKv"/>
+                                    <constraint firstItem="yVp-QG-JSt" firstAttribute="centerX" secondItem="4jm-AM-rUW" secondAttribute="centerX" id="XlO-oY-LY1"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Tkj-Pc-el5"/>
@@ -35,6 +47,7 @@
                         <outlet property="bottomConstr" destination="7vF-Ow-KAC" id="HJc-er-C16"/>
                         <outlet property="dialogContainer" destination="4jm-AM-rUW" id="46F-aO-cx1"/>
                         <outlet property="papaView" destination="kh9-bI-dsS" id="6vv-de-nOt"/>
+                        <outlet property="testLabel" destination="yVp-QG-JSt" id="3iA-S9-kD6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

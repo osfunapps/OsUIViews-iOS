@@ -43,6 +43,11 @@ public class UIDialogWrapper {
         dynamicContainer!.dropShadow()
     }
     
+    /// Will change the background color of the dialog
+    public func setBackgroundColor(color: UIColor) {
+        dynamicContainer?.setBackgroundColor(color: color)
+    }
+    
     public func setTag(viewTag: Int) {
         dynamicContainer?.tag = viewTag
     }
