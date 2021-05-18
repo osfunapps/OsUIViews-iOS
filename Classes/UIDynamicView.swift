@@ -283,6 +283,7 @@ public class UIDynamicView: UIView {
         tf.contentVerticalAlignment = .center
         tf.textAlignment = .center
         tf.borderStyle = .roundedRect
+        tf.autocorrectionType = initialProps.autoCorrect
         tf.addDoneButton()
         tf.keyboardType = initialProps.keyboardType
         tf.sizeToFit()

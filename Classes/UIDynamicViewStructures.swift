@@ -86,6 +86,7 @@ public struct InitialUITextFieldProps: InitialProps {
     var keyboardType: UIKeyboardType
     var tag: Int
     var font: UIFont
+    var autoCorrect: UITextAutocorrectionType
     
     public init(approximateCharCount: Int,
                 placeHolder: String,
@@ -94,7 +95,8 @@ public struct InitialUITextFieldProps: InitialProps {
                 alignment: UIViewAlignment = .center,
                 keyboardType: UIKeyboardType = .default,
                 tag: Int = 0,
-                font: UIFont = UIFont.systemFont(ofSize: 17)) {
+                font: UIFont = UIFont.systemFont(ofSize: 17),
+                autoCorrect: UITextAutocorrectionType = .default) {
         self.approximateCharCount = approximateCharCount
         self.placeHolder = placeHolder
         self.backgroundColor = backgroundColor
@@ -103,6 +105,7 @@ public struct InitialUITextFieldProps: InitialProps {
         self.keyboardType = keyboardType
         self.tag = tag
         self.font = font
+        self.autoCorrect = autoCorrect
     }
     
     public func getType() -> UIViewType {
