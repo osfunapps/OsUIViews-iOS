@@ -142,13 +142,15 @@ public class UIDialogWrapper {
     public func setInputField(placeHolder: String,
                               approximateCharCount: Int,
                               keyboardType: UIKeyboardType = .default,
-                              font: UIFont = UIFont.systemFont(ofSize: 17)) {
+                              font: UIFont = UIFont.systemFont(ofSize: 17),
+                              autoCorrect: UITextAutocorrectionType = .default) {
         let initialProps = InitialUITextFieldProps(approximateCharCount: approximateCharCount,
                                                    placeHolder: placeHolder,
                                                    alignment: .center,
                                                    keyboardType: keyboardType,
                                                    tag: UIDialogWrapper.TAG_INPUT_VIEW,
-                                                   font: font)
+                                                   font: font,
+                                                   autoCorrect: autoCorrect)
         dynamicContainer!.addView(initialProps: initialProps)
     }
     
