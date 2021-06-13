@@ -19,7 +19,7 @@ public class ListPickerViewPopper {
     public static let VIEW_TAG = 133
     
     private init(){}
-    public func pop(parentView: UIView, 
+    public func pop(parentView: UIView,
                     title: String,
                     items: [ListPickerItem]?,
                     _ completion: @escaping ((ListPickerItem?) -> Void)) {
@@ -80,13 +80,13 @@ public class ListPickerViewPopper {
 
 
 /// Will represent a single item in the list picker
-public struct ListPickerItem {
-    public var title: String
+open class ListPickerItem {
     public var tag: String?
+    open var title: String!
     
     public init(title: String, tag: String? = nil) {
         self.tag = tag
         self.title = title
     }
-    
 }
+
