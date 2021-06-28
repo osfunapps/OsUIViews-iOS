@@ -526,11 +526,9 @@ public class UIDynamicView: UIView {
     }
     
     /// Will close the keyboard if displayed
-    public func closeKeyboardIfNeeded() {
-        if UIApplication.shared.isKeyboardPresented {
-            UIApplication.shared.keyWindow?.endEditing(true)
-            willHideKeyboard()
-        }
+    public func closeKeyboard() {
+        UIApplication.shared.keyWindow?.endEditing(true)
+        willHideKeyboard()
     }
     
     @objc func willHideKeyboard()
