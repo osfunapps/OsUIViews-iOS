@@ -65,4 +65,42 @@ public class UIDialogPopper {
         // show the alert
         viewController.present(alert, animated: true, completion: nil)
     }
+    
+    /// Will pop an input dialog (a dailog with an input field, cancel and submit)
+    public static func popInputDialog(viewController: UIViewController,
+                                      title: String = "",
+                                      msg: String = "",
+                                      submitBtnTitle: String = "Submit",
+                                      cancelBtnTitle: String = "Cancel",
+                                      inputPlaceHolder: String = "",
+                                      dismissOnBtnTap: Bool = true,
+                                      cancelDidTap: @escaping (() -> Void) = { },
+                                      submitDidTap: @escaping ((String?) -> Void)){
+        
+        // create the alert
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = inputPlaceHolder
+        }
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: submitBtnTitle, style: .destructive , handler: { action in
+            let textField = alert.textFields![0] // Force unwrapping because we know it exists.
+            submitDidTap(textField.text)
+            if dismissOnBtnTap {
+                alert.dismiss(animated: true)
+            }
+        }))
+        
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: cancelBtnTitle, style: .cancel , handler: { action in
+            cancelDidTap()
+            if dismissOnBtnTap {
+                alert.dismiss(animated: true)
+            }
+        }))
+        
+        // show the alert
+        viewController.present(alert, animated: true, completion: nil)
+    }
 }
