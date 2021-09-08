@@ -34,6 +34,7 @@
 		E7C97A3A1647D78D0A6BBD9C880A9FBF /* UIDialogPopper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D22B4E42E5B6DFC1366E0A28289E04 /* UIDialogPopper.swift */; };
 		EE7F2630225F66E534DC612950ADBAEE /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5D004B018E85EC75DA2D2B4311646D0B /* Assets.bundle */; };
 		F15065E5255C0A3BE1A6BE6FD4697C92 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 110B9C633C501163D357B726F9F1642A /* YTPlayerView.m */; };
+		F4747F8E26E93C4D00DCA98A /* UIViewsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4747F8D26E93C4D00DCA98A /* UIViewsExtensions.swift */; };
 		FB9D0520757011D550A2AAC6DB5E6887 /* UIDynamicView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF248EEF982F032AFEC7E4A47E47BF /* UIDynamicView.xib */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +129,7 @@
 		DFEDB9042EA14766DCB56A3486D3C645 /* Pods-OsUIViews_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OsUIViews_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		EE426D8137B8F63713969EFB7821ED33 /* youtube-ios-player-helper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "youtube-ios-player-helper.debug.xcconfig"; sourceTree = "<group>"; };
 		F0066C223FD3CF3EE814E899BF4FC811 /* OsTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OsTools-prefix.pch"; sourceTree = "<group>"; };
+		F4747F8D26E93C4D00DCA98A /* UIViewsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewsExtensions.swift; path = Classes/UIViewsExtensions.swift; sourceTree = "<group>"; };
 		F56AF357FD36BB33F584D7D08EA49CEC /* OsUIViews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OsUIViews.debug.xcconfig; sourceTree = "<group>"; };
 		FBDEC91D08F78C6B8CAD5FC3FC48DC08 /* UIDynamicView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIDynamicView.swift; path = Classes/UIDynamicView.swift; sourceTree = "<group>"; };
 		FD330FEA2BA15D564C76A9538F3BE65C /* Pods-OsUIViews_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OsUIViews_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 		068C0092D038DA98D14E4591E950DCB9 /* OsUIViews */ = {
 			isa = PBXGroup;
 			children = (
+				F4747F8D26E93C4D00DCA98A /* UIViewsExtensions.swift */,
 				34C9CBE4C4C3D61AC1AAAABDC61338C7 /* LinkableUITextView.swift */,
 				AE0931E5D6D2AD85AC216BCF485799E2 /* ListPickerViewPopper.swift */,
 				41D22B4E42E5B6DFC1366E0A28289E04 /* UIDialogPopper.swift */,
@@ -540,6 +543,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4747F8E26E93C4D00DCA98A /* UIViewsExtensions.swift in Sources */,
 				844C86ABE96FDC9B38BA6AF9519CBF7A /* LinkableUITextView.swift in Sources */,
 				60B276DBA62EEA1819DC903AC39825F8 /* ListPickerViewPopper.swift in Sources */,
 				1D8F5B212749AAD4A1143B58ADB7AA1E /* OsUIViews-dummy.m in Sources */,
