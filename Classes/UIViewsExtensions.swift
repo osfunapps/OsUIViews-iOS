@@ -54,6 +54,10 @@ extension UIView {
             heightConstr = setHeight(height: 0)
             layoutIfNeeded()
         }
+        if heightConstr!.constant == newHeight {
+            return
+        }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
             heightConstr!.constant = newHeight
             if animateInterval != 0.0 {
