@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 extension UIView {
     
     /// Wil return the height constraint, if exists
@@ -47,14 +48,20 @@ extension UIView {
     }
     
     /// Wil update a view height constraint. If the height constraint doesn't exists, will create it. For disabling animation, put 0.0 in the interval
-    public func updateHeightConstraint(newHeight: CGFloat, animateInterval: TimeInterval = 0.0) {
-        guard let superview = superview else {return}
+    public func updateHeightConstraint(newHeight: CGFloat,
+                                       animateInterval: TimeInterval = 0.0,
+                                       _ completion: @escaping () -> Void) {
+        guard let superview = superview else {
+            completion()
+            return
+        }
         var heightConstr = getHeightConstraint()
         if heightConstr == nil {
             heightConstr = setHeight(height: 0)
             layoutIfNeeded()
         }
         if heightConstr!.constant == newHeight {
+            completion()
             return
         }
         
@@ -63,8 +70,13 @@ extension UIView {
             if animateInterval != 0.0 {
                 UIView.animate(withDuration: animateInterval, animations: {
                     superview.layoutIfNeeded()
-                })
+                }) { done in
+                    completion()
+                }
+            } else {
+                completion()
             }
+            
         }
     }
 }
