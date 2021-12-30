@@ -110,7 +110,7 @@ bo sadasd dasadadsad sda sd as das asdttom explain
         
         // if you can't find menus in the os, send us an email
         
-        let TVprops = InitialLinkableUITextViewProps(fullText: "* If, for some reason, you can't find the option in your device, check out our Youtube channel for the newest guides. Furthermore, you can always reach us via email.",
+        let TVprops = InitialUILinkableTextViewProps(fullText: "* If, for some reason, you can't find the option in your device, check out our Youtube channel for the newest guides. Furthermore, you can always reach us via email.",
                                                    textAlignment: .center,
                                                    font: UIFont.systemFont(ofSize: 13),
                                                    lineHeightMultiply: 1.25)
@@ -166,7 +166,7 @@ bo sadasd dasadadsad sda sd as das asdttom explain
         dv.addView(initialProps: topTitleProps)
 
 //        let props = InitialLinkableUITextViewProps(fullText: "what is the time", textAlignment: .center, tag: 9, isEditable: false)
-        let props = InitialLinkableUITextViewProps(fullText: "* If, for some reason, you can't find the option in your device, check out our Youtube channel at https://www.youtube.com/channel/UCBvgqUEIxJHR7o2q3CJ-4Wg for the newest guides. Furthermore, you can reach us via email at support@os-apps.com", textAlignment: .center, font: UIFont.systemFont(ofSize: 15), lineHeightMultiply: 1.5)
+        let props = InitialUILinkableTextViewProps(fullText: "* If, for some reason, you can't find the option in your device, check out our Youtube channel at https://www.youtube.com/channel/UCBvgqUEIxJHR7o2q3CJ-4Wg for the newest guides. Furthermore, you can reach us via email at support@os-apps.com", textAlignment: .center, font: UIFont.systemFont(ofSize: 15), lineHeightMultiply: 1.5)
 //
         let tv = dv.addView(initialProps: props)
         tv.setClickablePart(linkedText: "If, for some reason", youtubeFullLink: "youtube://www.youtube.com/channel/UCBvgqUEIxJHR7o2q3CJ-4Wg")

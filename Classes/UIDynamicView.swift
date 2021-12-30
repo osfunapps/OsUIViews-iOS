@@ -225,8 +225,8 @@ public class UIDynamicView: UIView {
     /// - Parameter initialProps: The initial props of the LinkableUITextView
     /// - Parameter invalidate: Set to true if you want to add the view to the parent
     @discardableResult
-    public func addView(initialProps: InitialLinkableUITextViewProps, invalidate: Bool = true) -> LinkableUITextView {
-        let tv = LinkableUITextView()
+    public func addView(initialProps: InitialUILinkableTextViewProps, invalidate: Bool = true) -> UILinkableTextView {
+        let tv = UILinkableTextView()
         tv.tag = initialProps.tag
         tv.translatesAutoresizingMaskIntoConstraints = false
         if let color = initialProps.textColor {
@@ -366,7 +366,7 @@ public class UIDynamicView: UIView {
             case .label:
                 viewList.append(addView(initialProps: it as! InitialLabelProps, invalidate: false))
             case .linkableTextView:
-                viewList.append(addView(initialProps: it as! InitialLinkableUITextViewProps, invalidate: false))
+                viewList.append(addView(initialProps: it as! InitialUILinkableTextViewProps, invalidate: false))
             case .textField:
                 viewList.append(addView(initialProps: it as! InitialUITextFieldProps, invalidate: false))
             case .imageView:

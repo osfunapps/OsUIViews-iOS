@@ -11,8 +11,12 @@ import Foundation
 /// This class represents a UITextView but can act as a UILabel.
 /// Use this UIView if you want to implement a text with certain link areas like: If you want to contact us, click here) and a tap on the "here" text will do something.4
 /// To use the class call setText and then setClickablePart with the text you want to make a link and the action attached to the text
-public class LinkableUITextView: UITextView {
+public class UILinkableTextView: UITextView {
 
+    /// change to set each of the clickable link props
+    public var clickableLinkFont: UIFont = .systemFont(ofSize: 15)
+    public var clickableLinkColor: UIColor = .blue
+    
     public override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         commonInit()
@@ -28,11 +32,12 @@ public class LinkableUITextView: UITextView {
     }
     
     /// Will set the initial text here. Call this function to set all of the text you want in the view. Then, call setClickableText() to decide which is clickable
-    public func setText(text: String, lineHeightMultiple: CGFloat = 1) {
+    public func setText(text: String, lineHeightMultiple: CGFloat = 1, font: UIFont = .systemFont(ofSize: 15)) {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = lineHeightMultiple
         var attributes = [NSAttributedString.Key: Any]()
         attributes[NSAttributedString.Key.paragraphStyle] = paragraphStyle
+        attributes[NSAttributedString.Key.font] = font
         attributedText = NSAttributedString(string: text, attributes: attributes)
     }
     
@@ -72,9 +77,16 @@ public class LinkableUITextView: UITextView {
         guard let range = self.text.range(of: linkedText) else {return}
         
         let newAttText = attributedText.mutableCopy() as! NSMutableAttributedString
-        newAttText.addAttributes([.link: url], range: NSRange(range, in: text))
+        newAttText.addAttributes([.link: url,
+                                  .font: clickableLinkFont],
+                                 range: NSRange(range, in: text))
+        linkTextAttributes = [
+            NSAttributedString.Key.foregroundColor: clickableLinkColor,
+            
+            // disable for cancelling underline for the link
+            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
         attributedText = newAttText
     }
-    
     
 }

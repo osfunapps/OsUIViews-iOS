@@ -44,7 +44,7 @@ public struct InitialLabelProps: InitialProps {
 /// a LinkableUITextView is a UITextView with the ability to make a text clickable and navigate to a certain apps (intent) using URLSchemes.
 /// NOTICE: in order to make the text clickable, initially set the full text you want to be shown in UITextView. Later, after adding the view to the parent,
 ///  call view.setClickablePart() to set the clickable part. Also, if you get a layer exception, give original name for the variable and not just "view": let view = InitialLinkableUITextViewProps()"
-public struct InitialLinkableUITextViewProps: InitialProps {
+public struct InitialUILinkableTextViewProps: InitialProps {
     
     var fullText: String
     var textAlignment: UIViewAlignment

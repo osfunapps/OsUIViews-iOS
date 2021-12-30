@@ -11,6 +11,19 @@ import UIKit
 
 public class Tools {
     
+    /// Will imitate System.arraycopy of Java
+    public static func javaSystemArraycopy(_ src: Data, _ srcPos: Int, _ dest: inout Data, _ destPos: Int, _ length: Int) {
+        dest[destPos...(destPos + length - 1)] = src[srcPos...(srcPos + length - 1)]
+    }
+    
+    /// will return the app delegate instance. Call with val appDelegate: AppDelegate? = Tools.getAppDelegate()
+    public static func getAppDelegate<T>() -> T? {
+        if let myDelegate = UIApplication.shared.delegate as? T {
+            return myDelegate
+        }
+        return nil
+    }
+
     /// Will return the current time in seconds
     public static func getCurrentSeconds() ->  TimeInterval {
         return Date().timeIntervalSince1970
@@ -24,6 +37,13 @@ public class Tools {
     /// Will return the current time in Int format
     public static func getCurrentMillisInt()->Int {
         return Int(Date().timeIntervalSince1970 * 1000)
+    }
+    
+    /// Will return the current time in Float format
+    public static func currentTimeInMilliSeconds() -> CGFloat {
+        let currentDate = Date()
+        let since1970 = currentDate.timeIntervalSince1970
+        return CGFloat(since1970 * 1000000)
     }
     
     /// Will return the screen's width
@@ -66,14 +86,6 @@ public class Tools {
             print("invalid regex: \(error.localizedDescription)")
             return []
         }
-    }
-    
-    /// will check if a view controller present in the backstack
-    public static func isViewControllerInBackStack (
-        _ navigationController: UINavigationController?,
-        _ vcClass: AnyClass) -> Bool {
-        return (navigationController != nil &&
-            navigationController!.hasViewController(ofKind: vcClass))
     }
     
     /// Will run a function after a delay. The delayed function will run on the main thread
@@ -142,6 +154,49 @@ public class Tools {
         viewController.navigationController?.navigationBar.topItem?.title = title;
     }
     
+    /// Will generate a random mac address
+    public static func generateRandomMACAddress() -> String {
+        var bArr = [UInt8](repeating: 0, count: 6)
+        
+        let status = SecRandomCopyBytes(kSecRandomDefault, bArr.count, &bArr)
+
+        if status != errSecSuccess { // Always test the status.
+            return "b6:58:d9:db:c9:ee"  // random number
+        }
+        
+        bArr[0] = UInt8((Int(bArr[0]) | 2) & -2)
+        var randomMACStr = ""
+        for b in bArr {
+            if randomMACStr.count > 0 {
+                randomMACStr += ":"
+            }
+            randomMACStr.append(String(format: "%02x", b))
+        }
+        return randomMACStr
+    }
+    
+    /// Will join path
+    public static func join(_ arguments: String...) -> String {
+        return NSString.path(withComponents: arguments)
+    }
+    
+    /// Will return the current device enum
+    public static func getCurrentDevice() ->UIUserInterfaceIdiom {
+        return UIDevice.current.userInterfaceIdiom
+    }
+    
+    /// Will return the current device (iPad, iPhone etc..)
+    public static func getCurrentDeviceParsed() -> String {
+        switch getCurrentDevice() {
+        case .carPlay: return "carPlay"
+        case .mac: return "Mac"
+        case .pad: return "iPad"
+        case .phone: return "iPhone"
+        case .tv: return "TV"
+        default:
+            return "device"
+        }
+    }
     
 }
 
