@@ -13,7 +13,7 @@ import UIKit
  This class meant to display a vertical list of attributed labels (labels with regular and bold texts).
  To learn about how to use the attributed text labels, read AttributedUILabel
  */
-class UIInstructionalStackView: UIStackView {
+public class UIInstructionalStackView: UIStackView {
     
     // set the fonts here
     public var boldFont: UIFont = .boldSystemFont(ofSize: 15)

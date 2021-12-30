@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /// Just a text field with padding
-class UIPaddedTextField: UITextField {
+public class UIPaddedTextField: UITextField {
     
     public var padding: UIEdgeInsets = UIEdgeInsets(top: 0,
                                              left: 0,
@@ -46,21 +46,21 @@ class UIPaddedTextField: UITextField {
     }
     
     
-       override func textRect(forBounds bounds: CGRect) -> CGRect {
+    public override func textRect(forBounds bounds: CGRect) -> CGRect {
            return bounds.inset(by: UIEdgeInsets(top: topPadding,
                                                 left: startPadding,
                                                 bottom: bottomPadding,
                                                 right: endPadding))
        }
 
-       override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+    public override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: UIEdgeInsets(top: topPadding,
                                              left: startPadding,
                                              bottom: bottomPadding,
                                              right: endPadding))
        }
 
-       override func editingRect(forBounds bounds: CGRect) -> CGRect {
+    public override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: UIEdgeInsets(top: topPadding,
                                              left: startPadding,
                                              bottom: bottomPadding,

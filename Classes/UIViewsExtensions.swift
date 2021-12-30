@@ -11,6 +11,26 @@ import Foundation
 
 // MARK: - UIViewController
 extension UIViewController {
+
+    /// Will return the currently top view controller
+    public class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return topViewController(base: nav.visibleViewController)
+        }
+        if let tab = base as? UITabBarController {
+            let moreNavigationController = tab.moreNavigationController
+
+            if let top = moreNavigationController.topViewController, top.view.window != nil {
+                return topViewController(base: top)
+            } else if let selected = tab.selectedViewController {
+                return topViewController(base: selected)
+            }
+        }
+        if let presented = base?.presentedViewController {
+            return topViewController(base: presented)
+        }
+        return base
+    }
     
     /// Will return the view controller as defined in the storyboard
     public func getVC<T: UIViewController>(withIdentifier: String) -> T {
@@ -18,7 +38,7 @@ extension UIViewController {
     }
     
     
-    /// Will set a custom back button. Make sure to add the image cause it's an image based back button
+    /// Will set an action to the back button
     public func setCustomBackBtnAction(imageName: String, action: Selector) {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(named: imageName),
@@ -26,6 +46,7 @@ extension UIViewController {
             target: self,
             action: action
         )
+        
     }
     
     /// Will hide the back button.
@@ -177,9 +198,9 @@ extension UIView {
     /// Wil update a view height constraint. If the height constraint doesn't exists, will create it. For disabling animation, put 0.0 in the interval
     public func updateHeightConstraint(newHeight: CGFloat,
                                        animateInterval: TimeInterval = 0.0,
-                                       _ completion: @escaping () -> Void) {
+                                       _ completion: (() -> Void)? = nil) {
         guard let superview = superview else {
-            completion()
+            completion?()
             return
         }
         var heightConstr = getHeightConstraint()
@@ -188,7 +209,7 @@ extension UIView {
             layoutIfNeeded()
         }
         if heightConstr!.constant == newHeight {
-            completion()
+            completion?()
             return
         }
         
@@ -198,10 +219,10 @@ extension UIView {
                 UIView.animate(withDuration: animateInterval, animations: {
                     superview.layoutIfNeeded()
                 }) { done in
-                    completion()
+                    completion?()
                 }
             } else {
-                completion()
+                completion?()
             }
             
         }
@@ -210,9 +231,9 @@ extension UIView {
     /// Wil update a view width constraint. If the width constraint doesn't exists, will create it. For disabling animation, put 0.0 in the interval
         public func updateWidthConstraint(newWidth: CGFloat,
                                        animateInterval: TimeInterval = 0.0,
-                                       _ completion: @escaping () -> Void) {
+                                          _ completion: (() -> Void)? = nil) {
         guard let superview = superview else {
-            completion()
+            completion?()
             return
         }
         var widthConstr = getWidthConstraint()
@@ -221,7 +242,7 @@ extension UIView {
             layoutIfNeeded()
         }
         if widthConstr!.constant == newWidth {
-            completion()
+            completion?()
             return
         }
         
@@ -231,10 +252,10 @@ extension UIView {
                 UIView.animate(withDuration: animateInterval, animations: {
                     superview.layoutIfNeeded()
                 }) { done in
-                    completion()
+                    completion?()
                 }
             } else {
-                completion()
+                completion?()
             }
         }
     }
@@ -449,6 +470,16 @@ extension UIView {
         }, completion: { completed in
             self.alpha = initialAlpha
         })
+    }
+    
+    /// Will round the corners of a view
+    public func roundCorners(corners: CACornerMask, radius: CGFloat = 10) {
+        layer.cornerRadius = radius
+        if #available(iOS 11.0, *) {
+            layer.maskedCorners = corners
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     /// Will remove the corners of a view
@@ -907,7 +938,7 @@ extension UITextView :UITextViewDelegate {
     
     /// Will update the uitextview height by it's width and content
     @discardableResult
-    func updateAndGetTextViewHeight() -> CGFloat {
+    public func updateAndGetTextViewHeight() -> CGFloat {
         let sizeToFitIn = CGSize(width: frame.width, height: CGFloat(MAXFLOAT))
         let newSize = sizeThatFits(sizeToFitIn)
         heightAnchor.constraint(equalToConstant: newSize.height).isActive = true
