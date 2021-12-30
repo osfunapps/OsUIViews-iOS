@@ -498,9 +498,9 @@ extension UIView {
     }
     
     /// Will do a fade in effect on a view
-    public func fadeIn(withDuration: TimeInterval = 0.5, delay: TimeInterval = 0, toAlpha: CGFloat = 1, _ completion: @escaping () -> Void){
+    public func fadeIn(withDuration: TimeInterval = 0.5, delay: TimeInterval = 0, toAlpha: CGFloat = 1, _ completion: (() -> Void)? = nil){
         fade(fromAlpha: alpha,
-             toAlpha: 1.0,
+             toAlpha: toAlpha,
              animationOptions: UIView.AnimationOptions.curveEaseIn,
              duration: withDuration,
              delay: delay,
@@ -508,7 +508,7 @@ extension UIView {
     }
     
     /// Will do a fade out effect on a view
-    public func fadeOut(withDuration: TimeInterval = 0.5, delay: TimeInterval = 0, toAlpha: CGFloat = 1, _ completion: @escaping () -> Void){
+    public func fadeOut(withDuration: TimeInterval = 0.5, delay: TimeInterval = 0, toAlpha: CGFloat = 1, _ completion: (() -> Void)? = nil){
         fade(fromAlpha: alpha,
              toAlpha: 0,
              animationOptions: UIView.AnimationOptions.curveEaseOut,
@@ -524,12 +524,12 @@ extension UIView {
                      animationOptions: UIView.AnimationOptions,
                      duration: TimeInterval = 0.5,
                      delay: TimeInterval = 0,
-                     _ completion: @escaping () -> Void) {
+                     _ completion: (() -> Void)? = nil) {
         self.alpha = fromAlpha
         UIView.animate(withDuration: duration, delay: delay, options: animationOptions, animations: {
             self.alpha = toAlpha
         }, completion: { _ in
-            completion()
+            completion?()
         })
     }
     
