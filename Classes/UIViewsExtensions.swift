@@ -9,8 +9,9 @@
 import Foundation
 
 
-// MARK: - UIViewController
-extension UIViewController {
+// MARK: - UIApplication
+
+extension UIApplication {
 
     /// Will return the currently top view controller
     public class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
@@ -31,6 +32,10 @@ extension UIViewController {
         }
         return base
     }
+}
+
+// MARK: - UIViewController
+extension UIViewController {
     
     /// Will return the view controller as defined in the storyboard
     public func getVC<T: UIViewController>(withIdentifier: String) -> T {
