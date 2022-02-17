@@ -40,7 +40,6 @@ public class UIDialogWrapper {
                                       topMargin: topMargin,
                                       maxWidthPercentFromParent: maxWidthPercentFromParent)
         dynamicContainer!.tag = viewTag
-        dynamicContainer!.dropShadow()
     }
     
     /// Will change the background color of the dialog

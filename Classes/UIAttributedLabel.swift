@@ -23,6 +23,9 @@ public class UIAttributedLabel: UILabel {
     public var regularFont: UIFont = .systemFont(ofSize: 15)
     public var regularColor: UIColor = .black
     
+    /// other params
+    public var lineSpacing: CGFloat = 3
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         self.commonInit()
@@ -41,39 +44,13 @@ public class UIAttributedLabel: UILabel {
     /// Will refresh the texts. Externally call if you changed the texts
     public func refreshTexts() {
         guard let text = text else {return}
-        var startIdx = -1
-        var endIdx = -1
-        var counter = -1
-        var boldStarted = false
-        let fullAttString = NSMutableAttributedString()
-        let boldAttribute = [NSAttributedString.Key.font : boldFont, NSAttributedString.Key.foregroundColor: boldColor]
-        let regularAttribute = [NSAttributedString.Key.font : regularFont, NSAttributedString.Key.foregroundColor: regularColor]
-        for char in text {
-            
-            counter += 1
-            if char == "[" && !boldStarted {
-                boldStarted = true
-                startIdx = counter
-                continue
-            }
-            
-            if char == "]" && boldStarted {
-                boldStarted = false
-                endIdx = counter
-                let boldiText = text.substring(startIdx + 1, endIdx)
-                let boldiString = NSMutableAttributedString(string: boldiText, attributes:boldAttribute)
-                fullAttString.append(boldiString)
-                continue
-            }
-            
-            if !boldStarted {
-                let regularString = NSMutableAttributedString(string: String(char), attributes:regularAttribute)
-                fullAttString.append(regularString)
-            }
-        }
-        
-        attributedText = fullAttString
-        
+        setAttrbiutedText(text: text,
+                          normalTextFont: regularFont,
+                          normalTextColor: regularColor,
+                          attributedTextFont: boldFont,
+                          attributedTextColor: boldColor,
+                          lineSpacing: lineSpacing,
+                          alignment: self.textAlignment)
     }
     
 }

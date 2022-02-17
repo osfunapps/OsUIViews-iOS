@@ -31,7 +31,7 @@ public class ListPickerViewPopper {
         dv.prepareView(parentView: parentView,
                         padding: 15,
                         maxWidthPercentFromParent: 0.8)
-        dv.dropShadow(shadowRadius: 5)
+        dv.dropGenericShadow()
         
         // add the title
         let props = InitialLabelProps(text: title,

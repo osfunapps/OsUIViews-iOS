@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIFloatingTableView" customModule="Remote_for_Samsung" customModuleProvider="target">
+            <connections>
+                <outlet property="contentHolderView" destination="NWX-HD-4lH" id="XO0-mU-wmQ"/>
+                <outlet property="contentView" destination="EUu-Ob-MTq" id="4V2-NL-B0v"/>
+                <outlet property="tableView" destination="Fez-FX-pDA" id="To4-QE-a7w"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="891" preservesSuperviewLayoutMargins="YES" id="EUu-Ob-MTq" userLabel="contentView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="589.5" translatesAutoresizingMaskIntoConstraints="NO" id="NWX-HD-4lH" userLabel="ContentHolderView">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ea4-Ch-EXx" userLabel="papaView">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <subviews>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="334" placeholderIntrinsicHeight="250" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fez-FX-pDA" userLabel="itemsTableView">
+                                    <rect key="frame" x="15" y="0.0" width="384" height="896"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="sectionIndexColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </tableView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="Fez-FX-pDA" secondAttribute="bottom" id="1gE-Ut-LgG"/>
+                                <constraint firstItem="Fez-FX-pDA" firstAttribute="leading" secondItem="Ea4-Ch-EXx" secondAttribute="leading" constant="15" id="blS-6F-BOu"/>
+                                <constraint firstItem="Fez-FX-pDA" firstAttribute="top" secondItem="Ea4-Ch-EXx" secondAttribute="top" id="nru-A2-v73"/>
+                                <constraint firstAttribute="trailing" secondItem="Fez-FX-pDA" secondAttribute="trailing" constant="15" id="qa7-Br-EE7"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Ea4-Ch-EXx" secondAttribute="trailing" id="Auc-Wc-t66"/>
+                        <constraint firstAttribute="bottom" secondItem="Ea4-Ch-EXx" secondAttribute="bottom" id="KyS-24-sWL"/>
+                        <constraint firstItem="Ea4-Ch-EXx" firstAttribute="top" secondItem="NWX-HD-4lH" secondAttribute="top" id="f4J-SN-UBP"/>
+                        <constraint firstItem="Ea4-Ch-EXx" firstAttribute="leading" secondItem="NWX-HD-4lH" secondAttribute="leading" id="quK-Fp-bt3"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Spa-IE-B4x"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="NWX-HD-4lH" secondAttribute="bottom" id="0l5-Qy-8fb"/>
+                <constraint firstItem="NWX-HD-4lH" firstAttribute="top" secondItem="EUu-Ob-MTq" secondAttribute="top" id="H68-kK-tvY"/>
+                <constraint firstItem="NWX-HD-4lH" firstAttribute="leading" secondItem="EUu-Ob-MTq" secondAttribute="leading" id="WdW-3O-oMG"/>
+                <constraint firstAttribute="trailing" secondItem="NWX-HD-4lH" secondAttribute="trailing" id="s84-WJ-jT8"/>
+            </constraints>
+            <point key="canvasLocation" x="113.04347826086958" y="45.535714285714285"/>
+        </view>
+    </objects>
+</document>

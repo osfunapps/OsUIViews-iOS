@@ -157,7 +157,6 @@ bo sadasd dasadadsad sda sd as das asdttom explain
         dv.prepareView(parentView: view,
                        padding: 14,
                        maxWidthPercentFromParent: 0.65)
-        dv.dropShadow(shadowRadius: 5.0)
         
 //        // add the title
         let topTitleProps = InitialLabelProps(text: "New Features",

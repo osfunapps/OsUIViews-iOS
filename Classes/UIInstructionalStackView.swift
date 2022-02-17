@@ -40,11 +40,14 @@ public class UIInstructionalStackView: UIStackView {
     /// Call this function to add a label to the stack
     @discardableResult
     public func addLabel(text: String,
+                         lineSpacing: CGFloat = 3,
+                         alignment: NSTextAlignment = .left,
                          customSpacingTop: CGFloat? = nil,
                          customSpacingBottom: CGFloat? = nil) -> UILabel {
 //        setNeedsLayout()
 //        layoutIfNeeded()
         let label = UIAttributedLabel()
+        label.textAlignment = alignment
         label.lineBreakMode = .byWordWrapping
         label.text = text
         label.boldFont = boldFont

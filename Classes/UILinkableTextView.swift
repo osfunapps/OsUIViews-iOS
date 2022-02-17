@@ -29,16 +29,23 @@ public class UILinkableTextView: UITextView {
     
     private func commonInit() {
         isEditable = false
+        isSelectable = true
     }
     
     /// Will set the initial text here. Call this function to set all of the text you want in the view. Then, call setClickableText() to decide which is clickable
-    public func setText(text: String, lineHeightMultiple: CGFloat = 1, font: UIFont = .systemFont(ofSize: 15)) {
+    public func setText(text: String,
+                        lineHeightMultiple: CGFloat = 1,
+                        font: UIFont = .systemFont(ofSize: 15),
+                        _ completion: (() -> Void)? = nil) {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = lineHeightMultiple
         var attributes = [NSAttributedString.Key: Any]()
         attributes[NSAttributedString.Key.paragraphStyle] = paragraphStyle
         attributes[NSAttributedString.Key.font] = font
-        attributedText = NSAttributedString(string: text, attributes: attributes)
+        DispatchQueue.main.async {
+            self.attributedText = NSAttributedString(string: text, attributes: attributes)
+            completion?()
+        }
     }
     
     /// Call this function after you set the text using setText. Decide which part of the text will navigate to a specific youtube url.
