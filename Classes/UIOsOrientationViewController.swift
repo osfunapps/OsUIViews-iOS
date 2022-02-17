@@ -13,11 +13,11 @@ import OsTools
 /**
  This view controller returns orientation events for the user
  */
-public class UIOsOrientationViewController: UIOsBaseViewController {
+open class UIOsOrientationViewController: UIOsBaseViewController {
     
     private var lastReportedOrientation: UIDeviceOrientation? = nil
     
-    public override func viewDidLayoutSubviews() {
+    open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         orientationLayoutSubviews()
     }
@@ -25,11 +25,11 @@ public class UIOsOrientationViewController: UIOsBaseViewController {
 
 extension UIOsOrientationViewController: OrientationChangeDelegate {
     
-    public func setLastReportedOrientation(newOrientation: UIDeviceOrientation) {
+    open func setLastReportedOrientation(newOrientation: UIDeviceOrientation) {
         self.lastReportedOrientation = newOrientation
     }
     
-    public func getLastReportedOrientation() -> UIDeviceOrientation? {
+    open func getLastReportedOrientation() -> UIDeviceOrientation? {
         return lastReportedOrientation
     }
     

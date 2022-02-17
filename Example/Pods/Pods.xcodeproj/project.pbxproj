@@ -70,6 +70,10 @@
 		CDB68B9A6D093CB4B658FBC7C34D6C74 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		EDAF4DA540126F3235A22A46B395CDCD /* UIShadowBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645D82B244C42CE02D8DD0AA990C494B /* UIShadowBuilderView.swift */; };
 		EE13BA527C7BC3494245693ABE1E2FDF /* UIViewsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FAB86559350F915411D7626B7499AC /* UIViewsExtensions.swift */; };
+		F4A835E027BEB3F70079475C /* UIRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A835D827BEB3F60079475C /* UIRoundedView.swift */; };
+		F4A835E127BEB3F70079475C /* UICircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A835D927BEB3F60079475C /* UICircleView.swift */; };
+		F4A835E227BEB3F70079475C /* SelfSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A835DA27BEB3F60079475C /* SelfSizedTableView.swift */; };
+		F4A835E427BEB3F70079475C /* UICircleBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A835DC27BEB3F60079475C /* UICircleBorderView.swift */; };
 		F9797EBFA18700E8C69E3802022C4C8E /* ListPickerViewPopper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736941497C6D90F696F81ACD2C315727 /* ListPickerViewPopper.swift */; };
 		FB08674947F8398AF1630C6BAB0B3AC3 /* UIOsCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D4D44A2A4177F272762914AE19D2A8 /* UIOsCollectionViewFlowLayout.swift */; };
 /* End PBXBuildFile section */
@@ -153,7 +157,7 @@
 		79AEF776F487994B1DD3D5AE2E21FD96 /* UICustomPlaceHolderTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UICustomPlaceHolderTextField.swift; path = Classes/UICustomPlaceHolderTextField.swift; sourceTree = "<group>"; };
 		79BE9B9A7644C7690C5719C9993C052A /* UIInstructionalStackView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIInstructionalStackView.swift; path = Classes/UIInstructionalStackView.swift; sourceTree = "<group>"; };
 		7D211C4BBB6746AEC51176184D451467 /* UIPaddedTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIPaddedTextField.swift; path = Classes/UIPaddedTextField.swift; sourceTree = "<group>"; };
-		8100B17526304EA24422DA66E90C1F34 /* OsUIViews.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = OsUIViews.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8100B17526304EA24422DA66E90C1F34 /* OsUIViews.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = OsUIViews.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		811E584F09E510D38B616577D8F62792 /* youtube-ios-player-helper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "youtube-ios-player-helper-dummy.m"; sourceTree = "<group>"; };
 		818AECE32D13E9AD1B8749A8BAD31C7B /* OsTools.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = OsTools.modulemap; sourceTree = "<group>"; };
 		846F010CEE6437ABC9349AD0D3A93450 /* OtherTools.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtherTools.swift; path = Classes/OtherTools.swift; sourceTree = "<group>"; };
@@ -168,8 +172,8 @@
 		97F1433C73A31D6963BCBB3F057885C5 /* UIShadowGestureRecognizer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIShadowGestureRecognizer.swift; path = Classes/UIShadowGestureRecognizer.swift; sourceTree = "<group>"; };
 		98BDF0C17F2C8871488BC363A89BCEF8 /* UIOsOrientationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIOsOrientationViewController.swift; path = Classes/UIOsOrientationViewController.swift; sourceTree = "<group>"; };
 		9C0C272AA3794C04562C0E2314317471 /* Pods-OsUIViews_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OsUIViews_Example-Info.plist"; sourceTree = "<group>"; };
-		9CEDC36331D2A99DFF28EEBA754EEAC5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9CEDC36331D2A99DFF28EEBA754EEAC5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A118BABE081448004DBC99550D475D10 /* UIBottomBarItemView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIBottomBarItemView.swift; path = Classes/UIBottomBarItemView.swift; sourceTree = "<group>"; };
 		A21AD1DAA5037CE01CAFE719B4713B9D /* OsTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OsTools-prefix.pch"; sourceTree = "<group>"; };
 		A3BBD187DD6F028228C98F2CDFAC17FA /* UIFloatingTableViewCellView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIFloatingTableViewCellView.swift; path = Classes/UIFloatingTableViewCellView.swift; sourceTree = "<group>"; };
@@ -183,7 +187,7 @@
 		C0BC0217A8DC1CDF6C43ED95FD147B05 /* OsUIViews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OsUIViews.debug.xcconfig; sourceTree = "<group>"; };
 		C388AF51731FAE8A47FC007F2EF8FB11 /* youtube-ios-player-helper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "youtube-ios-player-helper-umbrella.h"; sourceTree = "<group>"; };
 		CDA92D44CE6A912409AF7547A34E05E0 /* Pods-OsUIViews_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OsUIViews_Example.release.xcconfig"; sourceTree = "<group>"; };
-		CDF967CDF7174BD7F3BACFC471D0782F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		CDF967CDF7174BD7F3BACFC471D0782F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CE82C67B908DE572581C66A86797036F /* OsUIViews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OsUIViews.release.xcconfig; sourceTree = "<group>"; };
 		CE86C7D7120FFAC020ABD05D08EFB4CC /* UIAutoSizeLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIAutoSizeLabel.swift; path = Classes/UIAutoSizeLabel.swift; sourceTree = "<group>"; };
 		D3A247D5E7F187C4B46E70881FA9754F /* UITouchDownGestureRecognizer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UITouchDownGestureRecognizer.swift; path = Classes/UITouchDownGestureRecognizer.swift; sourceTree = "<group>"; };
@@ -199,6 +203,10 @@
 		ED3DFED573BFAA929DC5AB27D9A4A169 /* UIGradientView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIGradientView.swift; path = Classes/UIGradientView.swift; sourceTree = "<group>"; };
 		F21B371B33BCAA869B25ECACB3F7E322 /* FileHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FileHandler.swift; path = Classes/FileHandler.swift; sourceTree = "<group>"; };
 		F4958B17F273D11AAB0DCE305E7A6E83 /* ItemsStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemsStore.swift; path = Classes/ItemsStore.swift; sourceTree = "<group>"; };
+		F4A835D827BEB3F60079475C /* UIRoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRoundedView.swift; path = Classes/UIRoundedView.swift; sourceTree = "<group>"; };
+		F4A835D927BEB3F60079475C /* UICircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UICircleView.swift; path = Classes/UICircleView.swift; sourceTree = "<group>"; };
+		F4A835DA27BEB3F60079475C /* SelfSizedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelfSizedTableView.swift; path = Classes/SelfSizedTableView.swift; sourceTree = "<group>"; };
+		F4A835DC27BEB3F60079475C /* UICircleBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UICircleBorderView.swift; path = Classes/UICircleBorderView.swift; sourceTree = "<group>"; };
 		F6BACA01932FC260539A97F29F008CEB /* UIBottomBarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIBottomBarView.swift; path = Classes/UIBottomBarView.swift; sourceTree = "<group>"; };
 		F7DD4ADDF061F09D310A788E2AC75598 /* OsTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OsTools-umbrella.h"; sourceTree = "<group>"; };
 		F800AB32361436E4FE668308F9731BEE /* OsTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "OsTools-dummy.m"; sourceTree = "<group>"; };
@@ -270,6 +278,10 @@
 		1ABFC82201C78D938E6C32507002854C /* OsUIViews */ = {
 			isa = PBXGroup;
 			children = (
+				F4A835DA27BEB3F60079475C /* SelfSizedTableView.swift */,
+				F4A835DC27BEB3F60079475C /* UICircleBorderView.swift */,
+				F4A835D927BEB3F60079475C /* UICircleView.swift */,
+				F4A835D827BEB3F60079475C /* UIRoundedView.swift */,
 				736941497C6D90F696F81ACD2C315727 /* ListPickerViewPopper.swift */,
 				532D817408934A55B827AF0D4D022DA9 /* SkyFloatingTF.swift */,
 				E3BCC28989A3E9AA47CECDEFACFEA43F /* UIAttributedLabel.swift */,
@@ -349,7 +361,6 @@
 				6EA608DD4D40A0242FD486EB3CEBAC38 /* ToolsExtensions.swift */,
 				AABF2178731A02A1CB954D28EC3D05BB /* Support Files */,
 			);
-			name = OsTools;
 			path = OsTools;
 			sourceTree = "<group>";
 		};
@@ -379,7 +390,6 @@
 				BB4A9F0AD819F1C0B39B96669A90B92A /* Resources */,
 				150AEC667C8D8935426BB85AA7DADFA0 /* Support Files */,
 			);
-			name = "youtube-ios-player-helper";
 			path = "youtube-ios-player-helper";
 			sourceTree = "<group>";
 		};
@@ -667,10 +677,12 @@
 				CC8ABDFDB44676E8C001A188FA83E415 /* UIAutoSizeLabel.swift in Sources */,
 				6F8F5B8999ED52009D4B36A4321D42EC /* UIBottomBarItemView.swift in Sources */,
 				946877994986219B5145D0B4EE133D0A /* UIBottomBarItemView.xib in Sources */,
+				F4A835E227BEB3F70079475C /* SelfSizedTableView.swift in Sources */,
 				171B4D3E1157EF89D95A716A3596C94F /* UIBottomBarView.swift in Sources */,
 				C9FE2CB95F12443D586BD8BB09D12743 /* UIBottomBarView.xib in Sources */,
 				4C89EE2E1CBCE1553C5F56DBCBC40A9F /* UIButtonyGestureRecognizer.swift in Sources */,
 				AAA8F1C00CBAE6004894FDB7CF86C09D /* UICustomPlaceHolderTextField.swift in Sources */,
+				F4A835E127BEB3F70079475C /* UICircleView.swift in Sources */,
 				AA97DAB6ADA762532A202AEF25E2CB40 /* UICustomPlaceHolderTextView.swift in Sources */,
 				31D6E4723ADEF7DB715D0DD40A8BC839 /* UIDialogPopper.swift in Sources */,
 				1D2AC16F70A75880E4FAED6C533CA7E8 /* UIDialogWrapper.swift in Sources */,
@@ -688,11 +700,13 @@
 				1071D9E826062D94BC087EA8D88633A0 /* UIOsBaseViewController.swift in Sources */,
 				FB08674947F8398AF1630C6BAB0B3AC3 /* UIOsCollectionViewFlowLayout.swift in Sources */,
 				3A8582039756146939635EC78DBFBE56 /* UIOsNavigationViewController.swift in Sources */,
+				F4A835E427BEB3F70079475C /* UICircleBorderView.swift in Sources */,
 				6A61A17EBB242FB09BDC1F8CD94E3F14 /* UIOsOrientationViewController.swift in Sources */,
 				6E54C4F6A440934E150685E6553AEAE6 /* UIPaddedTextField.swift in Sources */,
 				2D15B32EDB0A62B916AF2B6467C8D254 /* UIPanGestureRecognizerForUITableViewWrapper.swift in Sources */,
 				4B55B88607D57F2A460787153323A6F2 /* UIRotatedImageView.swift in Sources */,
 				EDAF4DA540126F3235A22A46B395CDCD /* UIShadowBuilderView.swift in Sources */,
+				F4A835E027BEB3F70079475C /* UIRoundedView.swift in Sources */,
 				85892C428FAF4A94468617C3B753B4F3 /* UIShadowBuilderView.xib in Sources */,
 				94B038353841883767A8184D7280F936 /* UIShadowGestureRecognizer.swift in Sources */,
 				9006157EB6D8AD59AFCA8CD9498AF80E /* UISwitchLabelView.swift in Sources */,
@@ -948,8 +962,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};

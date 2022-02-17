@@ -9,28 +9,28 @@
 import UIKit
 import OsTools
 
-class UIFloatingTableView: UIView {
+public class UIFloatingTableView: UIView {
     
     // instances
     var itemsStore: ItemsStore<GenericListItem> = ItemsStore()
     var tempItemsHolder = [GenericListItem]()
     
     // views
-    @IBOutlet var contentView: UIView!
-    @IBOutlet weak var contentHolderView: UIView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet public var contentView: UIView!
+    @IBOutlet public weak var contentHolderView: UIView!
+    @IBOutlet public weak var tableView: UITableView!
     
     // design
-    var gapBetweenItems: CGFloat = 15
-    var itemLabelFont: UIFont = .systemFont(ofSize: 15)
-    var itemImageSize: CGFloat = 24
-    var itemLabelTextColor: UIColor = .black
+    public var gapBetweenItems: CGFloat = 15
+    public var itemLabelFont: UIFont = .systemFont(ofSize: 15)
+    public var itemImageSize: CGFloat = 24
+    public var itemLabelTextColor: UIColor = .black
     
     // if you have an item which you want to mark as selected, set it here, before adding any items
     private var selectedItem: GenericListItem? = nil
     
     /// Override this to get the selected item and a boolean indicating if it already was the selected item
-    var itemDidTap: ((GenericListItem, Bool) -> ())? = nil
+    public var itemDidTap: ((GenericListItem, Bool) -> ())? = nil
     
     // finals
     public static let TAG = 6565
@@ -168,7 +168,7 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
     
     
     //append values, one by one
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //get a new or recycled cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "UIFloatingTableViewCellView", for: indexPath) as! UIFloatingTableViewCellView
         let listItem = itemsStore.getItemAt(indexPath.row)!
@@ -190,7 +190,7 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let item = itemsStore.getItemAt(indexPath.row) else {return}
         
         dismiss()
@@ -198,7 +198,7 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemsStore.count()
     }
     

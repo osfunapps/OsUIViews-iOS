@@ -16,10 +16,10 @@ import UIKit
     private var viewPlaceHolder: String!
     
     /// Will inform if text exists or only place holder
-    var placeHolderDisplays: Bool = false
+    public var placeHolderDisplays: Bool = false
     
     // indications
-    var forwardDelegate: UITextFieldDelegate? = nil
+    public var forwardDelegate: UITextFieldDelegate? = nil
     
     /// We override the delegate here so it may produce weird behaviour. Not all delegate functions forwarded to the delegate
     public override var delegate: UITextFieldDelegate? {

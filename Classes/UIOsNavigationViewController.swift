@@ -13,7 +13,7 @@ import OsTools
 /**
  Extend this view controller to add a navigation view controller to your app
  */
-public class UIOsNavigationController: UINavigationController {
+open class UIOsNavigationController: UINavigationController {
     
     public override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         prepareViewControllerToDisplay(viewController)
@@ -39,12 +39,12 @@ public class UIOsNavigationController: UINavigationController {
     }
 }
 
-public class UIOsNavigationViewControllerImpl: UIOsOrientationViewController {
+open class UIOsNavigationViewControllerImpl: UIOsOrientationViewController {
     
     public static let sub1Size: CGFloat = 35
     public static let sub2Size: CGFloat = 18
     
-    public override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController!.setNavigationBarHidden(false, animated: animated)
         if let navigationTitle = controller().navigationTitle {
@@ -52,7 +52,7 @@ public class UIOsNavigationViewControllerImpl: UIOsOrientationViewController {
         }
     }
     
-    public override func viewWillDisappear(_ animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         // only if clicked back
@@ -68,19 +68,19 @@ public class UIOsNavigationViewControllerImpl: UIOsOrientationViewController {
         }
     }
     
-    public override func orientationChangePhonePortrait() {
+    open override func orientationChangePhonePortrait() {
         _setNavigatoinTitle(fontSize: controller().navigationFontSizePhonePortrait)
     }
     
-    public override func orientationChangePhoneLandscape() {
+    open override func orientationChangePhoneLandscape() {
         _setNavigatoinTitle(fontSize: controller().navigationFontSizePhoneLandscape)
     }
     
-    public override func orientationChangeiPadPortrait() {
+    open override func orientationChangeiPadPortrait() {
         _setNavigatoinTitle(fontSize: controller().navigationFontSizeIpadPortrait)
     }
     
-    public override func orientationChangeiPadLandscape() {
+    open override func orientationChangeiPadLandscape() {
         _setNavigatoinTitle(fontSize: controller().navigationFontSizeIpadLandscape)
     }
     

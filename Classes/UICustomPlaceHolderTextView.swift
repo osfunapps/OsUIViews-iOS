@@ -13,7 +13,7 @@ import UIKit
 @IBDesignable public class UICustomPlaceHolderTextView: UITextView {
     
     /// Will inform if text exists or only place holder
-    var placeHolderDisplays: Bool = false
+    public var placeHolderDisplays: Bool = false
     
     // indications
     private var forwardDelegate: UITextViewDelegate? = nil
