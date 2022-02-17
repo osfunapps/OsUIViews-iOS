@@ -111,7 +111,7 @@ extension UICustomPlaceHolderTextField: UITextFieldDelegate {
         // if the user trying to delete the hint, set it again
         if tryingToDeleteHint(newStr) || isInputEmpty(newStr) {
             clearButtonMode = .never
-            forwardDelegate?.textField?(self, shouldChangeCharactersIn: range, replacementString: appended)
+            _ = forwardDelegate?.textField?(self, shouldChangeCharactersIn: range, replacementString: appended)
             setPlaceHolder()
             moveCaretToLineStart()
             return true
@@ -123,7 +123,7 @@ extension UICustomPlaceHolderTextField: UITextFieldDelegate {
         clearButtonMode = .whileEditing
         textColor = textNormalColor
         placeHolderDisplays = false
-        forwardDelegate?.textField?(self, shouldChangeCharactersIn: range, replacementString: appended)
+        _ = forwardDelegate?.textField?(self, shouldChangeCharactersIn: range, replacementString: appended)
         return true
     }
     
@@ -132,7 +132,7 @@ extension UICustomPlaceHolderTextField: UITextFieldDelegate {
         setPlaceHolder()
         moveCaretToLineStart()
         self.clearButtonMode = .never
-        forwardDelegate?.textFieldShouldClear?(self)
+        _ = forwardDelegate?.textFieldShouldClear?(self)
         return false
     }
     
