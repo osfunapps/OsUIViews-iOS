@@ -84,14 +84,21 @@ open class UIOsNavigationViewControllerImpl: UIOsOrientationViewController {
         _setNavigatoinTitle(fontSize: controller().navigationFontSizeIpadLandscape)
     }
     
-    private func _setNavigatoinTitle(navigationController: UINavigationController? = nil, fontSize: CGFloat) {
+    private func _setNavigatoinTitle(navigationController: UINavigationController? = nil,
+                                     fontSize: CGFloat) {
         let font = controller().navigationTitleFont.withSize(fontSize)
         let color = controller().navigationFontColor
         let backgroundColor = controller().navigationBackgroundColor
         var _navigationController = navigationController
         if _navigationController == nil {
-            _navigationController = self.navigationController!
+            _navigationController = self.navigationController
         }
+        
+        if _navigationController == nil {
+            return
+        }
+        
+        
         _navigationController!.setTitleFontAndColor(font: font, color: color)
         _navigationController!.setBackgroundColor(color: backgroundColor)
     }

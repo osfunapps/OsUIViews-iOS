@@ -339,7 +339,8 @@ extension UIView {
             heightConstr!.constant = newHeight
             if animateInterval != 0.0 {
                 guard let superview = self.superview else {
-                    fatalError("Make sure the superview attached before updating height via animation")
+                    completion?()
+                    return
                 }
                 UIView.animate(withDuration: animateInterval, animations: {
                     superview.layoutIfNeeded()
@@ -371,7 +372,8 @@ extension UIView {
             widthConstr!.constant = newWidth
             if animateInterval != 0.0 {
                 guard let superview = self.superview else {
-                    fatalError("Make sure the superview attached before updating width via animation")
+                    completion?()
+                    return
                 }
                 UIView.animate(withDuration: animateInterval, animations: {
                     superview.layoutIfNeeded()
