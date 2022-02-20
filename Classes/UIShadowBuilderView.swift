@@ -74,7 +74,9 @@ public class UIShadowBuilderView: UIView {
     }
     
     private func commonInit() {
-        Bundle.main.loadNibNamed("UIShadowBuilderView", owner: self, options: nil);
+        
+        let bundle = Bundle(for: UIShadowBuilderView.self)
+        bundle.loadNibNamed("UIShadowBuilderView", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]

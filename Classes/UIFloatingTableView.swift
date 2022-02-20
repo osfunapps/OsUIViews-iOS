@@ -50,27 +50,14 @@ public class UIFloatingTableView: UIView {
     
     /// shared init to set contraints
     private func commonInit() {
-        Bundle.main.loadNibNamed("UIFloatingTableView", owner: self, options: nil);
+        let bundle = Bundle(for: UIFloatingTableView.self)
+        bundle.loadNibNamed("UIFloatingTableView", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         setConstraints(contentView: contentView)
-//        layer.cornerRadius = 20
         tag = UIFloatingTableView.TAG
-//        layer.masksToBounds = true
         setTableView()
-        
-//        contentView.layer.cornerRadius = 25
-//        contentView.layer.masksToBounds = false
-//        contentView.clipsToBounds = false
-//        
-//        contentHolderView.layer.cornerRadius = 25
-//        contentHolderView.layer.masksToBounds = false
-//        contentHolderView.clipsToBounds = false
-//        
-//        tableView.layer.cornerRadius = 25
-//        tableView.layer.masksToBounds = false
-//        tableView.clipsToBounds = false
     }
     
     /// will adjust the constraints of the custom view to be at the right place you
@@ -150,7 +137,9 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
     func setTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UINib.init(nibName: "UIFloatingTableViewCellView", bundle: nil), forCellReuseIdentifier: "UIFloatingTableViewCellView")
+        let bundle = Bundle(for: UIFloatingTableView.self)
+        let nib = UINib(nibName: "UIFloatingTableViewCellView", bundle: bundle)
+        tableView.register(nib, forCellReuseIdentifier: "UIFloatingTableViewCellView")
     }
     
     /// Will add an item to the list

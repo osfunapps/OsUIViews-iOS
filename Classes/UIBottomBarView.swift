@@ -51,7 +51,9 @@ class UIBottomBarView: UIView {
     
     /// shared init to set contraints
     private func commonInit() {
-        Bundle.main.loadNibNamed("UIBottomBarView", owner: self, options: nil);
+        
+        let bundle = Bundle(for: UIBottomBarView.self)
+        bundle.loadNibNamed("UIBottomBarView", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
