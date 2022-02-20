@@ -604,12 +604,13 @@ extension UIView {
             }
         }
         if constraint == nil {
-            fatalError("Couldn't find parent constraint!!")
+            return
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
-            constraint!.constant = constant
+            guard let constraint = constraint else {return}
+            constraint.constant = constant
             UIView.animate(withDuration: animationDuration, animations: {
-                self.superview!.layoutIfNeeded()
+                self.superview?.layoutIfNeeded()
             }) { _ in
                 completion?()
             }
