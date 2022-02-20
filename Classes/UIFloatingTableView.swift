@@ -25,6 +25,7 @@ public class UIFloatingTableView: UIView {
     public var itemLabelFont: UIFont = .systemFont(ofSize: 15)
     public var itemImageSize: CGFloat = 24
     public var itemLabelTextColor: UIColor = .black
+    public var itemImage: UIImage? = nil
     
     // if you have an item which you want to mark as selected, set it here, before adding any items
     private var selectedItem: GenericListItem? = nil
@@ -167,10 +168,12 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
         cell.titleLabel.textColor = itemLabelTextColor
         // show selected iv
         if let selectedItem = selectedItem,
-           listItem.name == selectedItem.name {
+           listItem.name == selectedItem.name,
+           let itemImage = itemImage {
             cell.selectedItemIV.hide(false)
             cell.ivHeight.constant = itemImageSize
             cell.ivWidth.constant = itemImageSize
+            cell.selectedItemIV.image = itemImage
         } else {
             cell.selectedItemIV.hide(true)
         }
