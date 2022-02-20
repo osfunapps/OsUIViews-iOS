@@ -1132,23 +1132,21 @@ extension UITextInput {
 // MARK: - UITextField
 extension UITextField {
     
-    /// Will add a done button to a text view. When clicked, it will resign the first responder or do custom action. Notice: If you want to add a done button to multiple fields, don't use this function
-    public func addDoneButton(title: String = "Done",
-                              style: UIBarStyle = .default,
-                              target: Any = self,
-                              action: Selector = #selector(resignFirstResponder)) {
+    /// Will add a done button to a text view. When clicked, it will resign the first responder. Notice: If you want to add a done button to multiple fields, don't use this function
+    public func addDoneButton(title: String = "Done", style: UIBarStyle = .default) {
         
         let applyToolbar = UIToolbar()
         applyToolbar.barStyle = style
         
         applyToolbar.items=[
             UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: title, style: .done, target: target, action: action)
+            UIBarButtonItem(title: title, style: .done, target: self, action: #selector(resignFirstResponder))
         ]
         
         applyToolbar.sizeToFit()
         inputAccessoryView = applyToolbar
     }
+
     
     /// Will move the caret to the end of the line
     public func moveCaretToLineEnd() {
