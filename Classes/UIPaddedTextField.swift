@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /// Just a text field with padding
-public class UIPaddedTextField: UITextField {
+open class UIPaddedTextField: UITextField {
     
     public var padding: UIEdgeInsets = UIEdgeInsets(top: 0,
                                              left: 0,
