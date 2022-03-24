@@ -12,8 +12,8 @@ import OsTools
 public class UIFloatingTableView: UIView {
     
     // instances
-    var itemsStore: ItemsStore<GenericListItem> = ItemsStore()
-    var tempItemsHolder = [GenericListItem]()
+    var itemsStore: ItemsStore<FloatingTableViewItem> = ItemsStore()
+    var tempItemsHolder = [FloatingTableViewItem]()
     
     // views
     @IBOutlet public var contentView: UIView!
@@ -24,14 +24,16 @@ public class UIFloatingTableView: UIView {
     public var gapBetweenItems: CGFloat = 15
     public var itemLabelFont: UIFont = .systemFont(ofSize: 15)
     public var itemImageSize: CGFloat = 24
+    public var itemOptionalIVSize: CGFloat = 24
     public var itemLabelTextColor: UIColor = .black
-    public var itemImage: UIImage? = nil
+    public var selectedItemImage: UIImage? = nil
+    public var rowHeight: CGFloat = 50
     
     // if you have an item which you want to mark as selected, set it here, before adding any items
-    private var selectedItem: GenericListItem? = nil
+    private var selectedItem: FloatingTableViewItem? = nil
     
     /// Override this to get the selected item and a boolean indicating if it already was the selected item
-    public var itemDidTap: ((GenericListItem, Bool) -> ())? = nil
+    public var itemDidTap: ((FloatingTableViewItem, Bool) -> ())? = nil
     
     // finals
     public static let TAG = 6565
@@ -71,7 +73,7 @@ public class UIFloatingTableView: UIView {
         contentView.bottomAnchor.constraint(equalTo: contentView.superview!.bottomAnchor).isActive = true
     }
     
-    public func addItem(item: GenericListItem, selected: Bool = false) {
+    public func addItem(item: FloatingTableViewItem, selected: Bool = false) {
         if selected {
             self.selectedItem = item
         }
@@ -82,6 +84,7 @@ public class UIFloatingTableView: UIView {
     /// Will pop open the dialog
     public func pop(parentView: UIView,
                     anchorView: UIView,
+                    toLeftAnchor: Bool = true,
                     width: CGFloat? = nil) {
         
         parentView.addSubview(self)
@@ -101,8 +104,8 @@ public class UIFloatingTableView: UIView {
         
         setWidth(width: desiredWidth)
         
-        tableView.rowHeight = 70
-        tableView.estimatedRowHeight = 70
+        tableView.rowHeight = rowHeight
+        tableView.estimatedRowHeight = rowHeight
 
         
         // currently, not fail proof against big dialog, bigger than screen size
@@ -111,7 +114,11 @@ public class UIFloatingTableView: UIView {
         setHeight(height: itemCount * tableView.rowHeight)    // height
 
         topAnchor.constraint(equalTo: anchorView.bottomAnchor, constant: 15).isActive = true
-        leftAnchor.constraint(equalTo: anchorView.leftAnchor, constant: 0).isActive = true
+        if toLeftAnchor {
+            leftAnchor.constraint(equalTo: anchorView.leftAnchor, constant: 0).isActive = true
+        } else {
+            rightAnchor.constraint(equalTo: anchorView.rightAnchor, constant: 0).isActive = true
+        }
         addItems(items: tempItemsHolder)
         
         // todo:
@@ -144,7 +151,7 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     /// Will add an item to the list
-    private func addItems(items: [GenericListItem]) {
+    private func addItems(items: [FloatingTableViewItem]) {
         var indexPaths = [IndexPath]()
         items.forEach { item in
             self.itemsStore.addItem(item)
@@ -163,21 +170,28 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UIFloatingTableViewCellView", for: indexPath) as! UIFloatingTableViewCellView
         let listItem = itemsStore.getItemAt(indexPath.row)!
         cell.titleLabel.text = listItem.name
-        print("showing: \(listItem.name)")
         cell.titleLabel.font = itemLabelFont
         cell.titleLabel.textColor = itemLabelTextColor
         // show selected iv
         if let selectedItem = selectedItem,
            listItem.name == selectedItem.name,
-           let itemImage = itemImage {
+           let itemImage = selectedItemImage {
             cell.selectedItemIV.hide(false)
-            cell.ivHeight.constant = itemImageSize
-            cell.ivWidth.constant = itemImageSize
+            cell.selectedItemIVHeight.constant = itemImageSize
+            cell.selectedItemIVWidth.constant = itemImageSize
             cell.selectedItemIV.image = itemImage
         } else {
             cell.selectedItemIV.hide(true)
         }
         
+        if let imageName = listItem.imageName {
+            cell.optionalIV.hide(false)
+            cell.optionalIV.image = UIImage(named: imageName)
+            cell.optionalIVSize.constant = itemOptionalIVSize
+        } else {
+            cell.optionalIV.hide(true)
+        }
+            
         cell.selectionStyle = .none
         return cell
     }
@@ -204,3 +218,14 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+public struct FloatingTableViewItem {
+    public var name: String
+    public var imageName: String?
+    public var id: String?
+    
+    public init(name: String, id: String? = nil, imageName: String? = nil) {
+        self.name = name
+        self.id = id
+        self.imageName = imageName
+    }
+}
