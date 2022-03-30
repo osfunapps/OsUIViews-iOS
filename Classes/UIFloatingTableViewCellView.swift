@@ -10,11 +10,22 @@ import UIKit
 import OsTools
 
 class UIFloatingTableViewCellView: UITableViewCell {
-    @IBOutlet weak var optionalIVSize: NSLayoutConstraint! // ratio 1:1
+    
+    // holds title stack view and selected item gap
+    @IBOutlet weak var parentSV: UIStackView!
+    
+    // holds image view and title label gap
+    @IBOutlet weak var titleSV: UIStackView!
+    
+    // optional image view
     @IBOutlet weak var optionalIV: UIImageView!
+    @IBOutlet weak var optionalIVSize: NSLayoutConstraint! // ratio 1:1
+    
+    // label
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var selectedItemIV: UIImageView!
-    @IBOutlet weak var selectedItemIVHeight: NSLayoutConstraint!
-    @IBOutlet weak var selectedItemIVWidth: NSLayoutConstraint!
+    
+    // optional selected item indicator
+    @IBOutlet weak var selectedItemIndicatorIV: UIImageView!
+    @IBOutlet weak var selectedItemIVHeight: NSLayoutConstraint!  // ratio 1:1
 }
 

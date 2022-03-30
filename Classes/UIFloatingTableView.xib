@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +12,9 @@
             <connections>
                 <outlet property="contentHolderView" destination="NWX-HD-4lH" id="XO0-mU-wmQ"/>
                 <outlet property="contentView" destination="EUu-Ob-MTq" id="4V2-NL-B0v"/>
+                <outlet property="leadingConstr" destination="blS-6F-BOu" id="hxH-be-Men"/>
                 <outlet property="tableView" destination="Fez-FX-pDA" id="To4-QE-a7w"/>
+                <outlet property="trailingConstr" destination="qa7-Br-EE7" id="ZE5-V4-LB4"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -25,7 +28,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ea4-Ch-EXx" userLabel="papaView">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             <subviews>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="334" placeholderIntrinsicHeight="250" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fez-FX-pDA" userLabel="itemsTableView">
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="334" placeholderIntrinsicHeight="250" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fez-FX-pDA" userLabel="itemsTableView">
                                     <rect key="frame" x="15" y="0.0" width="384" height="896"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

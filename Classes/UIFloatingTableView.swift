@@ -9,6 +9,11 @@
 import UIKit
 import OsTools
 
+
+/**
+ A dynamically made tableview which can be attached anywhere.
+ When popping, select to which parent view to get attached to and to which anchor (to left or right of it)
+ */
 public class UIFloatingTableView: UIView {
     
     // instances
@@ -19,18 +24,27 @@ public class UIFloatingTableView: UIView {
     @IBOutlet public var contentView: UIView!
     @IBOutlet public weak var contentHolderView: UIView!
     @IBOutlet public weak var tableView: UITableView!
+    @IBOutlet weak var trailingConstr: NSLayoutConstraint!
+    @IBOutlet weak var leadingConstr: NSLayoutConstraint!
     
-    // design
-    public var gapBetweenItems: CGFloat = 15
+    // tableview design
+    public var extraWidth: CGFloat = 0   // add here extra width to the table view if you wish
+    
+    // general item design
     public var itemLabelFont: UIFont = .systemFont(ofSize: 15)
-    public var itemImageSize: CGFloat = 24
     public var itemOptionalIVSize: CGFloat = 24
     public var itemLabelTextColor: UIColor = .black
-    public var selectedItemImage: UIImage? = nil
-    public var rowHeight: CGFloat = 50
+    public var itemRowHeight: CGFloat = 50
     
-    // if you have an item which you want to mark as selected, set it here, before adding any items
+    // selected item indicator
+    public var selectedItemIndicatorIVHeight: CGFloat = 20
+    public var selectedItemIndicatorImage: UIImage? = nil
+    
+    // indications
     private var selectedItem: FloatingTableViewItem? = nil
+    private var widthConstr: NSLayoutConstraint!    // will be set after pop
+    private var addedOptionalIVWidth = false
+    private var addedSelectedIndiactorIVWidth = false
     
     /// Override this to get the selected item and a boolean indicating if it already was the selected item
     public var itemDidTap: ((FloatingTableViewItem, Bool) -> ())? = nil
@@ -74,6 +88,7 @@ public class UIFloatingTableView: UIView {
     }
     
     public func addItem(item: FloatingTableViewItem, selected: Bool = false) {
+        
         if selected {
             self.selectedItem = item
         }
@@ -84,28 +99,15 @@ public class UIFloatingTableView: UIView {
     /// Will pop open the dialog
     public func pop(parentView: UIView,
                     anchorView: UIView,
-                    toLeftAnchor: Bool = true,
-                    width: CGFloat? = nil) {
+                    toLeftAnchor: Bool = true) {
         
         parentView.addSubview(self)
         alpha = 0
         translatesAutoresizingMaskIntoConstraints = false
         
-        var desiredWidth: CGFloat
-        if let width = width {
-            desiredWidth = width
-        } else {
-            desiredWidth = anchorView.frame.width
-        }
-        
-        if desiredWidth > Tools.getWindowWidth() {
-            desiredWidth = Tools.getWindowWidth()
-        }
-        
-        setWidth(width: desiredWidth)
-        
-        tableView.rowHeight = rowHeight
-        tableView.estimatedRowHeight = rowHeight
+        setInitialWidth()
+        tableView.rowHeight = itemRowHeight
+        tableView.estimatedRowHeight = itemRowHeight
 
         
         // currently, not fail proof against big dialog, bigger than screen size
@@ -125,7 +127,6 @@ public class UIFloatingTableView: UIView {
         tempItemsHolder.removeAll()
         
         fadeIn(withDuration: 0.25){}
-        
     }
     
     public func dismiss(completion: (() -> Void)? = nil) {
@@ -133,6 +134,24 @@ public class UIFloatingTableView: UIView {
             self.removeFromSuperview()
             completion?()
         }
+    }
+    
+    private func setInitialWidth() {
+        // calculate title size
+        var longesTitle = ""
+        tempItemsHolder.forEach { it in
+            if it.name.count > longesTitle.count {
+                longesTitle = it.name
+            }
+        }
+        
+        let fontAttributes = [NSAttributedString.Key.font: itemLabelFont]
+        let size = (longesTitle as NSString).size(withAttributes: fontAttributes)
+        
+        let titleWidth = ceil(size.width)
+        
+        let totalSize = titleWidth + leadingConstr.constant + trailingConstr.constant + extraWidth
+        widthConstr = setWidth(width: totalSize)
     }
 }
 
@@ -164,7 +183,7 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    //append values, one by one
+    // append values, one by one
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //get a new or recycled cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "UIFloatingTableViewCellView", for: indexPath) as! UIFloatingTableViewCellView
@@ -172,29 +191,81 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
         cell.titleLabel.text = listItem.name
         cell.titleLabel.font = itemLabelFont
         cell.titleLabel.textColor = itemLabelTextColor
-        // show selected iv
+        
+        var widthToAdd: CGFloat = 0
+        
+        // selected iv indicator
         if let selectedItem = selectedItem,
            listItem.name == selectedItem.name,
-           let itemImage = selectedItemImage {
-            cell.selectedItemIV.hide(false)
-            cell.selectedItemIVHeight.constant = itemImageSize
-            cell.selectedItemIVWidth.constant = itemImageSize
-            cell.selectedItemIV.image = itemImage
+           let itemImage = selectedItemIndicatorImage {
+            cell.selectedItemIndicatorIV.hide(false)
+            cell.selectedItemIVHeight.constant = selectedItemIndicatorIVHeight
+            cell.selectedItemIndicatorIV.image = itemImage
+            
+            if !addedSelectedIndiactorIVWidth {
+                addedSelectedIndiactorIVWidth = true
+                widthToAdd += cell.selectedItemIVHeight.constant
+                widthToAdd += cell.parentSV.spacing
+            }
+            
         } else {
-            cell.selectedItemIV.hide(true)
+            cell.selectedItemIndicatorIV.hide(true)
         }
         
         if let imageName = listItem.imageName {
             cell.optionalIV.hide(false)
             cell.optionalIV.image = UIImage(named: imageName)
             cell.optionalIVSize.constant = itemOptionalIVSize
+            
+            // add to whole width
+            if !addedOptionalIVWidth {
+                addedOptionalIVWidth = true
+                widthToAdd += cell.optionalIVSize.constant
+                widthToAdd += cell.titleSV.spacing
+            }
+            
         } else {
             cell.optionalIV.hide(true)
         }
-            
+        
+        if widthToAdd != 0 {
+            widthConstr.constant += widthToAdd
+        }
+//        updateWidthIfRequired(cell: cell, item: listItem)
+        
         cell.selectionStyle = .none
         return cell
     }
+
+    
+    /// If contains iv or indicator, will update width of the whole table view here
+    private func updateWidthIfRequired(cell: UIFloatingTableViewCellView, item: FloatingTableViewItem) {
+        
+        var widthToAdd: CGFloat = 0
+        var shouldUpdateWidth = false
+        
+        if !cell.optionalIV.isHidden {
+            if !addedOptionalIVWidth {
+                addedOptionalIVWidth = true
+                shouldUpdateWidth = true
+                widthToAdd += cell.optionalIVSize.constant
+                widthToAdd += cell.titleSV.spacing
+            }
+        }
+        
+        if !cell.selectedItemIndicatorIV.isHidden {
+            if !addedSelectedIndiactorIVWidth {
+                addedSelectedIndiactorIVWidth = true
+                shouldUpdateWidth = true
+                widthToAdd += cell.selectedItemIVHeight.constant
+                widthToAdd += cell.parentSV.spacing
+            }
+        }
+        if shouldUpdateWidth {
+            widthConstr.constant = widthToAdd
+        }
+    }
+    
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let item = itemsStore.getItemAt(indexPath.row) else {return}
