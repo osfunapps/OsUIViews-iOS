@@ -11,6 +11,7 @@ import Foundation
 /// This class represents a UITextView but can act as a UILabel.
 /// Use this UIView if you want to implement a text with certain link areas like: If you want to contact us, click here) and a tap on the "here" text will do something.4
 /// To use the class call setText and then setClickablePart with the text you want to make a link and the action attached to the text
+/// NOTICE: If you want custom action for a click on certain text, use UIClickableTextView
 public class UILinkableTextView: UITextView {
 
     /// change to set each of the clickable link props

@@ -1232,6 +1232,75 @@ extension UIScrollView {
 // MARK: - UITextView
 extension UITextView {
     
+    /// Will set attributed text to a label. To do so add all of your text in the text parameter while the attributed text should be in barckets, like so:
+    /// text: "this is normal text text. [this is my attributed text] this isnt. [This is!]"
+    /// Also, this function can make certain text clickable. To use the clickable values, listen to change in the TextViewDelegate URL methods. For more info, see:
+    /// UIClickableTextView implementation
+    public func setAttrbiutedText(text: String,
+                                  normalTextFont: UIFont,
+                                  normalTextColor: UIColor,
+                                  attributedTextFont: UIFont,
+                                  attributedTextColor: UIColor,
+                                  lineSpacing: CGFloat = 3,
+                                  alignment: NSTextAlignment = .center,
+                                  clickable: Bool = true) {
+        // iOS 12.0 issues...
+        DispatchQueue.main.async {
+            self.isSelectable = true
+            self.isEditable = false
+            self.dataDetectorTypes = .link
+            self.text = ""
+            self.attributedText = nil
+            self.text = text
+            var startIdx = -1
+            var endIdx = -1
+            var counter = -1
+            var boldStarted = false
+            let fullAttString = NSMutableAttributedString()
+            let boldAttribute = [NSAttributedString.Key.font : attributedTextFont,
+                                 NSAttributedString.Key.foregroundColor: attributedTextColor]
+            let regularAttribute = [NSAttributedString.Key.font : normalTextFont,
+                                    NSAttributedString.Key.foregroundColor: normalTextColor]
+            for char in text {
+                
+                counter += 1
+                if char == "[" && !boldStarted {
+                    boldStarted = true
+                    startIdx = counter
+                    continue
+                }
+                
+                if char == "]" && boldStarted {
+                    boldStarted = false
+                    endIdx = counter
+                    let boldiText = text.substring(startIdx + 1, endIdx)
+                    let boldiString = NSMutableAttributedString(string: boldiText, attributes:boldAttribute)
+                    fullAttString.append(boldiString)
+                    if clickable {
+                        let clickableValue = boldiText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? boldiText
+                        fullAttString.addAttribute(.link,
+                                                   value: clickableValue,
+                                                   range: NSRange(location: fullAttString.length - boldiText.count,
+                                                                  length: boldiText.count)
+                        )
+                    }
+                    continue
+                }
+                
+                if !boldStarted {
+                    let regularString = NSMutableAttributedString(string: String(char), attributes:regularAttribute)
+                    fullAttString.append(regularString)
+                }
+            }
+            
+            let style = NSMutableParagraphStyle()
+            style.lineSpacing = lineSpacing
+            style.alignment = alignment
+            fullAttString.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: fullAttString.string.count))
+            self.attributedText = fullAttString
+        }
+    }
+    
     /// Will add a done button to a text view. When clicked, it will resign the first responder. Notice: If you want to add a done button to multiple fields, don't use this function
     public func addDoneButton(title: String = "Done", style: UIBarStyle = .default) {
         
