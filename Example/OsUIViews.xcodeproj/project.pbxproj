@@ -12,11 +12,11 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		82FDEE0175BD6D2A100AFC95 /* Pods_OsUIViews_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C71E2ACE151F10F6BD129AF /* Pods_OsUIViews_Example.framework */; };
+		7FA3608EF6105B3C21522300 /* Pods_OsUIViews_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4357501DFEA2851426B56C6 /* Pods_OsUIViews_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		16E9B387BDE64A7FA21C6A80 /* Pods-OsUIViews_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OsUIViews_Example.release.xcconfig"; path = "Target Support Files/Pods-OsUIViews_Example/Pods-OsUIViews_Example.release.xcconfig"; sourceTree = "<group>"; };
+		14833D6043C2E86DD74DE4F9 /* Pods-OsUIViews_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OsUIViews_Example.release.xcconfig"; path = "Target Support Files/Pods-OsUIViews_Example/Pods-OsUIViews_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2248DE40163C8AEB9A385E66 /* OsUIViews.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = OsUIViews.podspec; path = ../OsUIViews.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		607FACD01AFB9204008FA782 /* OsUIViews_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OsUIViews_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -26,9 +26,9 @@
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		73B493AD2F8DE5621F2FBEE6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		7C71E2ACE151F10F6BD129AF /* Pods_OsUIViews_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OsUIViews_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8884737038E29A6FA3CAC5A9 /* Pods-OsUIViews_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OsUIViews_Example.debug.xcconfig"; path = "Target Support Files/Pods-OsUIViews_Example/Pods-OsUIViews_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		94D40860CD8A2D169B2A9E5E /* Pods-OsUIViews_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OsUIViews_Example.debug.xcconfig"; path = "Target Support Files/Pods-OsUIViews_Example/Pods-OsUIViews_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D7B51E6E3544AE9B4191150A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		E4357501DFEA2851426B56C6 /* Pods_OsUIViews_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OsUIViews_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,21 +36,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82FDEE0175BD6D2A100AFC95 /* Pods_OsUIViews_Example.framework in Frameworks */,
+				7FA3608EF6105B3C21522300 /* Pods_OsUIViews_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4447F0E412C26310955F32D5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7C71E2ACE151F10F6BD129AF /* Pods_OsUIViews_Example.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -58,7 +50,7 @@
 				607FACD21AFB9204008FA782 /* Example for OsUIViews */,
 				607FACD11AFB9204008FA782 /* Products */,
 				C2296A6EF73D2AE9A5E8C70B /* Pods */,
-				4447F0E412C26310955F32D5 /* Frameworks */,
+				CC01081D8824A956F5DE0C16 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,10 +97,18 @@
 		C2296A6EF73D2AE9A5E8C70B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8884737038E29A6FA3CAC5A9 /* Pods-OsUIViews_Example.debug.xcconfig */,
-				16E9B387BDE64A7FA21C6A80 /* Pods-OsUIViews_Example.release.xcconfig */,
+				94D40860CD8A2D169B2A9E5E /* Pods-OsUIViews_Example.debug.xcconfig */,
+				14833D6043C2E86DD74DE4F9 /* Pods-OsUIViews_Example.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		CC01081D8824A956F5DE0C16 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E4357501DFEA2851426B56C6 /* Pods_OsUIViews_Example.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,11 +118,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "OsUIViews_Example" */;
 			buildPhases = (
-				90FB3A8C829E6EA7D2F4D758 /* [CP] Check Pods Manifest.lock */,
+				0F101C86EDD05215BBF25B9D /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				45FF97C23673EBD795613A1E /* [CP] Embed Pods Frameworks */,
+				1E9B99CA0B720BA4279A4747 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -183,29 +183,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		45FF97C23673EBD795613A1E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OsUIViews_Example/Pods-OsUIViews_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/OsTools/OsTools.framework",
-				"${BUILT_PRODUCTS_DIR}/OsUIViews/OsUIViews.framework",
-				"${BUILT_PRODUCTS_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OsTools.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OsUIViews.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/youtube_ios_player_helper.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OsUIViews_Example/Pods-OsUIViews_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		90FB3A8C829E6EA7D2F4D758 /* [CP] Check Pods Manifest.lock */ = {
+		0F101C86EDD05215BBF25B9D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -225,6 +203,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1E9B99CA0B720BA4279A4747 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OsUIViews_Example/Pods-OsUIViews_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/OsTools/OsTools.framework",
+				"${BUILT_PRODUCTS_DIR}/OsUIViews/OsUIViews.framework",
+				"${BUILT_PRODUCTS_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OsTools.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OsUIViews.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/youtube_ios_player_helper.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OsUIViews_Example/Pods-OsUIViews_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -362,7 +362,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8884737038E29A6FA3CAC5A9 /* Pods-OsUIViews_Example.debug.xcconfig */;
+			baseConfigurationReference = 94D40860CD8A2D169B2A9E5E /* Pods-OsUIViews_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LZ2YRJURP3;
@@ -378,7 +378,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16E9B387BDE64A7FA21C6A80 /* Pods-OsUIViews_Example.release.xcconfig */;
+			baseConfigurationReference = 14833D6043C2E86DD74DE4F9 /* Pods-OsUIViews_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LZ2YRJURP3;

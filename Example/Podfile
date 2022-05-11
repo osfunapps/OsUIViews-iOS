@@ -1,6 +1,5 @@
-use_frameworks!
-
 target 'OsUIViews_Example' do
+use_frameworks!
   pod 'OsUIViews', :path => '../'
   
   # pods
