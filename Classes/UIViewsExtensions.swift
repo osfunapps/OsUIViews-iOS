@@ -226,6 +226,88 @@ extension UIView {
         })
     }
     
+    /// Will start a jiggling animation (like long hold on ios items)
+    public func startJigglingWigglingAnimation(rotationAngle: CGFloat = 0.05,
+                                               translationY: CGFloat = 0.8,
+                                               translationX: CGFloat = 0.8,
+                                               duration: CGFloat = 0.25) {
+        if layer.animation(forKey: "rorationZ") == nil {
+            let wiggle = CAKeyframeAnimation(keyPath: "transform.rotation.z")
+            wiggle.values = [-rotationAngle, rotationAngle]
+            wiggle.autoreverses = true
+            wiggle.duration = duration
+            wiggle.repeatCount = Float.infinity
+            layer.add(wiggle, forKey: "rorationZ")
+        }
+        
+        if  layer.animation(forKey: "translationY") == nil {
+            let bounce = CAKeyframeAnimation(keyPath: "transform.translation.y")
+            bounce.values = [-translationY, translationY]
+            bounce.autoreverses = true
+            bounce.duration = duration
+            bounce.repeatCount = Float.infinity
+            layer.add(bounce, forKey: "translationY")
+        }
+        
+        if layer.animation(forKey: "translationX") == nil {
+            let bounce2 = CAKeyframeAnimation(keyPath: "transform.translation.x")
+            bounce2.values = [-translationX, translationX]
+            bounce2.autoreverses = true
+            bounce2.duration = duration
+            bounce2.repeatCount = Float.infinity
+            layer.add(bounce2, forKey: "translationX")
+        }
+    }
+    
+    /// Will stop a running jiggling wiggling animation
+    public func stopJigglingWigglingAnimation() {
+        layer.removeAnimation(forKey: "rorationZ")
+        layer.removeAnimation(forKey: "translationY")
+        layer.removeAnimation(forKey: "translationX")
+    }
+    
+    
+    /// Will return a constraint with a brother.
+    /// NOTICE: The superview holds the connections between brothers so make sure have superview here!
+    public func getConstraintWithSibling(constraints: [NSLayoutConstraint.Attribute]) -> NSLayoutConstraint? {
+        guard let superview = superview else {return nil}
+        for constraint in superview.constraints {
+            if let firstObj = constraint.firstItem as? NSObject,
+               firstObj == self,
+               constraints.contains(constraint.firstAttribute) {
+                return constraint
+            }
+            if let secondItem = constraint.secondItem as? NSObject,
+               secondItem == self,
+               constraints.contains(constraint.secondAttribute) {
+                return constraint
+            }
+        }
+        return nil
+    }
+    
+    /// Will add a dashed border to a view
+    public func addDashedBorder(strokeColor: UIColor, lineWidth: CGFloat) {
+        self.layoutIfNeeded()
+        let strokeColor = strokeColor.cgColor
+        
+        let shapeLayer:CAShapeLayer = CAShapeLayer()
+        let frameSize = self.frame.size
+        let shapeRect = CGRect(x: 0, y: 0, width: frameSize.width, height: frameSize.height)
+        
+        shapeLayer.bounds = shapeRect
+        shapeLayer.position = CGPoint(x: frameSize.width/2, y: frameSize.height/2)
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.strokeColor = strokeColor
+        shapeLayer.lineWidth = lineWidth
+        shapeLayer.lineJoin = CAShapeLayerLineJoin.round
+        
+        shapeLayer.lineDashPattern = [3,3] // adjust to your liking
+        shapeLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: shapeRect.width, height: shapeRect.height), cornerRadius: frame.width/2).cgPath
+        
+        self.layer.addSublayer(shapeLayer)
+    }
+    
     
     
     /// Will scale the view by
@@ -324,7 +406,7 @@ extension UIView {
     public func updateHeightConstraint(newHeight: CGFloat,
                                        animateInterval: TimeInterval = 0.0,
                                        _ completion: (() -> Void)? = nil) {
-        
+        print("Updating to \(newHeight)")
         var heightConstr = getHeightConstraint()
         if heightConstr == nil {
             heightConstr = setHeight(height: 0)
@@ -1232,75 +1314,6 @@ extension UIScrollView {
 // MARK: - UITextView
 extension UITextView {
     
-    /// Will set attributed text to a label. To do so add all of your text in the text parameter while the attributed text should be in barckets, like so:
-    /// text: "this is normal text text. [this is my attributed text] this isnt. [This is!]"
-    /// Also, this function can make certain text clickable. To use the clickable values, listen to change in the TextViewDelegate URL methods. For more info, see:
-    /// UIClickableTextView implementation
-    public func setAttrbiutedText(text: String,
-                                  normalTextFont: UIFont,
-                                  normalTextColor: UIColor,
-                                  attributedTextFont: UIFont,
-                                  attributedTextColor: UIColor,
-                                  lineSpacing: CGFloat = 3,
-                                  alignment: NSTextAlignment = .center,
-                                  clickable: Bool = true) {
-        // iOS 12.0 issues...
-        DispatchQueue.main.async {
-            self.isSelectable = true
-            self.isEditable = false
-            self.dataDetectorTypes = .link
-            self.text = ""
-            self.attributedText = nil
-            self.text = text
-            var startIdx = -1
-            var endIdx = -1
-            var counter = -1
-            var boldStarted = false
-            let fullAttString = NSMutableAttributedString()
-            let boldAttribute = [NSAttributedString.Key.font : attributedTextFont,
-                                 NSAttributedString.Key.foregroundColor: attributedTextColor]
-            let regularAttribute = [NSAttributedString.Key.font : normalTextFont,
-                                    NSAttributedString.Key.foregroundColor: normalTextColor]
-            for char in text {
-                
-                counter += 1
-                if char == "[" && !boldStarted {
-                    boldStarted = true
-                    startIdx = counter
-                    continue
-                }
-                
-                if char == "]" && boldStarted {
-                    boldStarted = false
-                    endIdx = counter
-                    let boldiText = text.substring(startIdx + 1, endIdx)
-                    let boldiString = NSMutableAttributedString(string: boldiText, attributes:boldAttribute)
-                    fullAttString.append(boldiString)
-                    if clickable {
-                        let clickableValue = boldiText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? boldiText
-                        fullAttString.addAttribute(.link,
-                                                   value: clickableValue,
-                                                   range: NSRange(location: fullAttString.length - boldiText.count,
-                                                                  length: boldiText.count)
-                        )
-                    }
-                    continue
-                }
-                
-                if !boldStarted {
-                    let regularString = NSMutableAttributedString(string: String(char), attributes:regularAttribute)
-                    fullAttString.append(regularString)
-                }
-            }
-            
-            let style = NSMutableParagraphStyle()
-            style.lineSpacing = lineSpacing
-            style.alignment = alignment
-            fullAttString.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: fullAttString.string.count))
-            self.attributedText = fullAttString
-        }
-    }
-    
     /// Will add a done button to a text view. When clicked, it will resign the first responder. Notice: If you want to add a done button to multiple fields, don't use this function
     public func addDoneButton(title: String = "Done", style: UIBarStyle = .default) {
         
@@ -1325,5 +1338,4 @@ extension UITextView {
         heightAnchor.constraint(equalToConstant: newSize.height).isActive = true
         return newSize.height
     }
-    
 }
