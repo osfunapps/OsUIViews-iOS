@@ -128,7 +128,7 @@
 		212056C256E4E5BD8CCE6BDD2D9144F8 /* UIDialogPopper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIDialogPopper.swift; path = Classes/UIDialogPopper.swift; sourceTree = "<group>"; };
 		21C318AD29630EE352D0B3B1D0404DB8 /* SharedPrefs.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharedPrefs.swift; path = Classes/SharedPrefs.swift; sourceTree = "<group>"; };
 		23541B32335827980FA0A46806970F7E /* LightDarkThemeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LightDarkThemeHandler.swift; path = Classes/LightDarkThemeHandler.swift; sourceTree = "<group>"; };
-		242B6580D407485F5A11B6EC15B87027 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		242B6580D407485F5A11B6EC15B87027 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		2642D86A211F7AE5399D2687CE598F9D /* GyroImpl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GyroImpl.swift; path = Classes/GyroImpl.swift; sourceTree = "<group>"; };
 		28AD4181D65419B7BEF0BD0A8BBF40D0 /* UIPanGestureRecognizerForUITableViewWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIPanGestureRecognizerForUITableViewWrapper.swift; path = Classes/UIPanGestureRecognizerForUITableViewWrapper.swift; sourceTree = "<group>"; };
 		2D3EED9510C5040C0F53BA6254262679 /* UIDynamicView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIDynamicView.swift; path = Classes/UIDynamicView.swift; sourceTree = "<group>"; };
@@ -149,13 +149,13 @@
 		60CC92ECCD322D53138D473CB5EBFACA /* OsTools.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OsTools.debug.xcconfig; sourceTree = "<group>"; };
 		65157B42BA925B7F2FD0751ABF183631 /* LifeCycleRegistrator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LifeCycleRegistrator.swift; path = Classes/LifeCycleRegistrator.swift; sourceTree = "<group>"; };
 		67038A4B50CB317DCFA24E06C81A662B /* UIDynamicViewStructures.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIDynamicViewStructures.swift; path = Classes/UIDynamicViewStructures.swift; sourceTree = "<group>"; };
-		67EA5FC7A9B992979011516C8364C309 /* OsUIViews.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = OsUIViews.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		67EA5FC7A9B992979011516C8364C309 /* OsUIViews.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = OsUIViews.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		6812C2FE96FA5D9BE6C3489322BA2AFB /* UIFloatingTableView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = UIFloatingTableView.xib; path = Classes/UIFloatingTableView.xib; sourceTree = "<group>"; };
 		6916630B50FD3E9D5B3A7440801A8A72 /* youtube-ios-player-helper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "youtube-ios-player-helper.debug.xcconfig"; sourceTree = "<group>"; };
 		6F396C1B6DD3F3AA6DAE9B610561C2AA /* OsTools.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OsTools.release.xcconfig; sourceTree = "<group>"; };
 		6FB0782ED86723935199DF9A9617FF2E /* UIDownUpGestureRecognizer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIDownUpGestureRecognizer.swift; path = Classes/UIDownUpGestureRecognizer.swift; sourceTree = "<group>"; };
 		7019EA090B2F08DDCEB9D0105664547C /* ToolsExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToolsExtensions.swift; path = Classes/ToolsExtensions.swift; sourceTree = "<group>"; };
-		70A7345466643F9565A97F67AFFCF6AD /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		70A7345466643F9565A97F67AFFCF6AD /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		712B86285D2E65C6CB02F56CFBA67287 /* OrientationChangeDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OrientationChangeDelegate.swift; path = Classes/OrientationChangeDelegate.swift; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		74CD015FF5B20806003282C455F4727C /* OsTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "OsTools-dummy.m"; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 		9905956A82C621D88F095FF724011622 /* UICircleView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UICircleView.swift; path = Classes/UICircleView.swift; sourceTree = "<group>"; };
 		9B83704E19F2909E47348EB5DC1F22A5 /* UIButtonyGestureRecognizer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIButtonyGestureRecognizer.swift; path = Classes/UIButtonyGestureRecognizer.swift; sourceTree = "<group>"; };
 		9C0C272AA3794C04562C0E2314317471 /* Pods-OsUIViews_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OsUIViews_Example-Info.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E4602209BB33D30D503ACDE14C7EED9 /* OsUIViews-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OsUIViews-umbrella.h"; sourceTree = "<group>"; };
 		9F2766D6695F42C19BB942B3D98B0C04 /* UICustomPlaceHolderTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UICustomPlaceHolderTextField.swift; path = Classes/UICustomPlaceHolderTextField.swift; sourceTree = "<group>"; };
 		A1CA8A1C57A4445E9A5DD8B6E1DE9C13 /* UIShadowGestureRecognizer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIShadowGestureRecognizer.swift; path = Classes/UIShadowGestureRecognizer.swift; sourceTree = "<group>"; };
@@ -351,7 +351,6 @@
 				0DD78EA6A7A70FD7866E78AD625E92BE /* Resources */,
 				FEBAE56DE301C025441E4E051794B53D /* Support Files */,
 			);
-			name = "youtube-ios-player-helper";
 			path = "youtube-ios-player-helper";
 			sourceTree = "<group>";
 		};
@@ -390,7 +389,6 @@
 				7019EA090B2F08DDCEB9D0105664547C /* ToolsExtensions.swift */,
 				04A863489DB3BC46A8E9E683C608D5FC /* Support Files */,
 			);
-			name = OsTools;
 			path = OsTools;
 			sourceTree = "<group>";
 		};
@@ -993,13 +991,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -1058,7 +1055,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
