@@ -406,6 +406,7 @@ extension UIView {
     public func updateHeightConstraint(newHeight: CGFloat,
                                        animateInterval: TimeInterval = 0.0,
                                        _ completion: (() -> Void)? = nil) {
+        
         var heightConstr = getHeightConstraint()
         if heightConstr == nil {
             heightConstr = setHeight(height: 0)
