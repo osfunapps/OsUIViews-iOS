@@ -25,10 +25,10 @@ public class UIZoomableImageView: UIView {
     // indications
     
     /** Toggle to allow/disallow double tap */
-    var isDoubleTapEnabled = true
+    public var isDoubleTapEnabled = true
     
     /** Will decide how much zoom will be when double tapped */
-    var doubleTapZoomFactor: CGFloat = 2.5
+    public var doubleTapZoomFactor: CGFloat = 2.5
     
     public var minimumZoomScale: CGFloat = 0.1 {
         didSet {

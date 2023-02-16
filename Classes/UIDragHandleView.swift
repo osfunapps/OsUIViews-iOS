@@ -20,10 +20,8 @@ import OsTools
  */
 public class UIDragHandleView: UIView {
     
-    var currDragIdxPath: IndexPath? = nil
-    var dragEndPercentageDict: [ClosedRange<Int>: CGFloat]?
-    var superviewFrame: Int = 0
-    var minimumDrag: CGFloat = -100.0
+    public var dragEndPercentageDict: [ClosedRange<Int>: CGFloat]?
+    public var minimumDrag: CGFloat = -100.0
     
     /** sign in to drag events */
     public var handleDragEvent: ((UIGestureRecognizer.State, CGFloat) -> ())? = nil
