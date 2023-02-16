@@ -210,6 +210,32 @@ extension UIColor {
 
 // MARK: - UIView
 extension UIView {
+    
+    public func pinLeadingToLeading(of view: UIView, with constant: CGFloat = 0) {
+        leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: constant).isActive = true
+    }
+    public func pinLeadingToTrailing(of view: UIView, with constant: CGFloat = 0) {
+        leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: constant).isActive = true
+    }
+    public func pinTrailingToTrailing(of view: UIView, with constant: CGFloat = 0) {
+        trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: constant).isActive = true
+    }
+    public func pinTrailingToLeading(of view: UIView, with constant: CGFloat = 0) {
+        trailingAnchor.constraint(equalTo: view.leadingAnchor, constant: constant).isActive = true
+    }
+    public func pinTopToTop(of view: UIView, with constant: CGFloat = 0) {
+        topAnchor.constraint(equalTo: view.topAnchor, constant: constant).isActive = true
+    }
+    public func pinTopToBottom(of view: UIView, with constant: CGFloat = 0) {
+        topAnchor.constraint(equalTo: view.bottomAnchor, constant: constant).isActive = true
+    }
+    public func pinBottomToTop(of view: UIView, with constant: CGFloat = 0) {
+        bottomAnchor.constraint(equalTo: view.topAnchor, constant: constant).isActive = true
+    }
+    public func pinBottomToBottom(of view: UIView, with constant: CGFloat = 0) {
+        bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: constant).isActive = true
+    }
+    
     /// Will init a flip animation on a view on place (like a coin animation flip around it's (0,0 value)
     public func flip(animate: AnimationOptions = .transitionFlipFromRight,
                      didHalfFlip: (() -> Void)? = nil,
@@ -1259,6 +1285,25 @@ extension UIStackView {
 // MARK: - UIScrollView
 extension UIScrollView {
     
+    /// Will centralize horizontal scrollbar in center
+    public func centralizeHorizontalScrollbar() {
+        let centerX = contentSize.width / 2 - bounds.size.width / 2
+        setContentOffset(CGPoint(x: centerX, y: contentOffset.y), animated: false)
+    }
+    
+    /// Will centralize vertical scrollbar in center
+    public func centralizeVerticalScrollbar() {
+        let centerY = contentSize.height / 2 - bounds.size.height / 2
+        setContentOffset(CGPoint(x: contentOffset.x, y: centerY), animated: false)
+    }
+    
+    /// Will centralize both scrollbars in center
+    public func centralizeScrollbars() {
+        let centerY = contentSize.height / 2 - bounds.size.height / 2
+        let centerX = contentSize.width / 2 - bounds.size.width / 2
+        setContentOffset(CGPoint(x: centerX, y: centerY), animated: false)
+    }
+    
     /// Will scroll to the desired page in the scroll view
     public func scrollToPage(number: Int) {
         var scrollFrame = frame
@@ -1408,4 +1453,63 @@ extension UITextView {
         return newSize.height
     }
     
+}
+
+// MARK: - UIImage
+extension UIImage {
+    
+    // will create an image with rounded corners
+    public func withRoundedCorners(radius: CGFloat? = nil) -> UIImage? {
+        let maxRadius = min(size.width, size.height) / 2
+        let cornerRadius: CGFloat
+        if let radius = radius, radius > 0 && radius <= maxRadius {
+            cornerRadius = radius
+        } else {
+            cornerRadius = maxRadius
+        }
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        let rect = CGRect(origin: .zero, size: size)
+        UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius).addClip()
+        draw(in: rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+    
+    // will dim a uiimage
+    public func dim(with factor: CGFloat? = nil) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        let rect = CGRect(origin: .zero, size: size)
+        draw(in: rect)
+        let darkColor = UIColor.black.withAlphaComponent(0.2)
+        darkColor.setFill()
+        UIRectFillUsingBlendMode(rect, .sourceAtop)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+}
+
+// MARK: - UICollectionView
+public extension UICollectionView {
+    
+    /// Will return the horizontal padding between cells
+    func getHorizontalSpacing(cellWidth: CGFloat) -> CGFloat {
+            let collectionViewWidth = frame.width
+            let numberOfCellsPerRow = floor(collectionViewWidth / cellWidth)
+            let totalCellWidth = cellWidth * numberOfCellsPerRow
+            let horizontalSpacing = (collectionViewWidth - totalCellWidth) / (numberOfCellsPerRow + 1)
+            print(horizontalSpacing)
+            return horizontalSpacing
+    }
+    
+    /// Will return the width of the content in the collection view
+    func getContentWidth() -> CGFloat {
+        return frame.width - contentInset.left - contentInset.right
+    }
+    
+    /// Will return the height of the content in the collection view
+    func getContentHeight() -> CGFloat {
+        return frame.height - contentInset.top - contentInset.bottom
+    }
 }

@@ -57,6 +57,9 @@
 		AF85B165196A84DD960CE4A92CC52211 /* UIDynamicViewStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67038A4B50CB317DCFA24E06C81A662B /* UIDynamicViewStructures.swift */; };
 		B039F621F02F823850E3A578717B1077 /* UIRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5F66710CEFC76A3E384EDBB25B631D /* UIRoundedView.swift */; };
 		B52A21F3111E76D619E8EA0AE80675B7 /* UIRotatedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9749B5112BABE8218A5B433C0709C8F7 /* UIRotatedImageView.swift */; };
+		B7A34157299E762500C8F6AC /* UIDragHandleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A34156299E762500C8F6AC /* UIDragHandleView.swift */; };
+		B7A34159299E7A3400C8F6AC /* UIBorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A34158299E7A3400C8F6AC /* UIBorderedView.swift */; };
+		B7A3415B299E7B3400C8F6AC /* UIZoomableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3415A299E7B3400C8F6AC /* UIZoomableImageView.swift */; };
 		BD482087354E91BE5FD8AB51D4EB4E58 /* UICustomPlaceHolderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2766D6695F42C19BB942B3D98B0C04 /* UICustomPlaceHolderTextField.swift */; };
 		C6091B2C08DC0CD84B36291CA94ACBB1 /* UIFloatingTableView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6812C2FE96FA5D9BE6C3489322BA2AFB /* UIFloatingTableView.xib */; };
 		C7E72F14A5C10C1438DA56EAEEB3B38B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -193,6 +196,9 @@
 		B04E51515B19920BC99683A30471F519 /* UIOsCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIOsCollectionViewFlowLayout.swift; path = Classes/UIOsCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		B173CA28F494175DDA46D3112FD82665 /* OsTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OsTools-umbrella.h"; sourceTree = "<group>"; };
 		B541C712263F1264E019B7823E71CB57 /* OsUIViews */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OsUIViews; path = OsUIViews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7A34156299E762500C8F6AC /* UIDragHandleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDragHandleView.swift; path = Classes/UIDragHandleView.swift; sourceTree = "<group>"; };
+		B7A34158299E7A3400C8F6AC /* UIBorderedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIBorderedView.swift; path = Classes/UIBorderedView.swift; sourceTree = "<group>"; };
+		B7A3415A299E7B3400C8F6AC /* UIZoomableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIZoomableImageView.swift; path = Classes/UIZoomableImageView.swift; sourceTree = "<group>"; };
 		BC0DBA27394113BC46E95D7F135FF5F1 /* UIFloatingTableViewCellView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIFloatingTableViewCellView.swift; path = Classes/UIFloatingTableViewCellView.swift; sourceTree = "<group>"; };
 		BFDCE0A3499DA482431AACA7E52E9746 /* UIFloatingTableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIFloatingTableView.swift; path = Classes/UIFloatingTableView.swift; sourceTree = "<group>"; };
 		C08DD8CD90151103DE754C55F87EA7A3 /* ItemsStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemsStore.swift; path = Classes/ItemsStore.swift; sourceTree = "<group>"; };
@@ -286,6 +292,9 @@
 		0C9F6EECBB6588B42EC966115B34F73B /* OsUIViews */ = {
 			isa = PBXGroup;
 			children = (
+				B7A3415A299E7B3400C8F6AC /* UIZoomableImageView.swift */,
+				B7A34158299E7A3400C8F6AC /* UIBorderedView.swift */,
+				B7A34156299E762500C8F6AC /* UIDragHandleView.swift */,
 				804A4E443356E2C746012C197A507EC4 /* ListPickerViewPopper.swift */,
 				E1203588778D59EE316843DC12EDF54B /* SelfSizedTableView.swift */,
 				E343F83F08580865C2C48B3E69614564 /* SkyFloatingTF.swift */,
@@ -719,6 +728,7 @@
 				131FAAB270A9D72A76BF2851E9BB3A9A /* UICustomPlaceHolderTextView.swift in Sources */,
 				4D648427C1CE44381622E7CD357F2C73 /* UIDialogPopper.swift in Sources */,
 				E88ACACFEF8E870D064E1F42FB60D6F5 /* UIDialogWrapper.swift in Sources */,
+				B7A3415B299E7B3400C8F6AC /* UIZoomableImageView.swift in Sources */,
 				660862A41F8F8BFF30005E8EE9E2C6F6 /* UIDownUpGestureRecognizer.swift in Sources */,
 				0734E1C759E002BA2C5C34BB2111DC76 /* UIDynamicView.swift in Sources */,
 				A9B7327EF86A6B4FC46838DF3A69F0E6 /* UIDynamicView.xib in Sources */,
@@ -729,11 +739,13 @@
 				5D8F2FD4A893BED3F12FAC3D049BF7C6 /* UIFloatingTableViewCellView.xib in Sources */,
 				898BD53EB13B6E456AF3E9B8164CF2EB /* UIGradientView.swift in Sources */,
 				65A6E3E4D7253755C4C7EEF1C1E4DC3E /* UIInstructionalStackView.swift in Sources */,
+				B7A34159299E7A3400C8F6AC /* UIBorderedView.swift in Sources */,
 				DEE55C88B8BFE803553BB07291B363AD /* UILinkableTextView.swift in Sources */,
 				87A4122DF8CDB630E9D954C39DA0CC6E /* UIOsBaseViewController.swift in Sources */,
 				83B81423EC3FEC229166C68AF107B03A /* UIOsCollectionViewFlowLayout.swift in Sources */,
 				880D8219AFF5373869DA00382DC3EA9D /* UIOsNavigationViewController.swift in Sources */,
 				2DFD2D877255B39B275562AB0E778D7D /* UIOsOrientationViewController.swift in Sources */,
+				B7A34157299E762500C8F6AC /* UIDragHandleView.swift in Sources */,
 				500C2FDA013F1BFA4D3220B7B71884D4 /* UIPaddedTextField.swift in Sources */,
 				20AD5CC5DEBEE08A5217713D9ACAD455 /* UIPanGestureRecognizerForUITableViewWrapper.swift in Sources */,
 				B52A21F3111E76D619E8EA0AE80675B7 /* UIRotatedImageView.swift in Sources */,
