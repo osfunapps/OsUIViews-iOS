@@ -27,5 +27,9 @@ class UIFloatingTableViewCellView: UITableViewCell {
     // optional selected item indicator
     @IBOutlet weak var selectedItemIndicatorIV: UIImageView!
     @IBOutlet weak var selectedItemIVHeight: NSLayoutConstraint!  // ratio 1:1
+    
+    // new item indicator
+    @IBOutlet weak var newItemIndicatorIVHeight: NSLayoutConstraint!
+    @IBOutlet weak var newItemIndicatorView: UICircleView!
 }
 

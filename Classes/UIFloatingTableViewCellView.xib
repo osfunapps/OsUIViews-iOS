@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -28,7 +28,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="147" height="97"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AmA-td-wch" userLabel="Title Stack View">
-                                        <rect key="frame" x="0.0" y="36.5" width="97" height="24"/>
+                                        <rect key="frame" x="0.0" y="36.5" width="57" height="24"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XwE-EY-fhc" userLabel="Optional Image View">
                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -38,7 +38,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Option 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZq-iU-hUv" userLabel="Title Label">
-                                                <rect key="frame" x="34" y="0.0" width="63" height="24"/>
+                                                <rect key="frame" x="34" y="0.0" width="23" height="24"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -46,6 +46,16 @@
                                         </subviews>
                                         <variation key="heightClass=regular-widthClass=regular" spacing="16"/>
                                     </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4KW-ao-Lhq" userLabel="New Item Indicator" customClass="UICircleView" customModule="OsUIViews" customModuleProvider="target">
+                                        <rect key="frame" x="87" y="43.5" width="10" height="10"/>
+                                        <color key="backgroundColor" red="0.92156862745098034" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="4KW-ao-Lhq" secondAttribute="height" multiplier="1:1" id="GL2-0M-e35"/>
+                                            <constraint firstAttribute="height" constant="10" id="Vja-vO-QYW">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                            </constraint>
+                                        </constraints>
+                                    </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3S1-h5-XsF">
                                         <rect key="frame" x="127" y="38.5" width="20" height="20"/>
                                         <constraints>
@@ -76,10 +86,12 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="newItemIndicatorIVHeight" destination="Vja-vO-QYW" id="2g8-i9-rIb"/>
+                <outlet property="newItemIndicatorView" destination="4KW-ao-Lhq" id="HvO-wc-xoD"/>
                 <outlet property="optionalIV" destination="XwE-EY-fhc" id="CiW-3V-0D6"/>
                 <outlet property="optionalIVSize" destination="gvI-V8-hkL" id="K4v-wV-iF2"/>
                 <outlet property="parentSV" destination="XFc-8t-3C6" id="D0g-ff-nf3"/>
-                <outlet property="selectedItemIVHeight" destination="Hri-qk-c4i" id="fS0-6N-gld"/>
+                <outlet property="selectedItemIVHeight" destination="Hri-qk-c4i" id="p0M-ij-ALd"/>
                 <outlet property="selectedItemIndicatorIV" destination="3S1-h5-XsF" id="XeO-fd-RVo"/>
                 <outlet property="titleLabel" destination="mZq-iU-hUv" id="lhR-rv-hT7"/>
                 <outlet property="titleSV" destination="AmA-td-wch" id="CJj-Qw-U5h"/>

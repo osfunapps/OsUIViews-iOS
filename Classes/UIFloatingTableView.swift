@@ -38,13 +38,21 @@ public class UIFloatingTableView: UIView {
     
     // selected item indicator
     public var selectedItemIndicatorIVHeight: CGFloat = 20
+    public var newItemIndicatorHeight: CGFloat = 10
     public var selectedItemIndicatorImage: UIImage? = nil
+    
+    // selected text
+    public var selectedItemLabelTextColor: UIColor = .black
+    public var selectedItemLabelFont: UIFont = .systemFont(ofSize: 15)
     
     // indications
     private var selectedItem: FloatingTableViewItem? = nil
+    private var newItems = [FloatingTableViewItem]()
     private var widthConstr: NSLayoutConstraint!    // will be set after pop
     private var addedOptionalIVWidth = false
     private var addedSelectedIndiactorIVWidth = false
+    private var addedNewItemIndicatorIVWidth = false
+    
     
     /// Override this to get the selected item and a boolean indicating if it already was the selected item
     public var itemDidTap: ((FloatingTableViewItem, Bool) -> ())? = nil
@@ -87,10 +95,15 @@ public class UIFloatingTableView: UIView {
         contentView.bottomAnchor.constraint(equalTo: contentView.superview!.bottomAnchor).isActive = true
     }
     
-    public func addItem(item: FloatingTableViewItem, selected: Bool = false) {
+    public func addItem(item: FloatingTableViewItem,
+                        selected: Bool = false,
+                        newItem: Bool = false) {
         
         if selected {
             self.selectedItem = item
+        }
+        if newItem {
+            self.newItems.append(item)
         }
         tempItemsHolder.append(item)
     }
@@ -198,6 +211,8 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
         if let selectedItem = selectedItem,
            listItem.name == selectedItem.name,
            let itemImage = selectedItemIndicatorImage {
+            cell.titleLabel.textColor = selectedItemLabelTextColor
+            cell.titleLabel.font = selectedItemLabelFont
             cell.selectedItemIndicatorIV.hide(false)
             cell.selectedItemIVHeight.constant = selectedItemIndicatorIVHeight
             cell.selectedItemIndicatorIV.image = itemImage
@@ -211,6 +226,21 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.selectedItemIndicatorIV.hide(true)
         }
+        
+        // new iv indicator
+        if newItems.contains(where: {$0.name == listItem.name }) {
+            cell.newItemIndicatorView.hide(false)
+//            cell.selectedItemIVHeight.constant = newItemIndicatorHeight
+//            if !addedNewItemIndicatorIVWidth {
+//                addedNewItemIndicatorIVWidth = true
+//                widthToAdd += cell.newItemIndicatorIVHeight.constant
+//                widthToAdd += cell.parentSV.spacing
+//            }
+        } else {
+            cell.newItemIndicatorView.hide(true)
+        }
+        
+        
         
         if let imageName = listItem.imageName {
             cell.optionalIV.hide(false)
@@ -261,6 +291,18 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
                 widthToAdd += cell.parentSV.spacing
             }
         }
+        
+        
+//        if !cell.newItemIndicatorView.isHidden {
+//            if !addedSelectedIndiactorIVWidth {
+//                addedSelectedIndiactorIVWidth = true
+//                shouldUpdateWidth = true
+//                widthToAdd += cell.selectedItemIVHeight.constant
+//                widthToAdd += cell.parentSV.spacing
+//            }
+//        }
+        
+        
         if shouldUpdateWidth {
             widthConstr.constant = widthToAdd
         }
