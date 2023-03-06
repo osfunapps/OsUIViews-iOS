@@ -60,6 +60,10 @@
 		B7A34157299E762500C8F6AC /* UIDragHandleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A34156299E762500C8F6AC /* UIDragHandleView.swift */; };
 		B7A34159299E7A3400C8F6AC /* UIBorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A34158299E7A3400C8F6AC /* UIBorderedView.swift */; };
 		B7A3415B299E7B3400C8F6AC /* UIZoomableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3415A299E7B3400C8F6AC /* UIZoomableImageView.swift */; };
+		B7D0BCBE29B61CE200BE266B /* UIClickableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D0BCBA29B61CE200BE266B /* UIClickableTextView.swift */; };
+		B7D0BCBF29B61CE200BE266B /* UIColorableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D0BCBB29B61CE200BE266B /* UIColorableLabel.swift */; };
+		B7D0BCC029B61CE200BE266B /* UIBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D0BCBC29B61CE200BE266B /* UIBlurView.swift */; };
+		B7D0BCC129B61CE200BE266B /* UIAttributedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D0BCBD29B61CE200BE266B /* UIAttributedTextView.swift */; };
 		BD482087354E91BE5FD8AB51D4EB4E58 /* UICustomPlaceHolderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2766D6695F42C19BB942B3D98B0C04 /* UICustomPlaceHolderTextField.swift */; };
 		C6091B2C08DC0CD84B36291CA94ACBB1 /* UIFloatingTableView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6812C2FE96FA5D9BE6C3489322BA2AFB /* UIFloatingTableView.xib */; };
 		C7E72F14A5C10C1438DA56EAEEB3B38B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -199,6 +203,10 @@
 		B7A34156299E762500C8F6AC /* UIDragHandleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDragHandleView.swift; path = Classes/UIDragHandleView.swift; sourceTree = "<group>"; };
 		B7A34158299E7A3400C8F6AC /* UIBorderedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIBorderedView.swift; path = Classes/UIBorderedView.swift; sourceTree = "<group>"; };
 		B7A3415A299E7B3400C8F6AC /* UIZoomableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIZoomableImageView.swift; path = Classes/UIZoomableImageView.swift; sourceTree = "<group>"; };
+		B7D0BCBA29B61CE200BE266B /* UIClickableTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIClickableTextView.swift; path = Classes/UIClickableTextView.swift; sourceTree = "<group>"; };
+		B7D0BCBB29B61CE200BE266B /* UIColorableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorableLabel.swift; path = Classes/UIColorableLabel.swift; sourceTree = "<group>"; };
+		B7D0BCBC29B61CE200BE266B /* UIBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIBlurView.swift; path = Classes/UIBlurView.swift; sourceTree = "<group>"; };
+		B7D0BCBD29B61CE200BE266B /* UIAttributedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIAttributedTextView.swift; path = Classes/UIAttributedTextView.swift; sourceTree = "<group>"; };
 		BC0DBA27394113BC46E95D7F135FF5F1 /* UIFloatingTableViewCellView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIFloatingTableViewCellView.swift; path = Classes/UIFloatingTableViewCellView.swift; sourceTree = "<group>"; };
 		BFDCE0A3499DA482431AACA7E52E9746 /* UIFloatingTableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIFloatingTableView.swift; path = Classes/UIFloatingTableView.swift; sourceTree = "<group>"; };
 		C08DD8CD90151103DE754C55F87EA7A3 /* ItemsStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemsStore.swift; path = Classes/ItemsStore.swift; sourceTree = "<group>"; };
@@ -292,6 +300,10 @@
 		0C9F6EECBB6588B42EC966115B34F73B /* OsUIViews */ = {
 			isa = PBXGroup;
 			children = (
+				B7D0BCBD29B61CE200BE266B /* UIAttributedTextView.swift */,
+				B7D0BCBC29B61CE200BE266B /* UIBlurView.swift */,
+				B7D0BCBA29B61CE200BE266B /* UIClickableTextView.swift */,
+				B7D0BCBB29B61CE200BE266B /* UIColorableLabel.swift */,
 				804A4E443356E2C746012C197A507EC4 /* ListPickerViewPopper.swift */,
 				A7DB037177617AC04A25903AD95F2BCF /* Pod */,
 				E1203588778D59EE316843DC12EDF54B /* SelfSizedTableView.swift */,
@@ -720,6 +732,7 @@
 				636C1067AFF9CFE8FBDF03BBFED7208A /* UIBottomBarItemView.swift in Sources */,
 				E9EF57C976A38C98A20112C420ABDA10 /* UIBottomBarItemView.xib in Sources */,
 				7F12594902859E621DD61BD3D774A8D8 /* UIBottomBarView.swift in Sources */,
+				B7D0BCC129B61CE200BE266B /* UIAttributedTextView.swift in Sources */,
 				6C49D180EFF47FE236B673274360229D /* UIBottomBarView.xib in Sources */,
 				92535842CC17D89536CF5D1865FC60E4 /* UIButtonyGestureRecognizer.swift in Sources */,
 				CB8CF6D77D75F427C2F57CB54EA59626 /* UICircleBorderView.swift in Sources */,
@@ -734,6 +747,7 @@
 				A9B7327EF86A6B4FC46838DF3A69F0E6 /* UIDynamicView.xib in Sources */,
 				AF85B165196A84DD960CE4A92CC52211 /* UIDynamicViewStructures.swift in Sources */,
 				93734EEE095A2B2169FA4AFD6EFD11EA /* UIFloatingTableView.swift in Sources */,
+				B7D0BCC029B61CE200BE266B /* UIBlurView.swift in Sources */,
 				C6091B2C08DC0CD84B36291CA94ACBB1 /* UIFloatingTableView.xib in Sources */,
 				1BBEFCCAE4BCFEA4FB4669A32746E57F /* UIFloatingTableViewCellView.swift in Sources */,
 				5D8F2FD4A893BED3F12FAC3D049BF7C6 /* UIFloatingTableViewCellView.xib in Sources */,
@@ -745,6 +759,7 @@
 				83B81423EC3FEC229166C68AF107B03A /* UIOsCollectionViewFlowLayout.swift in Sources */,
 				880D8219AFF5373869DA00382DC3EA9D /* UIOsNavigationViewController.swift in Sources */,
 				2DFD2D877255B39B275562AB0E778D7D /* UIOsOrientationViewController.swift in Sources */,
+				B7D0BCBF29B61CE200BE266B /* UIColorableLabel.swift in Sources */,
 				B7A34157299E762500C8F6AC /* UIDragHandleView.swift in Sources */,
 				500C2FDA013F1BFA4D3220B7B71884D4 /* UIPaddedTextField.swift in Sources */,
 				20AD5CC5DEBEE08A5217713D9ACAD455 /* UIPanGestureRecognizerForUITableViewWrapper.swift in Sources */,
@@ -757,6 +772,7 @@
 				DB3A4EC09230332F607FA564E2593D11 /* UITouchDownGestureRecognizer.swift in Sources */,
 				D7124C26918F9BCF3730C10FBDAF3E95 /* UITouchUpGestureRecognizer.swift in Sources */,
 				E2DEF5028C0980656A6D1107231336F3 /* UIViewsExtensions.swift in Sources */,
+				B7D0BCBE29B61CE200BE266B /* UIClickableTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
