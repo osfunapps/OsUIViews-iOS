@@ -57,6 +57,7 @@
 		AF85B165196A84DD960CE4A92CC52211 /* UIDynamicViewStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67038A4B50CB317DCFA24E06C81A662B /* UIDynamicViewStructures.swift */; };
 		B039F621F02F823850E3A578717B1077 /* UIRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5F66710CEFC76A3E384EDBB25B631D /* UIRoundedView.swift */; };
 		B52A21F3111E76D619E8EA0AE80675B7 /* UIRotatedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9749B5112BABE8218A5B433C0709C8F7 /* UIRotatedImageView.swift */; };
+		B77E39F829C3877900A8C132 /* UICircleLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77E39F729C3877900A8C132 /* UICircleLabelView.swift */; };
 		B7A34157299E762500C8F6AC /* UIDragHandleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A34156299E762500C8F6AC /* UIDragHandleView.swift */; };
 		B7A34159299E7A3400C8F6AC /* UIBorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A34158299E7A3400C8F6AC /* UIBorderedView.swift */; };
 		B7A3415B299E7B3400C8F6AC /* UIZoomableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3415A299E7B3400C8F6AC /* UIZoomableImageView.swift */; };
@@ -198,6 +199,7 @@
 		B04E51515B19920BC99683A30471F519 /* UIOsCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIOsCollectionViewFlowLayout.swift; path = Classes/UIOsCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		B173CA28F494175DDA46D3112FD82665 /* OsTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OsTools-umbrella.h"; sourceTree = "<group>"; };
 		B541C712263F1264E019B7823E71CB57 /* OsUIViews */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OsUIViews; path = OsUIViews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B77E39F729C3877900A8C132 /* UICircleLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UICircleLabelView.swift; path = Classes/UICircleLabelView.swift; sourceTree = "<group>"; };
 		B7A34156299E762500C8F6AC /* UIDragHandleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDragHandleView.swift; path = Classes/UIDragHandleView.swift; sourceTree = "<group>"; };
 		B7A34158299E7A3400C8F6AC /* UIBorderedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIBorderedView.swift; path = Classes/UIBorderedView.swift; sourceTree = "<group>"; };
 		B7A3415A299E7B3400C8F6AC /* UIZoomableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIZoomableImageView.swift; path = Classes/UIZoomableImageView.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		0C9F6EECBB6588B42EC966115B34F73B /* OsUIViews */ = {
 			isa = PBXGroup;
 			children = (
+				B77E39F729C3877900A8C132 /* UICircleLabelView.swift */,
 				804A4E443356E2C746012C197A507EC4 /* ListPickerViewPopper.swift */,
 				A7DB037177617AC04A25903AD95F2BCF /* Pod */,
 				E1203588778D59EE316843DC12EDF54B /* SelfSizedTableView.swift */,
@@ -735,6 +738,7 @@
 				8ECD1C8A5B8BA615DCEAD320A3FF098A /* UICircleView.swift in Sources */,
 				BD482087354E91BE5FD8AB51D4EB4E58 /* UICustomPlaceHolderTextField.swift in Sources */,
 				131FAAB270A9D72A76BF2851E9BB3A9A /* UICustomPlaceHolderTextView.swift in Sources */,
+				B77E39F829C3877900A8C132 /* UICircleLabelView.swift in Sources */,
 				4D648427C1CE44381622E7CD357F2C73 /* UIDialogPopper.swift in Sources */,
 				E88ACACFEF8E870D064E1F42FB60D6F5 /* UIDialogWrapper.swift in Sources */,
 				B7A3415B299E7B3400C8F6AC /* UIZoomableImageView.swift in Sources */,
