@@ -6,31 +6,32 @@
 //  Copyright © 2022 osApps. All rights reserved.
 //
 
+
 import Foundation
 import UIKit
 
 /**
- A simplified complete circle view (height, width  / 2)
+ Just a circle view with optional border
  */
 @IBDesignable public class UICircleView: UIView {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
+    @IBInspectable public var borderWidth: CGFloat = 0 {
+        didSet {
+            layer.borderWidth = borderWidth
+            setNeedsDisplay()
+        }
     }
     
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
+    @IBInspectable public var borderColor: UIColor = .clear {
+        didSet {
+            layer.borderColor = borderColor.cgColor
+            setNeedsDisplay()
+        }
     }
     
-    private func setup() {
-        
-    }
-    
-    override public func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.cornerRadius = self.frame.width / 2
-//        self.layer.masksToBounds = false
+        layer.cornerRadius = min(bounds.width, bounds.height) / 2
     }
+    
 }

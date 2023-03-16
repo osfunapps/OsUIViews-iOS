@@ -69,7 +69,6 @@
 		C7E72F14A5C10C1438DA56EAEEB3B38B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		C84EB96CC15DA99483A734B5361DF050 /* UIShadowBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980D325626FEAAD3047A8E2CAE315B6F /* UIShadowBuilderView.swift */; };
 		C894CA770E961F700A3798664B3AAE4F /* DeviceModelGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7934D07BC240973D94EEA334D9D348C6 /* DeviceModelGetter.swift */; };
-		CB8CF6D77D75F427C2F57CB54EA59626 /* UICircleBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7869551E05D8804AA645204494330B /* UICircleBorderView.swift */; };
 		D7124C26918F9BCF3730C10FBDAF3E95 /* UITouchUpGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A024A8A3630DCCA8EF544725856D906 /* UITouchUpGestureRecognizer.swift */; };
 		D752A71124F7D842F8A6B41FFD5248BE /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B1DA1274AD247991A4B4A2F8CB2AB6 /* Tools.swift */; };
 		D8AFA2D01EAA1605330BA6D8C2CFE191 /* UIAttributedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5072227309F1FFAF40902984E30F6A1 /* UIAttributedLabel.swift */; };
@@ -195,7 +194,6 @@
 		A29B454BF7602B56B97D93A1AF56F8B7 /* youtube-ios-player-helper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "youtube-ios-player-helper.release.xcconfig"; sourceTree = "<group>"; };
 		A906CC8ED92A7BCB56C6B8ADBA39AE6D /* UIBottomBarItemView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = UIBottomBarItemView.xib; path = Classes/UIBottomBarItemView.xib; sourceTree = "<group>"; };
 		ABB0833D5BF3ED96C9B21635471E7C9A /* youtube-ios-player-helper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "youtube-ios-player-helper-prefix.pch"; sourceTree = "<group>"; };
-		AC7869551E05D8804AA645204494330B /* UICircleBorderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UICircleBorderView.swift; path = Classes/UICircleBorderView.swift; sourceTree = "<group>"; };
 		AE4B13AE7C1F6FDFB6177CAEBB3A175D /* UIFloatingTableViewCellView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = UIFloatingTableViewCellView.xib; path = Classes/UIFloatingTableViewCellView.xib; sourceTree = "<group>"; };
 		B04E51515B19920BC99683A30471F519 /* UIOsCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIOsCollectionViewFlowLayout.swift; path = Classes/UIOsCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		B173CA28F494175DDA46D3112FD82665 /* OsTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OsTools-umbrella.h"; sourceTree = "<group>"; };
@@ -300,25 +298,24 @@
 		0C9F6EECBB6588B42EC966115B34F73B /* OsUIViews */ = {
 			isa = PBXGroup;
 			children = (
-				B7D0BCBD29B61CE200BE266B /* UIAttributedTextView.swift */,
-				B7D0BCBC29B61CE200BE266B /* UIBlurView.swift */,
-				B7D0BCBA29B61CE200BE266B /* UIClickableTextView.swift */,
-				B7D0BCBB29B61CE200BE266B /* UIColorableLabel.swift */,
 				804A4E443356E2C746012C197A507EC4 /* ListPickerViewPopper.swift */,
 				A7DB037177617AC04A25903AD95F2BCF /* Pod */,
 				E1203588778D59EE316843DC12EDF54B /* SelfSizedTableView.swift */,
 				E343F83F08580865C2C48B3E69614564 /* SkyFloatingTF.swift */,
 				00A9B8CB25BB1153456E0B7E12E706AB /* Support Files */,
 				D5072227309F1FFAF40902984E30F6A1 /* UIAttributedLabel.swift */,
+				B7D0BCBD29B61CE200BE266B /* UIAttributedTextView.swift */,
 				3F9FC2AEF6990D599438C754486F2F31 /* UIAutoSizeLabel.swift */,
+				B7D0BCBC29B61CE200BE266B /* UIBlurView.swift */,
 				B7A34158299E7A3400C8F6AC /* UIBorderedView.swift */,
 				7BF8920CE63C7215242F75ED91AEEBD8 /* UIBottomBarItemView.swift */,
 				A906CC8ED92A7BCB56C6B8ADBA39AE6D /* UIBottomBarItemView.xib */,
 				8B660FA276C294C5464C4372D3E4C11D /* UIBottomBarView.swift */,
 				E094270A12DC9402432814D6199646C6 /* UIBottomBarView.xib */,
 				9B83704E19F2909E47348EB5DC1F22A5 /* UIButtonyGestureRecognizer.swift */,
-				AC7869551E05D8804AA645204494330B /* UICircleBorderView.swift */,
 				9905956A82C621D88F095FF724011622 /* UICircleView.swift */,
+				B7D0BCBA29B61CE200BE266B /* UIClickableTextView.swift */,
+				B7D0BCBB29B61CE200BE266B /* UIColorableLabel.swift */,
 				9F2766D6695F42C19BB942B3D98B0C04 /* UICustomPlaceHolderTextField.swift */,
 				7C3ED002EF6398736396E35A1C2EB731 /* UICustomPlaceHolderTextView.swift */,
 				212056C256E4E5BD8CCE6BDD2D9144F8 /* UIDialogPopper.swift */,
@@ -735,7 +732,6 @@
 				B7D0BCC129B61CE200BE266B /* UIAttributedTextView.swift in Sources */,
 				6C49D180EFF47FE236B673274360229D /* UIBottomBarView.xib in Sources */,
 				92535842CC17D89536CF5D1865FC60E4 /* UIButtonyGestureRecognizer.swift in Sources */,
-				CB8CF6D77D75F427C2F57CB54EA59626 /* UICircleBorderView.swift in Sources */,
 				8ECD1C8A5B8BA615DCEAD320A3FF098A /* UICircleView.swift in Sources */,
 				BD482087354E91BE5FD8AB51D4EB4E58 /* UICustomPlaceHolderTextField.swift in Sources */,
 				131FAAB270A9D72A76BF2851E9BB3A9A /* UICustomPlaceHolderTextView.swift in Sources */,
