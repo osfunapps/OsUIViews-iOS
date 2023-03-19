@@ -25,11 +25,11 @@ open class UIOsOrientationViewController: UIOsBaseViewController {
 
 extension UIOsOrientationViewController: OrientationChangeDelegate {
     
-    open func setLastReportedOrientation(newOrientation: UIDeviceOrientation) {
+    public func setLastReportedOrientation(newOrientation: UIDeviceOrientation) {
         self.lastReportedOrientation = newOrientation
     }
     
-    open func getLastReportedOrientation() -> UIDeviceOrientation? {
+    public func getLastReportedOrientation() -> UIDeviceOrientation? {
         return lastReportedOrientation
     }
     
