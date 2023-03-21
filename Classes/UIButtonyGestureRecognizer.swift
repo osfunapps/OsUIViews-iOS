@@ -11,7 +11,12 @@ import UIKit
 
 /// The main button effect gesture recognizer in the app.
 /// Add to every button to create a similar button effects to all of them when tapped
+@IBDesignable
 public class UIButtonyGestureRecognizer: UITapGestureRecognizer {
+    
+    /// Set a target scale to override the default scale
+    @IBInspectable open var targetScaleX: CGFloat = 0.72
+    @IBInspectable open var targetScaleY: CGFloat = 0.72
     
     public var originalXScale: CGFloat = 0.0
     public var originalYScale: CGFloat = 0.0
@@ -21,7 +26,11 @@ public class UIButtonyGestureRecognizer: UITapGestureRecognizer {
         guard let view = view else {return}
         originalXScale = view.transform.a
         originalYScale = view.transform.d
-        UIButtonyGestureRecognizer.buttonyEffectBegin(view: view, originalXScale: originalXScale, originalYScale: originalYScale)
+        UIButtonyGestureRecognizer.buttonyEffectBegin(view: view,
+                                                      originalXScale: originalXScale,
+                                                      originalYScale: originalYScale,
+                                                      targetScaleX: self.targetScaleX,
+                                                      targetScaleY: self.targetScaleY)
     }
     
     
@@ -36,9 +45,11 @@ public class UIButtonyGestureRecognizer: UITapGestureRecognizer {
     public static func buttonyEffectBegin(view: UIView,
                                           originalXScale: CGFloat = 1.0,
                                           originalYScale: CGFloat = 1.0,
+                                          targetScaleX: CGFloat = 0.72,
+                                          targetScaleY: CGFloat = 0.72,
                                           _ completion: ((Bool) -> Void)? = nil) {
-        let targetTransformX: CGFloat = originalXScale * 0.72
-        let targetTransformY: CGFloat = originalYScale * 0.72
+        let targetTransformX: CGFloat = originalXScale * targetScaleX
+        let targetTransformY: CGFloat = originalYScale * targetScaleY
         UIView.animate(withDuration: 0.15,
                        animations: {
             view.transform = CGAffineTransform(scaleX: targetTransformX, y: targetTransformY)
