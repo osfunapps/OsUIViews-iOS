@@ -20,12 +20,16 @@ import OsTools
  */
 public class UIDragHandleView: UIView {
     
+    // instances
+    public var delegate: UIDragHandleViewDelegate? = nil
+    
+    // indications
     public var dragEndPercentageDict: [ClosedRange<Int>: CGFloat]?
     public var minimumDrag: CGFloat = -100.0
     
     /** sign in to drag events */
     public var handleDragEvent: ((UIGestureRecognizer.State, CGFloat) -> ())? = nil
-        
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -39,8 +43,6 @@ public class UIDragHandleView: UIView {
     private func setupView() {
         addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDidDrag)))
     }
-    
-    
 }
 
 // MARK: - Drag Handle Methods
@@ -67,6 +69,9 @@ extension UIDragHandleView {
                 handleDragEvent?(sender.state, yPoint)
                 containerView.updateHeightConstraint(newHeight: yPoint,
                                                      animateInterval: 0.3){}
+                if yPoint == 0.0 {
+                    delegate?.dragHandleDidMinimized()
+                }
             }
         }
     }
@@ -115,4 +120,8 @@ extension UIDragHandleView {
                                  55...100: superview.frame.height,
         ]
     }
+}
+
+public protocol UIDragHandleViewDelegate {
+    func dragHandleDidMinimized()
 }
