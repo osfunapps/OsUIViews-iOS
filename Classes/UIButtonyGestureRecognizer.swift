@@ -15,17 +15,40 @@ import UIKit
 public class UIButtonyGestureRecognizer: UITapGestureRecognizer {
     
     /// Set a target scale to override the default scale
-    @IBInspectable open var targetScaleX: CGFloat = 0.72
-    @IBInspectable open var targetScaleY: CGFloat = 0.72
+    @IBInspectable open var targetScaleX: CGFloat = 0.72 {
+        didSet {
+            self.manuallySetTargetScaleX = true
+        }
+    }
+    @IBInspectable open var targetScaleY: CGFloat = 0.72 {
+        didSet {
+            self.manuallySetTargetScaleY = true
+        }
+    }
     
     public var originalXScale: CGFloat = 0.0
     public var originalYScale: CGFloat = 0.0
+    
+    // indications
+    private var manuallySetTargetScaleY = false
+    private var manuallySetTargetScaleX = false
+    
+    private static let DEFAULT_TARGET_SCALE_X = 0.72
+    private static let DEFAULT_TARGET_SCALE_Y = 0.72
     
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let view = view else {return}
         originalXScale = view.transform.a
         originalYScale = view.transform.d
+        if !self.manuallySetTargetScaleY {
+            self.targetScaleY = UIButtonyGestureRecognizer.DEFAULT_TARGET_SCALE_Y
+            manuallySetTargetScaleY = false
+        }
+        if !self.manuallySetTargetScaleX {
+            self.targetScaleX = UIButtonyGestureRecognizer.DEFAULT_TARGET_SCALE_X
+            manuallySetTargetScaleX = false
+        }
         UIButtonyGestureRecognizer.buttonyEffectBegin(view: view,
                                                       originalXScale: originalXScale,
                                                       originalYScale: originalYScale,

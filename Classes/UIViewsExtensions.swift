@@ -1488,6 +1488,54 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return image
     }
+    
+    
+    /**
+    Creates a `UIImage` object from the provided `Data` object, assuming that the data represents an animated GIF image.
+
+    - Parameters:
+       - data: The `Data` object containing the animated GIF image data.
+
+    - Returns:
+       A `UIImage` object representing the animated GIF image, or `nil` if the data could not be decoded.
+    */
+    public static func gifImage(from data: Data) -> UIImage? {
+        guard let source = CGImageSourceCreateWithData(data as CFData, nil) else {
+            return nil
+        }
+        
+        let count = CGImageSourceGetCount(source)
+        var images: [UIImage] = []
+        var duration: TimeInterval = 0.0
+        
+        for i in 0..<count {
+            if let image = CGImageSourceCreateImageAtIndex(source, i, nil),
+               let properties = CGImageSourceCopyPropertiesAtIndex(source, i, nil) as? [CFString: Any],
+               let gifInfo = properties[kCGImagePropertyGIFDictionary] as? [CFString: Any],
+               let frameDuration = gifInfo[kCGImagePropertyGIFDelayTime] as? TimeInterval {
+                
+                duration += frameDuration
+                images.append(UIImage(cgImage: image))
+            }
+        }
+        
+        return UIImage.animatedImage(with: images, duration: duration)
+    }
+    
+    /**
+    Creates a `UIImage` object from the animated GIF file with the specified file name.
+
+    - Parameters:
+       - fileNamed: The name of the animated GIF file stored in the project, excluding the file extension.
+
+    - Returns:
+       A `UIImage` object representing the animated GIF image, or `nil` if the file could not be found or decoded.
+    */
+    public static func gifImage(from fileNamed: String) -> UIImage? {
+        guard let gifURL = Bundle.main.url(forResource: fileNamed, withExtension: "gif"),
+              let gifData = try? Data(contentsOf: gifURL) else {return nil}
+        return gifImage(from: gifData)
+    }
 }
 
 // MARK: - UICollectionView

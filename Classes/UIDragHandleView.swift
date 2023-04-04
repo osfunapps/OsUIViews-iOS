@@ -68,10 +68,12 @@ extension UIDragHandleView {
             if let yPoint = findNearestRangeHeight(from: currPerc) {
                 handleDragEvent?(sender.state, yPoint)
                 containerView.updateHeightConstraint(newHeight: yPoint,
-                                                     animateInterval: 0.3){}
-                if yPoint == 0.0 {
-                    delegate?.dragHandleDidMinimized()
+                                                     animateInterval: 0.3){
+                    if yPoint == 0.0 {
+                        self.delegate?.dragHandleDidMinimized()
+                    }
                 }
+                
             }
         }
     }
