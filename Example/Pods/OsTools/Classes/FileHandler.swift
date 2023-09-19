@@ -7,9 +7,22 @@
 //
 
 import Foundation
+import MobileCoreServices
 
 public class FileHandler {
     
+    /// Will return the suitable mime type for the file type
+    public static func mimeTypeForPath(path: String) -> String {
+        let url = NSURL(fileURLWithPath: path)
+        let pathExtension = url.pathExtension
+        
+        if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension! as NSString, nil)?.takeRetainedValue() {
+            if let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
+                return mimetype as String
+            }
+        }
+        return "application/octet-stream"
+    }
     
     /// Will return the file name from a path, with/without the file extension
     public static func getFileNameFromPath(_ url: URL, _ withExtension: Bool) -> String{
@@ -78,32 +91,18 @@ public class FileHandler {
         return fileList
     }
     
-    
-    /// Will delete a file
-    @discardableResult public static func deleteFileOrDir(_ filePathURL: URL) -> Bool {
-        
-        do {
-            
-            //delete folder
-            try FileManager.default.removeItem(at: filePathURL)
-            return true
-        } catch {
-            print(error)
-            return false
-        }
-    }
-    
-    /// Will create a directory
-    @discardableResult
-    public static func createDirectory(_ dirPathURL: URL) -> Bool{
-        
-        do {
-            try FileManager.default.createDirectory(atPath: dirPathURL.path, withIntermediateDirectories: true, attributes: nil)
-            return true
-        } catch {
-            print(error)
-            return false
-        }
+    /**
+     Creates a new directory at the specified URL and optionally creates intermediate directories as needed.
+
+     - Parameters:
+        - dirPathURL: The URL of the directory to create.
+        - intermediateDirectories: Whether to create intermediate directories between the root directory and the specified directory. Defaults to true.
+    */
+    public static func createDirectory(atPath dirPathURL: URL,
+                                       andCreateDirectoriesBetween intermediateDirectories: Bool = true) throws {
+            try FileManager.default.createDirectory(atPath: dirPathURL.path,
+                                                    withIntermediateDirectories: intermediateDirectories,
+                                                    attributes: nil)
     }
     
     /// Will copy a file
@@ -126,15 +125,14 @@ public class FileHandler {
      */
     public static func buildPath(_ basePath: URL, _ nextPath: String) throws -> URL {
         var _basePath = basePath
-        var paths = nextPath.split(separator: "/")
-        paths = nextPath.split(separator: "\\")
-        if(paths.count == 0){
+        let sanitizedPaths = nextPath.replace("\\", "/")
+        let paths = sanitizedPaths.split(separator: "/")
+        if paths.count == 0 {
             throw MyError.runtimeError("what is this path? read the instructions of buildPath() function you dummy!")
         }
         
         paths.forEach{ it in
-            var newStr = it.replacingOccurrences(of: "\\", with: "", options: .literal, range: nil)
-            newStr = it.replacingOccurrences(of: "/", with: "", options: .literal, range: nil)
+            let newStr = it.replacingOccurrences(of: "/", with: "", options: .literal, range: nil)
             _basePath.appendPathComponent(String(newStr))
         }
         
@@ -168,6 +166,70 @@ public class FileHandler {
             return subDirs
     }
     
+    /**
+    Returns the URL of the caches directory for the app.
+
+    - Returns: An optional URL object representing the caches directory for the app, or `nil` if the directory cannot be located.
+    */
+    public static func getCachesDirectoryURL() -> URL? {
+        guard let cachesDirectoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+            print("Unable to locate caches directory")
+            return nil
+        }
+        return cachesDirectoryURL
+    }
+    
+    /** Returns the parent directory path of the given file URL */
+    public static func getParentDirPath(fromFileUrl fileUrl: URL) -> URL? {
+        let directoryURL = fileUrl.deletingLastPathComponent()
+        guard directoryURL.path != fileUrl.path else {
+            return nil // The fileURL is the root directory
+        }
+        return directoryURL
+    }
+    
+    /// Will delete a file
+    public static func deleteFileOrDir(_ filePathURL: URL) {
+        try? FileManager.default.removeItem(at: filePathURL)
+    }
+    
+    /**
+     Returns the root directory name for a given URL.
+
+     - Parameter url: The URL to extract the root directory name from.
+     - Returns: The root directory name of the URL.
+    */
+    public static func getRootDirectoryName(from url: URL) -> String {
+        return url.pathComponents.first ?? ""
+    }
+    
+    /**
+     Removes the first root directory from a given URL.
+
+     - Parameter url: The URL to remove the first root directory from.
+     - Returns: The URL with the first root directory removed, or the original URL if there is no root directory.
+    */
+    public static func removeFirstRootDirectory(from url: URL) -> URL {
+        var components = url.pathComponents
+        
+        if components.count > 1 && components[1] != "" {
+            components.remove(at: 0)
+        }
+        
+        let path = components.joined(separator: "/")
+        
+        if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+            urlComponents.path = path
+            
+            if let newUrl = urlComponents.url {
+                return newUrl
+            }
+        }
+        
+        return url
+    }
+    
+    
     
     /// will get the docuemts directory url.
     ///
@@ -194,11 +256,11 @@ public class FileHandler {
     }
 }
 
-extension URL {
-    var isDirectory: Bool {
+public extension URL {
+    public var isDirectory: Bool {
         return (try? resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true
     }
-    var subDirectories: [URL] {
+    public var subDirectories: [URL] {
         guard isDirectory else { return [] }
         return (try? FileManager.default.contentsOfDirectory(at: self, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]).filter{ $0.isDirectory }) ?? []
     }
@@ -207,6 +269,19 @@ extension URL {
         var copy = self
         copy.appendPathComponent(path)
         return copy
+    }
+    
+    /// Return the file size of a given file from URL
+    public var fileSize: UInt64? {
+        get {
+            do {
+                let attributes = try FileManager.default.attributesOfItem(atPath: path)
+                return attributes[FileAttributeKey.size] as? UInt64
+            } catch let error {
+                print(error)
+                return nil
+            }
+        }
     }
 }
 

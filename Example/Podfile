@@ -4,6 +4,6 @@ use_frameworks!
   
   # pods
   pod 'OsTools'
-  pod 'youtube-ios-player-helper', '~> 0.1.4'
+  pod 'youtube-ios-player-helper', '~> 1.0.4'
   
 end

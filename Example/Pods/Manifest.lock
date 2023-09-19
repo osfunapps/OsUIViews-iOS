@@ -1,14 +1,14 @@
 PODS:
-  - OsTools (1.0.8)
-  - OsUIViews (0.7.3):
+  - OsTools (1.3.5)
+  - OsUIViews (0.9.7):
     - OsTools
     - youtube-ios-player-helper
-  - youtube-ios-player-helper (0.1.6)
+  - youtube-ios-player-helper (1.0.4)
 
 DEPENDENCIES:
   - OsTools
   - OsUIViews (from `../`)
-  - youtube-ios-player-helper (~> 0.1.4)
+  - youtube-ios-player-helper (~> 1.0.4)
 
 SPEC REPOS:
   trunk:
@@ -20,10 +20,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  OsTools: 934c76a1b975699d5a3e6a275b3c1ea175094883
-  OsUIViews: cb0309dbfec29bca73ac0257bd0ac3a7237ff050
-  youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
+  OsTools: 358df48501ba70b34e4d5cce8dca9126325785bb
+  OsUIViews: d1ce361234e4af5c562cbba01015d3ab88d44692
+  youtube-ios-player-helper: e9b97535e816db3152179d84d999bc1807ecd689
 
-PODFILE CHECKSUM: 5744cf6160173cb531a88565b4c502f0123c9b3f
+PODFILE CHECKSUM: 682124100625d954ec6d7d2db1bb083a5ddf7402
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1
