@@ -16,11 +16,10 @@ import UIKit
     public var placeHolderDisplays: Bool = false
     
     // indications
-    private var forwardDelegate: UITextViewDelegate? = nil
-    
+    private weak var forwardDelegate: UITextViewDelegate? = nil
     
     /// We override the delegate here so it may produce weird behaviour. Not all delegate functions forwarded to the delegate
-    public override var delegate: UITextViewDelegate? {
+    public override weak var delegate: UITextViewDelegate? {
         didSet {
             if delegate is UICustomPlaceHolderTextView {
                 return

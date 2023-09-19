@@ -53,8 +53,8 @@ public class UILinkableTextView: UITextView {
     /// youtubeUrl: "https://www.youtube.com/watch?v=5qap5aO4i9A" or even "https://www.youtube.com/channel/UCSJ4gkVC6NrvII8umztf0Ow"
     public func setClickablePart(linkedText: String, youtubeFullLink: String) {
         var youtubeLink = youtubeFullLink
-        youtubeLink.removePrefix("https://")
-        youtubeLink.removePrefix("http://")
+        youtubeLink = youtubeLink.removePrefix("https://")
+        youtubeLink = youtubeLink.removePrefix("http://")
         let url = URL(string: "youtube://\(youtubeLink)")!
         setClickableRange(url: url, linkedText: linkedText)
     }
