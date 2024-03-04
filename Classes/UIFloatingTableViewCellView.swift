@@ -12,6 +12,8 @@ import OsTools
 class UIFloatingTableViewCellView: UITableViewCell {
     
     // holds title stack view and selected item gap
+    @IBOutlet weak var lineViewDistanceToTop: NSLayoutConstraint!
+    @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var parentSV: UIStackView!
     
     // holds image view and title label gap

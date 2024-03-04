@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -14,31 +14,38 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIFloatingTableViewCellView" rowHeight="97" id="mcP-zE-HYS" customClass="UIFloatingTableViewCellView" customModule="OsUIViews" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="147" height="97"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIFloatingTableViewCellView" rowHeight="97" id="Lle-Kp-NOL" customClass="UIFloatingTableViewCellView" customModule="OsUIViews" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="293" height="97"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mcP-zE-HYS" id="2ue-xV-ld7">
-                <rect key="frame" x="0.0" y="0.0" width="147" height="97"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Lle-Kp-NOL" id="EqI-tz-Nsf">
+                <rect key="frame" x="0.0" y="0.0" width="293" height="97"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAa-8i-fnA">
-                        <rect key="frame" x="0.0" y="0.0" width="147" height="97"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V0H-1E-qna">
+                        <rect key="frame" x="0.0" y="0.0" width="293" height="97"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="XFc-8t-3C6" userLabel="Parent Stack View">
-                                <rect key="frame" x="0.0" y="0.0" width="147" height="97"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7WA-x6-hQc" userLabel="Line View">
+                                <rect key="frame" x="0.0" y="0.0" width="293" height="1"/>
+                                <color key="backgroundColor" white="0.89563301279999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.84999999999999998" id="Kes-eo-NNz"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="bxc-v3-xcI" userLabel="Parent Stack View">
+                                <rect key="frame" x="0.0" y="0.0" width="293" height="97"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AmA-td-wch" userLabel="Title Stack View">
-                                        <rect key="frame" x="0.0" y="36.666666666666664" width="57" height="24"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nr1-8o-yZU" userLabel="Title Stack View">
+                                        <rect key="frame" x="0.0" y="36.5" width="203" height="24"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XwE-EY-fhc" userLabel="Optional Image View">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-hc-xIb" userLabel="Optional Image View">
                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="24" id="gvI-V8-hkL"/>
-                                                    <constraint firstAttribute="width" secondItem="XwE-EY-fhc" secondAttribute="height" multiplier="1:1" id="yK7-iI-bph"/>
+                                                    <constraint firstAttribute="height" constant="24" id="UnH-Y6-Avd"/>
+                                                    <constraint firstAttribute="width" secondItem="8bC-hc-xIb" secondAttribute="height" multiplier="1:1" id="Yf9-ez-Q1l"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Option 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZq-iU-hUv" userLabel="Title Label">
-                                                <rect key="frame" x="34" y="0.0" width="23" height="24"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Option 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vW-Ga-vX5" userLabel="Title Label">
+                                                <rect key="frame" x="34" y="0.0" width="169" height="24"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -46,21 +53,21 @@
                                         </subviews>
                                         <variation key="heightClass=regular-widthClass=regular" spacing="16"/>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4KW-ao-Lhq" userLabel="New Item Indicator" customClass="UICircleView" customModule="OsUIViews" customModuleProvider="target">
-                                        <rect key="frame" x="87" y="43.666666666666664" width="10" height="10"/>
-                                        <color key="backgroundColor" red="0.92156862745098034" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Qe-Qm-ftZ" userLabel="New Item Indicator" customClass="UICircleView" customModule="OsUIViews" customModuleProvider="target">
+                                        <rect key="frame" x="233" y="43.5" width="10" height="10"/>
+                                        <color key="backgroundColor" red="0.92156862750000001" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="4KW-ao-Lhq" secondAttribute="height" multiplier="1:1" id="GL2-0M-e35"/>
-                                            <constraint firstAttribute="height" constant="10" id="Vja-vO-QYW">
+                                            <constraint firstAttribute="width" secondItem="4Qe-Qm-ftZ" secondAttribute="height" multiplier="1:1" id="18f-er-l8M"/>
+                                            <constraint firstAttribute="height" constant="10" id="53f-vu-4qH">
                                                 <variation key="heightClass=regular-widthClass=regular" constant="13"/>
                                             </constraint>
                                         </constraints>
                                     </view>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3S1-h5-XsF">
-                                        <rect key="frame" x="127" y="38.666666666666664" width="20" height="20"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3uX-Na-5Sm">
+                                        <rect key="frame" x="273" y="38.5" width="20" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="3S1-h5-XsF" secondAttribute="height" multiplier="1:1" id="45n-8x-oqj"/>
-                                            <constraint firstAttribute="height" constant="20" id="Hri-qk-c4i">
+                                            <constraint firstAttribute="width" secondItem="3uX-Na-5Sm" secondAttribute="height" multiplier="1:1" id="HQs-64-iE2"/>
+                                            <constraint firstAttribute="height" constant="20" id="TdO-Gz-SKD">
                                                 <variation key="heightClass=regular-widthClass=regular" constant="30"/>
                                             </constraint>
                                         </constraints>
@@ -70,33 +77,38 @@
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="XFc-8t-3C6" firstAttribute="leading" secondItem="kAa-8i-fnA" secondAttribute="leading" id="1u2-Ma-d7G"/>
-                            <constraint firstAttribute="trailing" secondItem="XFc-8t-3C6" secondAttribute="trailing" id="HUG-hQ-JaM"/>
-                            <constraint firstAttribute="bottom" secondItem="XFc-8t-3C6" secondAttribute="bottom" id="LT5-rv-jmi"/>
-                            <constraint firstItem="XFc-8t-3C6" firstAttribute="top" secondItem="kAa-8i-fnA" secondAttribute="top" id="eX4-yl-M5V"/>
+                            <constraint firstAttribute="trailing" secondItem="7WA-x6-hQc" secondAttribute="trailing" id="3Y4-Ek-Gfi"/>
+                            <constraint firstItem="bxc-v3-xcI" firstAttribute="top" secondItem="V0H-1E-qna" secondAttribute="top" id="LrE-t5-6rs"/>
+                            <constraint firstAttribute="trailing" secondItem="bxc-v3-xcI" secondAttribute="trailing" id="XZl-jt-hJj"/>
+                            <constraint firstAttribute="bottom" secondItem="bxc-v3-xcI" secondAttribute="bottom" id="akJ-Yo-0Be"/>
+                            <constraint firstItem="7WA-x6-hQc" firstAttribute="leading" secondItem="V0H-1E-qna" secondAttribute="leading" id="clf-yO-qjq"/>
+                            <constraint firstItem="7WA-x6-hQc" firstAttribute="top" secondItem="V0H-1E-qna" secondAttribute="top" id="jtq-ht-oTo"/>
+                            <constraint firstItem="bxc-v3-xcI" firstAttribute="leading" secondItem="V0H-1E-qna" secondAttribute="leading" id="xtQ-OV-9Wb"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="kAa-8i-fnA" firstAttribute="top" secondItem="2ue-xV-ld7" secondAttribute="top" id="Es2-wM-5ye"/>
-                    <constraint firstItem="kAa-8i-fnA" firstAttribute="leading" secondItem="2ue-xV-ld7" secondAttribute="leading" id="jDm-pI-Qx8"/>
-                    <constraint firstAttribute="trailing" secondItem="kAa-8i-fnA" secondAttribute="trailing" id="m6U-E1-sMO"/>
-                    <constraint firstAttribute="bottom" secondItem="kAa-8i-fnA" secondAttribute="bottom" id="nm8-y2-UqJ"/>
+                    <constraint firstAttribute="trailing" secondItem="V0H-1E-qna" secondAttribute="trailing" id="9ts-Oa-QtN"/>
+                    <constraint firstAttribute="bottom" secondItem="V0H-1E-qna" secondAttribute="bottom" id="ClI-G0-2cG"/>
+                    <constraint firstItem="V0H-1E-qna" firstAttribute="top" secondItem="EqI-tz-Nsf" secondAttribute="top" id="X6r-su-eLX"/>
+                    <constraint firstItem="V0H-1E-qna" firstAttribute="leading" secondItem="EqI-tz-Nsf" secondAttribute="leading" id="mNA-Du-uZH"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="newItemIndicatorIVHeight" destination="Vja-vO-QYW" id="2g8-i9-rIb"/>
-                <outlet property="newItemIndicatorView" destination="4KW-ao-Lhq" id="HvO-wc-xoD"/>
-                <outlet property="optionalIV" destination="XwE-EY-fhc" id="CiW-3V-0D6"/>
-                <outlet property="optionalIVSize" destination="gvI-V8-hkL" id="K4v-wV-iF2"/>
-                <outlet property="parentSV" destination="XFc-8t-3C6" id="D0g-ff-nf3"/>
-                <outlet property="selectedItemIVHeight" destination="Hri-qk-c4i" id="p0M-ij-ALd"/>
-                <outlet property="selectedItemIndicatorIV" destination="3S1-h5-XsF" id="XeO-fd-RVo"/>
-                <outlet property="titleLabel" destination="mZq-iU-hUv" id="lhR-rv-hT7"/>
-                <outlet property="titleSV" destination="AmA-td-wch" id="CJj-Qw-U5h"/>
+                <outlet property="lineView" destination="7WA-x6-hQc" id="O9f-NN-VKF"/>
+                <outlet property="lineViewDistanceToTop" destination="jtq-ht-oTo" id="pLd-vc-Hdm"/>
+                <outlet property="newItemIndicatorIVHeight" destination="53f-vu-4qH" id="X9c-GZ-K1s"/>
+                <outlet property="newItemIndicatorView" destination="4Qe-Qm-ftZ" id="5gh-Ga-keF"/>
+                <outlet property="optionalIV" destination="8bC-hc-xIb" id="Pa9-GP-ts3"/>
+                <outlet property="optionalIVSize" destination="UnH-Y6-Avd" id="dhE-ZN-ynN"/>
+                <outlet property="parentSV" destination="bxc-v3-xcI" id="QTE-bQ-zVJ"/>
+                <outlet property="selectedItemIVHeight" destination="TdO-Gz-SKD" id="T0i-DY-0kd"/>
+                <outlet property="selectedItemIndicatorIV" destination="3uX-Na-5Sm" id="e2s-oy-qjg"/>
+                <outlet property="titleLabel" destination="3vW-Ga-vX5" id="SwJ-dt-kau"/>
+                <outlet property="titleSV" destination="nr1-8o-yZU" id="Kne-xd-9Tk"/>
             </connections>
-            <point key="canvasLocation" x="-3563.3789062499995" y="-44.582723279648604"/>
+            <point key="canvasLocation" x="-3458.6956521739135" y="-45.200892857142854"/>
         </tableViewCell>
     </objects>
 </document>

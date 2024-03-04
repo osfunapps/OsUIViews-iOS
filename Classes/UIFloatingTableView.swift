@@ -52,7 +52,7 @@ public class UIFloatingTableView: UIView {
     private var addedOptionalIVWidth = false
     private var addedSelectedIndiactorIVWidth = false
     private var addedNewItemIndicatorIVWidth = false
-    
+    private var lineAboveCellIdx: Int? = nil
     
     /// Override this to get the selected item and a boolean indicating if it already was the selected item
     public var itemDidTap: ((FloatingTableViewItem, Bool) -> ())? = nil
@@ -106,6 +106,10 @@ public class UIFloatingTableView: UIView {
             self.newItems.append(item)
         }
         tempItemsHolder.append(item)
+    }
+    
+    public func addLineAbove(itemPosition position: Int) {
+        self.lineAboveCellIdx = position
     }
     
     
@@ -262,6 +266,19 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
             widthConstr.constant += widthToAdd
         }
 //        updateWidthIfRequired(cell: cell, item: listItem)
+        
+        // set line above cell index
+        if let lineAboveCellIdx = lineAboveCellIdx, lineAboveCellIdx == indexPath.row {
+            cell.lineView.isHidden = false
+            cell.titleLabel.textColor = #colorLiteral(red: 0.9215686275, green: 0.3411764706, blue: 0.3411764706, alpha: 1)
+            cell.lineViewDistanceToTop.constant = 6
+            cell.titleLabel.textAlignment = .center
+        } else {
+            cell.lineViewDistanceToTop.constant = 0
+            cell.lineView.isHidden = true
+            cell.titleLabel.textAlignment = .natural
+        }
+        
         
         cell.selectionStyle = .none
         return cell
