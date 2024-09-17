@@ -48,74 +48,75 @@ public class UIDragHandleView: UIView {
 // MARK: - Drag Handle Methods
 extension UIDragHandleView {
     
-    // drag bank dragbank drag
+    
     @objc private func handleDidDrag(_ sender: UIPanGestureRecognizer) {
-        guard let containerView = superview,
-              let rootVCView = UIApplication.shared.windows.first?.rootViewController?.view else {return}
-        if dragEndPercentageDict == nil {
-            self.buildDefaultDragEndBank(with: containerView)
+        guard let bottomConstr = delegate?.dragHandleRequestBottomConstr(),
+              let rootParentView = delegate?.dragHandleRequestRootView()?.superview else {
+            return
         }
-        let locationY = Tools.getWindowHeight() - sender.location(in: rootVCView).y
+        
+        let locationY = Tools.getWindowHeight() - sender.location(in: nil).y
         let windowHeight = Tools.getWindowHeight()
         let currPerc = Int((locationY / windowHeight) * 100)
-        if sender.state == .changed {
+
+        switch sender.state {
+        case .changed:
             if locationY >= minimumDrag {
                 handleDragEvent?(sender.state, locationY)
-                containerView.updateHeightConstraint(newHeight: locationY){}
+                updateBottomConstraint(with: locationY, constraint: bottomConstr, rootParentView: rootParentView)
             }
-        } else if sender.state == .ended || sender.state == .cancelled || sender.state == .failed {
-            // when the handle left, we will act according to the percentageDict.
+        case .ended, .cancelled, .failed:
             if let yPoint = findNearestRangeHeight(from: currPerc) {
                 handleDragEvent?(sender.state, yPoint)
-                containerView.updateHeightConstraint(newHeight: yPoint,
-                                                     animateInterval: 0.3){
+                updateBottomConstraint(with: yPoint, forDuration: 0.3, constraint: bottomConstr, rootParentView: rootParentView) {
                     if yPoint == 0.0 {
                         self.delegate?.dragHandleDidMinimized()
                     }
                 }
-                
             }
+        default:
+            break
         }
     }
-    
+
+    private func updateBottomConstraint(with yPosition: CGFloat,
+                                        forDuration duration: CGFloat = 0.17,
+                                        constraint: NSLayoutConstraint,
+                                        rootParentView: UIView, completion: (() -> Void)? = nil) {
+        let newConstant = Tools.getWindowHeight() - yPosition
+        constraint.constant = newConstant
+
+        UIView.animate(withDuration: duration, animations: {
+            rootParentView.layoutIfNeeded()
+        }, completion: { _ in
+            completion?()
+        })
+    }
+
     private func findNearestRangeHeight(from percent: Int) -> CGFloat? {
-        var percentToFind = percent
-        if percentToFind < 0 {
-            percentToFind = 0
-        }
-        var closestDistance = Int.max
+        let validPercent = max(percent, 0)
         var closestRange: ClosedRange<Int>? = nil
+        var closestDistance = Int.max
+
         for range in dragEndPercentageDict!.keys {
-            let start = range.lowerBound + range.distance(from: range.startIndex, to: range.startIndex)
-            let end = range.lowerBound + range.distance(from: range.startIndex, to: range.endIndex)
-            
-            
-            if start <= percentToFind && percentToFind <= end {
-                // If the number is inside the range, return the range
+            let (start, end) = (range.lowerBound, range.upperBound)
+            if validPercent >= start && validPercent <= end {
                 return dragEndPercentageDict![range]
-            } else {
-                // If the number is outside the range, calculate the distance to the start and end of the range
-                let distanceToStart = abs(percentToFind - start)
-                let distanceToEnd = abs(percentToFind - end)
-                
-                let minDistance = min(distanceToStart, distanceToEnd)
-                if minDistance < closestDistance {
-                    closestRange = range
-                    closestDistance = minDistance
-                }
-                
-                // If the current range is farther away than the closest range found so far, break out of the loop
-                if closestDistance == 0 {
-                    break
-                }
+            }
+            
+            let distanceToStart = abs(validPercent - start)
+            let distanceToEnd = abs(validPercent - end)
+            let minDistance = min(distanceToStart, distanceToEnd)
+            
+            if minDistance < closestDistance {
+                closestDistance = minDistance
+                closestRange = range
             }
         }
-        
-        if let closestRange = closestRange {
-            return dragEndPercentageDict![closestRange]
-        }
-        return nil
+
+        return closestRange.flatMap { dragEndPercentageDict![$0] }
     }
+
     
     private func buildDefaultDragEndBank(with superview: UIView) {
         dragEndPercentageDict = [0...55: superview.frame.height,
@@ -126,4 +127,6 @@ extension UIDragHandleView {
 
 public protocol UIDragHandleViewDelegate {
     func dragHandleDidMinimized()
+    func dragHandleRequestBottomConstr() -> NSLayoutConstraint?
+    func dragHandleRequestRootView() -> UIView?
 }
