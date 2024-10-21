@@ -59,17 +59,19 @@ extension UINavigationController {
     
     
     /// The  safe way to remove vc of kind
-    public func removeOfKind(t: UIViewController.Type,
-                             removePreceedingVCS: Bool = false) {
-        var navigationArray = viewControllers // To get all UIViewController stack as Array
+    public func removeOfKind(t: UIViewController.Type, removePreceedingVCS: Bool = false) {
+        var navigationArray = viewControllers // Get all UIViewControllers in the stack as Array
         
-        if let vcIdx = navigationArray.firstIndex(where: {type(of: $0) == t}) {
-            
+        if let vcIdx = navigationArray.firstIndex(where: { type(of: $0) == t }) {
             if removePreceedingVCS {
-                for i in 0...vcIdx {
-                    navigationArray.remove(at: i)
-                }
+                // Remove all view controllers preceding and including the one of type `t`
+                navigationArray.removeSubrange(0...vcIdx)
+            } else {
+                // Remove only the view controller of type `t`
+                navigationArray.remove(at: vcIdx)
             }
+            
+            // Update the navigation stack
             viewControllers = navigationArray
         }
     }
@@ -226,8 +228,10 @@ extension UIView {
     public func pinTopToTop(of view: UIView, with constant: CGFloat = 0) {
         topAnchor.constraint(equalTo: view.topAnchor, constant: constant).isActive = true
     }
-    public func pinTopToBottom(of view: UIView, with constant: CGFloat = 0) {
-        topAnchor.constraint(equalTo: view.bottomAnchor, constant: constant).isActive = true
+    public func pinTopToBottom(of view: UIView, with constant: CGFloat = 0) -> NSLayoutConstraint {
+        let bottom = topAnchor.constraint(equalTo: view.bottomAnchor, constant: constant)
+        bottom.isActive = true
+        return bottom
     }
     public func pinBottomToTop(of view: UIView, with constant: CGFloat = 0) {
         bottomAnchor.constraint(equalTo: view.topAnchor, constant: constant).isActive = true
@@ -250,6 +254,15 @@ extension UIView {
                 completion?()
             })
         })
+    }
+    
+    /// Will return the parent of a specific type
+    public func findParentByType<T: UIView>(_ type: T.Type) -> T? {
+        if let parent = superview as? T {
+            return parent
+        } else {
+            return superview?.findParentByType(type)
+        }
     }
     
     /// Will start a jiggling animation (like long hold on ios items)
@@ -343,7 +356,6 @@ extension UIView {
         })
     }
     
-    /// Will refresh the layout of all of the subviews
     public func refreshLayoutAllSubviews() {
         subviews.forEach { it in
             if let label = it as? UILabel {
@@ -354,18 +366,13 @@ extension UIView {
         refreshLayout()
     }
     
-    /// Wil return the height constraint, if exists
+    /// Will return the height constraint, if it exists
     public func getHeightConstraint() -> NSLayoutConstraint? {
+        // Iterate over all the constraints for the view
         for constraint in constraints {
-            if let firstItem = constraint.firstItem,
-               let firstObj = firstItem as? NSObject,
-               firstObj == self,
-               constraint.firstAttribute == .height {
-                return constraint
-            } else if let secondItem = constraint.secondItem,
-                      let secondObj = secondItem as? NSObject,
-                      secondObj == self,
-                      constraint.secondAttribute == .height {
+            // Check if the first or second item is this view, and the constraint relates to height
+            if (constraint.firstItem as? NSObject == self && constraint.firstAttribute == .height) ||
+               (constraint.secondItem as? NSObject == self && constraint.secondAttribute == .height) {
                 return constraint
             }
         }
@@ -957,6 +964,7 @@ extension UIView {
         }
         return nil
     }
+    
     
     
     /// Will recursively look for the view with the accessibility Identifier specified
