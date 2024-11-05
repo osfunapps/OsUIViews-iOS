@@ -18,22 +18,32 @@ open class UIOsBaseViewController: UIViewController {
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         LifeCycleRegistrator.registerToLifeCycleEvents(viewController: self, delegate: self)
-        appDidReturnedFromBackground()
+        osAppsAppDidReturnedFromBackground()
     }
     
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        appDidEnteredBackground()
+        osAppsAppDidEnteredBackground(minimized: false)
         LifeCycleRegistrator.unregisterFromLifeCycleEvents(viewController: self)
     }
 }
+
 extension UIOsBaseViewController: LifeCycleDelegate {
     
-    /// Override to do something when the app returned from background
-    @objc open func appDidReturnedFromBackground() {}
+    @objc final public func appDidReturnedFromBackground() {
+        osAppsAppDidReturnedFromBackground()
+    }
     
-    /// Override to do something when the app entered background
-    @objc open func appDidEnteredBackground() {}
+    @objc final public func appDidEnteredBackground() {
+        osAppsAppDidEnteredBackground(minimized: true)
+    }
+    
+    /// Override to do something when the app returned from background
+    @objc open func osAppsAppDidReturnedFromBackground() {}
+    
+    /// Override to do something when the app entered background (minimized will idicate if the app went completely to the background and not just
+    /// a view controller change
+    @objc open func osAppsAppDidEnteredBackground(minimized: Bool) {}
     
     
 }
