@@ -16,6 +16,7 @@ import UIKit
  
  Properties:
  - `resizeByLayoutChanges`: Determines whether the collection view should resize itself when the content size changes.
+ - `maxHeight`: Optional property to set a maximum height for the collection view.
  
  The class also overrides the `intrinsicContentSize` property to ensure the collection view adjusts its intrinsic size when the content changes, allowing it to expand or shrink based on its items.
  */
@@ -23,62 +24,61 @@ public class SelfSizedCollectionView: UICollectionView {
 
     public var resizeByLayoutChanges = true
 
+    /// Optional maximum height for the collection view.
+    public var maxHeight: CGFloat? = nil
+
     /// Height constraint to adjust the collection view's height.
     private var heightConstraint: NSLayoutConstraint?
 
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
 
-    public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         setup()
     }
 
     /// Common setup for initialization.
     private func setup() {
-        
-        // Add height constraint.
         self.translatesAutoresizingMaskIntoConstraints = false
         heightConstraint = self.heightAnchor.constraint(equalToConstant: 100)  // Initial height.
         heightConstraint?.isActive = true
-
-        // Observe content size changes.
-        self.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
     }
 
-    deinit {
-        self.removeObserver(self, forKeyPath: "contentSize")
-    }
+    // MARK: - Layout Subviews
 
-    // MARK: - KVO for contentSize
-    public override func observeValue(forKeyPath keyPath: String?, of object: Any?,
-                               change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        let contentHeight = self.collectionViewLayout.collectionViewContentSize.height
-        if keyPath == "contentSize", resizeByLayoutChanges {
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        if resizeByLayoutChanges {
             updateHeight()
         }
     }
 
     /// Updates the height constraint based on content size.
     private func updateHeight() {
-        let contentHeight = self.collectionViewLayout.collectionViewContentSize.height
-        heightConstraint?.constant = contentHeight
-        self.invalidateIntrinsicContentSize()
-        self.superview?.layoutIfNeeded()
+        var contentHeight = self.collectionViewLayout.collectionViewContentSize.height
+        if let maxHeight = maxHeight {
+            contentHeight = min(contentHeight, maxHeight)
+        }
+        
+        if heightConstraint?.constant != contentHeight {
+            heightConstraint?.constant = contentHeight
+            self.invalidateIntrinsicContentSize()
+        }
     }
 
     // MARK: - Intrinsic Content Size
 
     public override var intrinsicContentSize: CGSize {
-        return CGSize(width: UIView.noIntrinsicMetric, height: self.collectionViewLayout.collectionViewContentSize.height)
+        let contentHeight = self.collectionViewLayout.collectionViewContentSize.height
+        let height = maxHeight != nil ? min(contentHeight, maxHeight!) : contentHeight
+        return CGSize(width: UIView.noIntrinsicMetric, height: height)
     }
-    
+
     public override func reloadData() {
         super.reloadData()
-        invalidateIntrinsicContentSize()
-        layoutIfNeeded()
+        updateHeight()
     }
 }
-
