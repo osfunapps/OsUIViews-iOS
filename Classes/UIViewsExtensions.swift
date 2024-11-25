@@ -502,14 +502,15 @@ extension UIView {
     }
     
     /// Will drop generic table view shadow
+    /// Will drop generic table view shadow
     public func dropTableViewShadow(masksToBounds: Bool = true,
                                     clipsToBounds: Bool = true) {
         dropShadow(masksToBounds: masksToBounds,
                    clipsToBounds: clipsToBounds,
-                   color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor,
-                   offset: .zero,
-                   opacity: 0.50,
-                   radius: 10)
+                   color: UIColor(red: 0, green: 0, blue: 0, alpha: 0.04).cgColor,
+                   offset: CGSize(width: 0, height: 3),
+                   opacity: 1.0,
+                   radius: 12)
     }
     
     /// Will drop a generic shadow. Usually for containers
