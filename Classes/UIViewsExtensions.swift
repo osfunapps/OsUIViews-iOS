@@ -76,12 +76,16 @@ extension UINavigationController {
         }
     }
     
-    /// Will set the font and color of the title. NOTICE: gotta run from the old view controller who pushes the new!!
-    public func setTitleFontAndColor(font: UIFont, color: UIColor) {
+    /// Will set the font and color of the title if the attributes have changed
+    public func setTitleFontAndColorIfNeeded(font: UIFont, color: UIColor) {
+        guard navigationBar.titleTextAttributes?[.font] as? UIFont != font ||
+                navigationBar.titleTextAttributes?[.foregroundColor] as? UIColor != color else {
+            return
+        }
         
         let attrs: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.foregroundColor: color,
-            NSAttributedString.Key.font: font
+            .foregroundColor: color,
+            .font: font
         ]
         
         if #available(iOS 13.0, *) {
@@ -90,7 +94,6 @@ extension UINavigationController {
             setAllAppearances(appearance: appearance)
         } else {
             navigationBar.titleTextAttributes = attrs
-            //            navigationBar.backgroundColor = .white
         }
     }
     
@@ -130,18 +133,20 @@ extension UINavigationController {
         }
     }
     
-    /// Will set a background color for the navigation bar
-    public func setBackgroundColor(color: UIColor) {
-        
-        if #available(iOS 13.0, *) {
-            let appearance = navigationBar.standardAppearance
-            appearance.backgroundColor = color
-            setAllAppearances(appearance: appearance)
-        } else {
-            navigationBar.backgroundColor = color
-//
-        }
-    }
+    /// Will set a background color for the navigation bar only if it has changed
+      public func setBackgroundColor(color: UIColor) {
+          if #available(iOS 13.0, *) {
+              let appearance = navigationBar.standardAppearance
+              if appearance.backgroundColor != color {
+                  appearance.backgroundColor = color
+                  setAllAppearances(appearance: appearance)
+              }
+          } else {
+              if navigationBar.backgroundColor != color {
+                  navigationBar.backgroundColor = color
+              }
+          }
+      }
     
     /// Will restore the black line from the navigation controller
     public func restoreHairline() {

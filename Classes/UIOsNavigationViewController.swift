@@ -30,124 +30,137 @@ open class UIOsNavigationController: UINavigationController {
             return
         }
         
-        if vcToDisplay.navigationHideSystemBackBtn {
-            if let currVC = viewControllers.last {
-                currVC.hideBackBtn()
-            }
-        }
+        // Hide back button if required
+        viewControllers.last?.hideBackBtnIfNeeded(vcToDisplay.navigationHideSystemBackBtn)
+        
+        // Prepare for display
         vcToDisplay.prepareToDisplay(navigationController: self)
+    }
+}
+
+extension UIViewController {
+    func hideBackBtnIfNeeded(_ shouldHide: Bool) {
+        if shouldHide {
+            self.hideBackBtn()
+        }
     }
 }
 
 open class UIOsNavigationViewControllerImpl: UIOsOrientationViewController {
     
+    // MARK: - Static Constants
     public static let sub1Size: CGFloat = 35
     public static let sub2Size: CGFloat = 18
     
+    // MARK: - Lifecycle Methods
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController!.setNavigationBarHidden(false, animated: animated)
-        if let navigationTitle = controller().navigationTitle {
-            title = navigationTitle
-        }
+        configureNavigationBar(animated: animated)
     }
     
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        // only if clicked back
+        // Handle transitions if navigating back
         if self.navigationController?.viewControllers.firstIndex(of: self) == nil {
-            guard let navigator = navigationController,
-                  let poppedVC = navigator.viewControllers.last,
-                  let poppedVC = poppedVC as? UIOsNavigationViewController else {
-                      return
-                  }
-            
-            
-            poppedVC.prepareToDisplay(navigationController: navigator)
+            navigationController?.viewControllers.last?.prepareForDisplayIfNeeded(navigationController: navigationController)
         }
     }
     
-    open override func orientationChangePhonePortrait() {
-        _setNavigatoinTitle(fontSize: controller().navigationFontSizePhonePortrait)
+    
+    // MARK: - Orientation Changes
+    open override func orientationDidChanged() {
+        updateNavigationAttributesForCurrentOrientation()
     }
     
-    open override func orientationChangePhoneLandscape() {
-        _setNavigatoinTitle(fontSize: controller().navigationFontSizePhoneLandscape)
+    // MARK: - Navigation Configuration
+    private func configureNavigationBar(animated: Bool) {
+        guard let navigationController = navigationController else { return }
+        
+        if navigationController.isNavigationBarHidden {
+            navigationController.setNavigationBarHidden(false, animated: animated)
+        }
+        
+        if let navigationTitle = controller().navigationTitle {
+            title = navigationTitle
+        }
+        prepareToDisplay(navigationController: navigationController)
     }
     
-    open override func orientationChangeiPadPortrait() {
-        _setNavigatoinTitle(fontSize: controller().navigationFontSizeIpadPortrait)
-    }
-    
-    open override func orientationChangeiPadLandscape() {
-        _setNavigatoinTitle(fontSize: controller().navigationFontSizeIpadLandscape)
-    }
-    
-    private func _setNavigatoinTitle(navigationController: UINavigationController? = nil,
-                                     fontSize: CGFloat) {
+    private func updateNavigationAttributesForCurrentOrientation() {
+        guard let navigationController = navigationController else {return}
+        let fontSize = determineFontSizeForCurrentOrientation()
         let font = controller().navigationTitleFont.withSize(fontSize)
         let color = controller().navigationFontColor
         let backgroundColor = controller().navigationBackgroundColor
-        var _navigationController = navigationController
-        if _navigationController == nil {
-            _navigationController = self.navigationController
+        
+        var currBackgroundColor = navigationController.navigationBar.backgroundColor
+        if #available(iOS 13.0, *) {
+            currBackgroundColor = navigationController.navigationBar.standardAppearance.backgroundColor
         }
         
-        if _navigationController == nil {
-            return
+        if currBackgroundColor != backgroundColor {
+            navigationController.setBackgroundColor(color: backgroundColor)
         }
         
-        
-        _navigationController!.setTitleFontAndColor(font: font, color: color)
-        _navigationController!.setBackgroundColor(color: backgroundColor)
+        navigationController.setTitleFontAndColorIfNeeded(font: font, color: color)
     }
     
-    /// Call to prepare this view controller for a push
-    public func prepareToDisplay(navigationController: UINavigationController) {
-        _ = storeNewOrientation()
-        
+    private func determineFontSizeForCurrentOrientation() -> CGFloat {
+        let isPortrait = Tools.isPortraitOrientation()
         let device = Tools.getCurrentDevice()
         
-        if Tools.isPortraitOrientation() {
-            if device == .phone {
-                _setNavigatoinTitle(navigationController: navigationController,
-                                    fontSize: controller().navigationFontSizePhonePortrait)
-            } else {
-                _setNavigatoinTitle(navigationController: navigationController,
-                                    fontSize: controller().navigationFontSizeIpadPortrait)
-            }
-        } else {
-            if device == .phone {
-                _setNavigatoinTitle(navigationController: navigationController,
-                                    fontSize: controller().navigationFontSizePhoneLandscape)
-            } else {
-                _setNavigatoinTitle(navigationController: navigationController,
-                                    fontSize: controller().navigationFontSizeIpadLandscape)
-            }
+        switch (device, isPortrait) {
+        case (.phone, true):
+            return controller().navigationFontSizePhonePortrait
+        case (.phone, false):
+            return controller().navigationFontSizePhoneLandscape
+        case (.pad, true):
+            return controller().navigationFontSizeIpadPortrait
+        case (.pad, false):
+            return controller().navigationFontSizeIpadLandscape
+        default:
+            return controller().navigationFontSizePhonePortrait
         }
+    }
+    
+    /// Prepare for initial display or transition
+    public func prepareToDisplay(navigationController: UINavigationController?) {
+        guard let navigationController = navigationController else { return }
+        
+        _ = storeNewOrientation()
+        updateNavigationAttributesForCurrentOrientation()
     }
     
     private func controller() -> UIOsNavigationViewController {
-        self as! UIOsNavigationViewController
+        guard let navigationVC = self as? UIOsNavigationViewController else {
+            fatalError("ViewController must conform to UIOsNavigationViewController.")
+        }
+        return navigationVC
     }
 }
 
+extension UIViewController {
+    func prepareForDisplayIfNeeded(navigationController: UINavigationController?) {
+        guard let vcToPrepare = self as? UIOsNavigationViewController else { return }
+        vcToPrepare.prepareToDisplay(navigationController: navigationController)
+    }
+}
+
+
+// MARK: - Protocol
 public protocol OsNavigationViewControllerDelegate {
-    
     /// Return false if you've put a custom back button image
-    var navigationHideSystemBackBtn: Bool {set get}
-    
-    var navigationTitle: String? {set get}
-    var navigationTitleFont: UIFont {set get}
-    var navigationFontSizeIpadLandscape: CGFloat {set get}
-    var navigationFontColor: UIColor {set get}
-    var navigationFontSizeIpadPortrait: CGFloat {set get}
-    var navigationFontSizePhonePortrait: CGFloat {set get}
-    var navigationFontSizePhoneLandscape: CGFloat {set get}
-    var navigationBackgroundColor: UIColor {set get}
+    var navigationHideSystemBackBtn: Bool { get set }
+    var navigationTitle: String? { get set }
+    var navigationTitleFont: UIFont { get set }
+    var navigationFontSizeIpadLandscape: CGFloat { get set }
+    var navigationFontColor: UIColor { get set }
+    var navigationFontSizeIpadPortrait: CGFloat { get set }
+    var navigationFontSizePhonePortrait: CGFloat { get set }
+    var navigationFontSizePhoneLandscape: CGFloat { get set }
+    var navigationBackgroundColor: UIColor { get set }
 }
 
 /// An alias for forcing the child view controllers to implement all of the variables
 public typealias UIOsNavigationViewController = UIOsNavigationViewControllerImpl & OsNavigationViewControllerDelegate
-
