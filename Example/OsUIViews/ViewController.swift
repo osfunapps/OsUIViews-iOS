@@ -32,16 +32,16 @@ class ViewController: UIViewController {
     }
     
     private func popSelection() {
-        ListPickerViewPopper.shared.pop(parentView: view,
-                                                  title: "Select country",
-                                                  items: [
-                                                    ListPickerItem(title: "USA"),
-                                                    ListPickerItem(title: "Israel"),
-                                                    ListPickerItem(title: "Baghdad"),
-                                                    ListPickerItem(title: "Liverpool"),
-                                                  ]) { country in
-            print(country)
-        }
+//        await ListPickerViewPopper.shared.pop(parentView: view,
+//                                                  title: "Select country",
+//                                                  items: [
+//                                                    ListPickerItem(title: "USA"),
+//                                                    ListPickerItem(title: "Israel"),
+//                                                    ListPickerItem(title: "Baghdad"),
+//                                                    ListPickerItem(title: "Liverpool"),
+//                                                  ]) { country in
+//            print(country)
+//        }
     }
     
     private func raiseConstr() {
@@ -138,9 +138,7 @@ bo sadasd dasadadsad sda sd as das asdttom explain
                       toParentBottomSafeArea: true,
                       preventInteractionWithOtherViews: true)
 //
-        dv.fadeIn {
-            
-        }
+//        await dv.fadeIn()
     }
     
     @objc func onMacCheckTap() {
@@ -270,8 +268,8 @@ bo sadasd dasadadsad sda sd as das asdttom explain
     }
     
     @objc func onOkBtnTap() {
-        dv.fadeOut {
-            self.dv.removeFromSuperview()
-        }
+//        dv.fadeOut {
+//            self.dv.removeFromSuperview()
+//        }
     }
 }

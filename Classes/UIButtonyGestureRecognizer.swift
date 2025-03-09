@@ -21,11 +21,14 @@ public class UIButtonyGestureRecognizer: UITapGestureRecognizer {
         originalYScale = view.transform.d
         
         // Apply the scaling effect
-        ButtonyEffects.beginEffect(on: view,
-                                   originalXScale: originalXScale,
-                                   originalYScale: originalYScale,
-                                   targetScaleX: targetScaleX,
-                                   targetScaleY: targetScaleY)
+        Task {[weak self] in
+            guard let self = self else {return}
+            await ButtonyEffects.beginEffect(on: view,
+                                             originalXScale: originalXScale,
+                                             originalYScale: originalYScale,
+                                             targetScaleX: targetScaleX,
+                                             targetScaleY: targetScaleY)
+        }
     }
 
     public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -36,14 +39,18 @@ public class UIButtonyGestureRecognizer: UITapGestureRecognizer {
         guard let view = self.view, let touch = touches.first else { return }
         
         let touchLocation = touch.location(in: view)
-        if view.bounds.contains(touchLocation) {
-            // Finger released inside the button
-            ButtonyEffects.endEffect(on: view, originalXScale: originalXScale, originalYScale: originalYScale)
-            state = .recognized
-        } else {
-            // Finger released outside the button
-            ButtonyEffects.endEffect(on: view, originalXScale: originalXScale, originalYScale: originalYScale)
-            state = .cancelled
+        
+        Task {[weak self] in
+            guard let self = self else {return}
+            if view.bounds.contains(touchLocation) {
+                // Finger released inside the button
+                await ButtonyEffects.endEffect(on: view, originalXScale: originalXScale, originalYScale: originalYScale)
+                state = .recognized
+            } else {
+                // Finger released outside the button
+                await ButtonyEffects.endEffect(on: view, originalXScale: originalXScale, originalYScale: originalYScale)
+                state = .cancelled
+            }
         }
     }
     
@@ -52,7 +59,10 @@ public class UIButtonyGestureRecognizer: UITapGestureRecognizer {
         let event = event else { return }
         super.touchesCancelled(touches, with: event)
         // Reset the scale on cancellation
-        ButtonyEffects.endEffect(on: view, originalXScale: originalXScale, originalYScale: originalYScale)
+        Task {[weak self] in
+           guard let self = self else {return}
+            await ButtonyEffects.endEffect(on: view, originalXScale: originalXScale, originalYScale: originalYScale)
+        }
         state = .cancelled
     }
 }

@@ -19,10 +19,12 @@ public class ListPickerViewPopper {
     public static let VIEW_TAG = 133
     
     private init(){}
+    
+    @MainActor
     public func pop(parentView: UIView,
                     title: String,
                     items: [ListPickerItem]?,
-                    _ completion: @escaping ((ListPickerItem?) -> Void)) {
+                    _ completion: @escaping ((ListPickerItem?) -> Void)) async {
         // build the dynamic view with all of the props
         self.items = items
         self.completion = completion
@@ -54,7 +56,7 @@ public class ListPickerViewPopper {
         dv.addView(initialProps: btnProps)
         dv.alpha = 0
         dv.attachView(parentView: parentView)
-        dv.fadeIn {}
+        await dv.fadeIn()
     }
     
     @objc func itemDidTap(_ sender: UIButton) {

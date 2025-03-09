@@ -46,6 +46,11 @@ extension UINavigationController {
         viewControllers = navigationArray
     }
     
+    @MainActor
+    public func safePopViewController(animated: Bool) {
+        popViewController(animated: animated)
+    }
+    
     /// The  safe way to remove all of the vcs in the stack except a kind
     public func removeAllExceptOfKind(t: UIViewController.Type) {
         var navigationArray = viewControllers // To get all UIViewController stack as Array
@@ -184,6 +189,7 @@ extension UIViewController {
     
     /// Will hide the back button.
     /// NOTICE: You should fire the function FROM THE VIEW CONTROLLER WHO CALLS THE NEW VIEW CONTROLLER!
+    @MainActor
     public func hideBackBtn() {
         self.navigationItem.title = ""
         navigationController?.navigationBar.backItem?.title = ""
@@ -246,19 +252,21 @@ extension UIView {
     }
     
     /// Will init a flip animation on a view on place (like a coin animation flip around it's (0,0 value)
+    @MainActor
     public func flip(animate: AnimationOptions = .transitionFlipFromRight,
-                     didHalfFlip: (() -> Void)? = nil,
-                     completion: (() -> Void)? = nil) {
+                     didHalfFlip: (() -> Void)? = nil) async {
         let transitionOptions: UIView.AnimationOptions = [animate, .showHideTransitionViews]
 
-        UIView.transition(with: self, duration: 0.5, options: transitionOptions, animations: {
-            self.hide(true)
-            didHalfFlip?()
+        await withCheckedContinuation { continuation in
             UIView.transition(with: self, duration: 0.5, options: transitionOptions, animations: {
-                self.hide(false)
-                completion?()
+                self.hide(true)
+                didHalfFlip?()
+                UIView.transition(with: self, duration: 0.5, options: transitionOptions, animations: {
+                    self.hide(false)
+                    continuation.resume()
+                })
             })
-        })
+        }
     }
     
     /// Will return the parent of a specific type
@@ -421,87 +429,97 @@ extension UIView {
     }
     
     /// Will do a jump madafaka jump animation
-    public func doJumpAnimation(completion: (() -> Void)? = nil) {
+    @MainActor
+    public func doJumpAnimation() async {
         
         transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
-        
-        UIView.animate(withDuration: 2.0,
-                       delay: 0,
-                       usingSpringWithDamping: CGFloat(0.20),
-                       initialSpringVelocity: CGFloat(6.0),
-                       options: UIView.AnimationOptions.allowUserInteraction,
-                       animations: {
-                        self.transform = CGAffineTransform.identity
-                       },
-                       completion: { Void in
-                        completion?()
-                       }
-        )
+        await withCheckedContinuation { continuation in
+            UIView.animate(withDuration: 2.0,
+                           delay: 0,
+                           usingSpringWithDamping: CGFloat(0.20),
+                           initialSpringVelocity: CGFloat(6.0),
+                           options: UIView.AnimationOptions.allowUserInteraction,
+                           animations: {
+                self.transform = CGAffineTransform.identity
+            },
+                           completion: { Void in
+                continuation.resume()
+            }
+            )
+        }
     }
     
     /// NOTICE: Call this top update the height of a view from iOS smaller than 13.0. Otherwise, it will produce a bug
     /// Wil update a view height constraint. If the height constraint doesn't exists, will create it. For disabling animation, put 0.0 in the interval
+    @MainActor
     public func updateHeightConstraint(newHeight: CGFloat,
-                                       animateInterval: TimeInterval = 0.0,
-                                       _ completion: (() -> Void)? = nil) {
-        
+                                       animateInterval: TimeInterval = 0.0) async {
+        // Get (or create) the height constraint
         var heightConstr = getHeightConstraint()
         if heightConstr == nil {
             heightConstr = setHeight(height: 0)
             layoutIfNeeded()
         }
+        
+        // If the current constant is already the desired height, exit early.
         if heightConstr!.constant == newHeight {
-            completion?()
             return
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
-            heightConstr!.constant = newHeight
-            if animateInterval != 0.0 {
-                guard let superview = self.superview else {
-                    completion?()
-                    return
-                }
-                UIView.animate(withDuration: animateInterval, animations: {
-                    superview.layoutIfNeeded()
-                }) { done in
-                    completion?()
-                }
-            } else {
-                completion?()
+        // Wait for 100 milliseconds before updating the constraint.
+        try? await Task.sleep(nanoseconds: 100 * 1_000_000) // 100ms
+        
+        // Update the constraint to the new height.
+        heightConstr!.constant = newHeight
+        
+        // If animation is required, animate the layout update.
+        if animateInterval != 0.0 {
+            guard let superview = self.superview else {
+                return
             }
             
+            await withCheckedContinuation { continuation in
+                UIView.animate(withDuration: animateInterval, animations: {
+                    superview.layoutIfNeeded()
+                }, completion: { _ in
+                    continuation.resume()
+                })
+            }
         }
     }
+
     
     /// Wil update a view width constraint. If the width constraint doesn't exists, will create it. For disabling animation, put 0.0 in the interval
-    public func updateWidthConstraint(newWidth: CGFloat,
-                                      animateInterval: TimeInterval = 0.0,
-                                      _ completion: (() -> Void)? = nil) {
+    public func updateWidthConstraint(newWidth: CGFloat, animateInterval: TimeInterval = 0.0) async {
         var widthConstr = getWidthConstraint()
         if widthConstr == nil {
             widthConstr = setWidth(width: 0)
             layoutIfNeeded()
         }
+        
+        // If the current constant is already the desired width, exit early.
         if widthConstr!.constant == newWidth {
-            completion?()
             return
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
-            widthConstr!.constant = newWidth
-            if animateInterval != 0.0 {
-                guard let superview = self.superview else {
-                    completion?()
-                    return
-                }
+        // Wait for 100 milliseconds before updating the constraint.
+        try? await Task.sleep(nanoseconds: 100 * 1_000_000) // 100ms
+        
+        // Update the constraint to the new width.
+        widthConstr!.constant = newWidth
+        
+        // If animation is required, animate the layout update.
+        if animateInterval != 0.0 {
+            guard let superview = self.superview else {
+                return
+            }
+            
+            await withCheckedContinuation { continuation in
                 UIView.animate(withDuration: animateInterval, animations: {
                     superview.layoutIfNeeded()
-                }) { done in
-                    completion?()
-                }
-            } else {
-                completion?()
+                }, completion: { _ in
+                    continuation.resume()
+                })
             }
         }
     }
@@ -687,32 +705,28 @@ extension UIView {
     
     /// Will perform a slide view animation to bottom. If no top constraint exists to parent, will do nothing.
     /// Notice: you should probably set the width and the x aligment of the view before calling this function
-    public func slideAnimateToBottom(animationDuration: TimeInterval = 0.5,
-                                     completion: (() -> Void)? = nil) {
-        slideAnimateToY(constant: frame.height,
+    public func slideAnimateToBottom(animationDuration: TimeInterval = 0.5) async {
+        await slideAnimateToY(constant: frame.height,
                         usingParentTopConstraint: false,
-                        animationDuration: animationDuration,
-                        completion: completion)
+                        animationDuration: animationDuration)
     }
     
     
     /// Will perform a slide view animation to top. If no top constraint exists to parent, will do nothing.
     /// Notice: you should probably set the width and the x aligment of the view before calling this function. Also, make sure that the frame of the view is set correctly
-    public func slideAnimateToTop(animationDuration: TimeInterval = 0.5,
-                                  completion: (() -> Void)? = nil) {
-        slideAnimateToY(constant: -frame.height,
+    public func slideAnimateToTop(animationDuration: TimeInterval = 0.5) async {
+        await slideAnimateToY(constant: -frame.height,
                         usingParentTopConstraint: true,
-                        animationDuration: animationDuration,
-                        completion: completion)
+                        animationDuration: animationDuration)
     }
     
     /// Willl perform a slide animation to a given y point on screen.
     /// Notice: the animation made using moving the top constraint with the parent top. If you're expecting any weird behaviour notice that
     /// Also, you should probably set the width and the x aligment of the view before calling this function
+    @MainActor
     public func slideAnimateToY(constant: CGFloat,
                                 usingParentTopConstraint: Bool = true,
-                                animationDuration: TimeInterval = 0.5,
-                                completion: (() -> Void)? = nil) {
+                                animationDuration: TimeInterval = 0.5) async {
         
         var constraint: NSLayoutConstraint? = nil
         if usingParentTopConstraint {
@@ -727,13 +741,14 @@ extension UIView {
         if constraint == nil {
             return
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+        try? await Task.sleep(nanoseconds: 100 * 1_000_000) // 100ms
+        await withCheckedContinuation { continuation in
             guard let constraint = constraint else {return}
             constraint.constant = constant
             UIView.animate(withDuration: animationDuration, animations: {
                 self.superview?.layoutIfNeeded()
             }) { _ in
-                completion?()
+                continuation.resume()
             }
         }
     }
@@ -756,7 +771,7 @@ extension UIView {
     public func setBlurEffect(blurAnimatorMember: inout UIViewPropertyAnimator?,
                               viewTag: Int = 9090,
                               blurIntensity: CGFloat = 0.15,
-                              colorIfBlurNoAvailable: UIColor = .black) -> Bool {
+                              colorIfBlurNoAvailable: UIColor = .black) async -> Bool {
         
         if !UIAccessibility.isReduceTransparencyEnabled {
             
@@ -775,7 +790,7 @@ extension UIView {
             blurEffectView.tag = viewTag
             blurEffectView.alpha = 0
             insertSubview(blurEffectView, at: 0)
-            blurEffectView.fadeIn()
+            await blurEffectView.fadeIn()
             return true
         } else {
             backgroundColor = colorIfBlurNoAvailable
@@ -795,10 +810,9 @@ extension UIView {
     }
     
     /// Will hide/show a view
-    public func hide(_ hide: Bool){
-        DispatchQueue.main.async {
-            self.isHidden = hide
-        }
+    @MainActor
+    public func hide(_ hide: Bool) {
+        self.isHidden = hide
     }
     
     /// Will run a "blink" animation to a view
@@ -851,68 +865,70 @@ extension UIView {
     }
     
     /// Will do a fade out effect on a view
+    @MainActor
     public func fadeOut(withDuration: TimeInterval = 0.5,
                         hideAtEnd: Bool = true,
                         delay: TimeInterval = 0,
-                        toAlpha: CGFloat = 1,
-                        _ completion: (() -> Void)? = nil) {
-        fade(fromAlpha: alpha,
-             toAlpha: 0,
-             hideAtEnd: hideAtEnd,
-             animationOptions: UIView.AnimationOptions.curveEaseOut,
-             duration: withDuration,
-             delay: delay,
-             completion)
+                        toAlpha: CGFloat = 1) async {
+        
+            await fade(fromAlpha: alpha,
+                 toAlpha: 0,
+                 hideAtEnd: hideAtEnd,
+                 animationOptions: UIView.AnimationOptions.curveEaseOut,
+                 duration: withDuration,
+                 delay: delay)
     }
     
     // Will do a fade in effect on a view
+    @MainActor
     public func fadeIn(withDuration: TimeInterval = 0.5,
                        hideAtEnd: Bool = false,
                        delay: TimeInterval = 0,
-                       toAlpha: CGFloat = 1,
-                       _ completion: (() -> Void)? = nil) {
+                       toAlpha: CGFloat = 1) async {
         isHidden = false
-        fade(fromAlpha: alpha,
+        await fade(fromAlpha: alpha,
              toAlpha: toAlpha,
              hideAtEnd: hideAtEnd,
              animationOptions: UIView.AnimationOptions.curveEaseIn,
              duration: withDuration,
-             delay: delay,
-             completion)
+             delay: delay)
     }
     
     
     /// Will do a custom fade effect on a view
+    @MainActor
     public func fade(fromAlpha: CGFloat,
                      toAlpha: CGFloat,
                      hideAtEnd: Bool,
                      animationOptions: UIView.AnimationOptions,
                      duration: TimeInterval = 0.5,
-                     delay: TimeInterval = 0,
-                     _ completion: (() -> Void)? = nil) {
+                     delay: TimeInterval = 0) async {
         self.alpha = fromAlpha
-        UIView.animate(withDuration: duration, delay: delay, options: animationOptions, animations: {
-            self.alpha = toAlpha
-        }, completion: { _ in
-            self.isHidden = hideAtEnd
-            completion?()
-        })
+        await withCheckedContinuation {[weak self] continuation in
+            UIView.animate(withDuration: duration, delay: delay, options: animationOptions, animations: {
+                self?.alpha = toAlpha
+            }, completion: {[weak self] _ in
+                guard let self = self else {return}
+                self.isHidden = hideAtEnd
+                continuation.resume()
+            })
+        }
     }
     
     /// Will update a constraint with it's parent
+    @MainActor
     public func animateUpdateConstraintWithParent(constraint: NSLayoutConstraint,
                                                   constant: CGFloat,
-                                                  animateInterval: TimeInterval = 0.5,
-                                                  _ completion: (() -> Void)? = nil) {
-        DispatchQueue.main.async {
+                                                  animateInterval: TimeInterval = 0.5) async {
             constraint.constant = constant
             guard let superview = self.superview else {
                 fatalError("Make sure the superview attached before updating height via animation")
             }
+        await withCheckedContinuation { continuation in
             UIView.animate(withDuration: animateInterval, animations: {
                 superview.layoutIfNeeded()
             }) { done in
-                completion?()
+                continuation.resume()
             }
         }
     }
@@ -953,6 +969,7 @@ extension UIView {
     
     /// Will stop a rotating
     /// view animation
+    @MainActor
     public func stopRotating() {
         if layer.animation(forKey: UIView.kRotationAnimationKey) != nil {
             layer.removeAnimation(forKey: UIView.kRotationAnimationKey)
@@ -1185,50 +1202,47 @@ extension UILabel {
                                   attributedTextColor: UIColor,
                                   lineSpacing: CGFloat = 3,
                                   alignment: NSTextAlignment = .center) {
-        // iOS 12.0 issues...
-        DispatchQueue.main.async {
-            self.text = ""
-            self.attributedText = nil
-            self.text = text
-            var startIdx = -1
-            var endIdx = -1
-            var counter = -1
-            var boldStarted = false
-            let fullAttString = NSMutableAttributedString()
-            let boldAttribute = [NSAttributedString.Key.font : attributedTextFont,
-                                 NSAttributedString.Key.foregroundColor: attributedTextColor]
-            let regularAttribute = [NSAttributedString.Key.font : normalTextFont,
-                                    NSAttributedString.Key.foregroundColor: normalTextColor]
-            for char in text {
-                
-                counter += 1
-                if char == "[" && !boldStarted {
-                    boldStarted = true
-                    startIdx = counter
-                    continue
-                }
-                
-                if char == "]" && boldStarted {
-                    boldStarted = false
-                    endIdx = counter
-                    let boldiText = text.substring(startIdx + 1, endIdx)
-                    let boldiString = NSMutableAttributedString(string: boldiText, attributes:boldAttribute)
-                    fullAttString.append(boldiString)
-                    continue
-                }
-                
-                if !boldStarted {
-                    let regularString = NSMutableAttributedString(string: String(char), attributes:regularAttribute)
-                    fullAttString.append(regularString)
-                }
+        self.text = ""
+        self.attributedText = nil
+        self.text = text
+        var startIdx = -1
+        var endIdx = -1
+        var counter = -1
+        var boldStarted = false
+        let fullAttString = NSMutableAttributedString()
+        let boldAttribute = [NSAttributedString.Key.font : attributedTextFont,
+                             NSAttributedString.Key.foregroundColor: attributedTextColor]
+        let regularAttribute = [NSAttributedString.Key.font : normalTextFont,
+                                NSAttributedString.Key.foregroundColor: normalTextColor]
+        for char in text {
+            
+            counter += 1
+            if char == "[" && !boldStarted {
+                boldStarted = true
+                startIdx = counter
+                continue
             }
             
-            let style = NSMutableParagraphStyle()
-            style.lineSpacing = lineSpacing
-            style.alignment = alignment
-            fullAttString.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: fullAttString.string.count))
-            self.attributedText = fullAttString
+            if char == "]" && boldStarted {
+                boldStarted = false
+                endIdx = counter
+                let boldiText = text.substring(startIdx + 1, endIdx)
+                let boldiString = NSMutableAttributedString(string: boldiText, attributes:boldAttribute)
+                fullAttString.append(boldiString)
+                continue
+            }
+            
+            if !boldStarted {
+                let regularString = NSMutableAttributedString(string: String(char), attributes:regularAttribute)
+                fullAttString.append(regularString)
+            }
         }
+        
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = lineSpacing
+        style.alignment = alignment
+        fullAttString.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: fullAttString.string.count))
+        self.attributedText = fullAttString
     }
     
     /// will set the text in the label if exists else hide the label
@@ -1385,61 +1399,58 @@ extension UITextView {
                                   lineSpacing: CGFloat = 3,
                                   alignment: NSTextAlignment = .center,
                                   clickable: Bool = true) {
-        // iOS 12.0 issues...
-        DispatchQueue.main.async {
-            self.isSelectable = true
-            self.isEditable = false
-            self.dataDetectorTypes = .link
-            self.text = ""
-            self.attributedText = nil
-            self.text = text
-            var startIdx = -1
-            var endIdx = -1
-            var counter = -1
-            var boldStarted = false
-            let fullAttString = NSMutableAttributedString()
-            let boldAttribute = [NSAttributedString.Key.font : attributedTextFont,
-                                 NSAttributedString.Key.foregroundColor: attributedTextColor]
-            let regularAttribute = [NSAttributedString.Key.font : normalTextFont,
-                                    NSAttributedString.Key.foregroundColor: normalTextColor]
-            for char in text {
-                
-                counter += 1
-                if char == "[" && !boldStarted {
-                    boldStarted = true
-                    startIdx = counter
-                    continue
-                }
-                
-                if char == "]" && boldStarted {
-                    boldStarted = false
-                    endIdx = counter
-                    let boldiText = text.substring(startIdx + 1, endIdx)
-                    let boldiString = NSMutableAttributedString(string: boldiText, attributes:boldAttribute)
-                    fullAttString.append(boldiString)
-                    if clickable {
-                        let clickableValue = boldiText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? boldiText
-                        fullAttString.addAttribute(.link,
-                                                   value: clickableValue,
-                                                   range: NSRange(location: fullAttString.length - boldiText.count,
-                                                                  length: boldiText.count)
-                        )
-                    }
-                    continue
-                }
-                
-                if !boldStarted {
-                    let regularString = NSMutableAttributedString(string: String(char), attributes:regularAttribute)
-                    fullAttString.append(regularString)
-                }
+        self.isSelectable = true
+        self.isEditable = false
+        self.dataDetectorTypes = .link
+        self.text = ""
+        self.attributedText = nil
+        self.text = text
+        var startIdx = -1
+        var endIdx = -1
+        var counter = -1
+        var boldStarted = false
+        let fullAttString = NSMutableAttributedString()
+        let boldAttribute = [NSAttributedString.Key.font : attributedTextFont,
+                             NSAttributedString.Key.foregroundColor: attributedTextColor]
+        let regularAttribute = [NSAttributedString.Key.font : normalTextFont,
+                                NSAttributedString.Key.foregroundColor: normalTextColor]
+        for char in text {
+            
+            counter += 1
+            if char == "[" && !boldStarted {
+                boldStarted = true
+                startIdx = counter
+                continue
             }
             
-            let style = NSMutableParagraphStyle()
-            style.lineSpacing = lineSpacing
-            style.alignment = alignment
-            fullAttString.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: fullAttString.string.count))
-            self.attributedText = fullAttString
+            if char == "]" && boldStarted {
+                boldStarted = false
+                endIdx = counter
+                let boldiText = text.substring(startIdx + 1, endIdx)
+                let boldiString = NSMutableAttributedString(string: boldiText, attributes:boldAttribute)
+                fullAttString.append(boldiString)
+                if clickable {
+                    let clickableValue = boldiText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? boldiText
+                    fullAttString.addAttribute(.link,
+                                               value: clickableValue,
+                                               range: NSRange(location: fullAttString.length - boldiText.count,
+                                                              length: boldiText.count)
+                    )
+                }
+                continue
+            }
+            
+            if !boldStarted {
+                let regularString = NSMutableAttributedString(string: String(char), attributes:regularAttribute)
+                fullAttString.append(regularString)
+            }
         }
+        
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = lineSpacing
+        style.alignment = alignment
+        fullAttString.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: fullAttString.string.count))
+        self.attributedText = fullAttString
     }
     
     /// Will add a done button to a text view. When clicked, it will resign the first responder. Notice: If you want to add a done button to multiple fields, don't use this function

@@ -162,8 +162,10 @@ public class UIDialogWrapper {
     }
     
     // TODO: control the fade out duration
-    public func dismiss() {
-        dynamicContainer?.fadeOut {
+    public func dismiss() async {
+        Task {@MainActor [weak self] in
+            guard let self = self else {return}
+            await dynamicContainer?.fadeOut()
             self.dynamicContainer?.removeFromSuperview()
             self.dynamicContainer = nil
         }

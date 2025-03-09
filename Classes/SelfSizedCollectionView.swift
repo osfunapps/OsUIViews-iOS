@@ -29,7 +29,8 @@ public class SelfSizedCollectionView: UICollectionView {
 
     /// Height constraint to adjust the collection view's height.
     private var heightConstraint: NSLayoutConstraint?
-
+    
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
@@ -81,4 +82,6 @@ public class SelfSizedCollectionView: UICollectionView {
         super.reloadData()
         updateHeight()
     }
+    
+    
 }

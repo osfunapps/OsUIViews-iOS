@@ -26,7 +26,7 @@ import UIKit
                        animations: {
             view.layer.shadowOpacity = 0
         })
-        ButtonyEffects.beginEffect(on: view)
+        Task {await ButtonyEffects.beginEffect(on: view)}
         if !recognizeOnlyTap {
             self.state = .began
         }
@@ -43,7 +43,7 @@ import UIKit
             view.layer.shadowOpacity = self.originalOpacity
         })
         
-        ButtonyEffects.endEffect(on: view)
+        Task {await ButtonyEffects.endEffect(on: view)}
         self.state = .ended
     }
 }

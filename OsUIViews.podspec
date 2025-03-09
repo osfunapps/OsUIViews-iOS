@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'OsUIViews'
-  s.version          = '1.1.4'
+  s.version          = '1.2.0'
   s.summary          = 'This pod contains all of custom views used in osApps iOS apps'
 
 # This description is used to generate tags and improve search results.
@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.swift_versions = "5.0"
-  s.ios.deployment_target = '12.0'
+  s.ios.deployment_target = '13.0'
   s.source_files = "Classes/**"
   
   

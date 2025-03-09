@@ -125,13 +125,13 @@ public class UIFloatingTableView: UIView {
         setInitialWidth()
         tableView.rowHeight = itemRowHeight
         tableView.estimatedRowHeight = itemRowHeight
-
+        
         
         // currently, not fail proof against big dialog, bigger than screen size
         let itemCount = CGFloat(tempItemsHolder.count)
         
         setHeight(height: itemCount * tableView.rowHeight)    // height
-
+        
         topAnchor.constraint(equalTo: anchorView.bottomAnchor, constant: 15).isActive = true
         if toLeftAnchor {
             leftAnchor.constraint(equalTo: anchorView.leftAnchor, constant: 0).isActive = true
@@ -143,14 +143,15 @@ public class UIFloatingTableView: UIView {
         // todo:
         tempItemsHolder.removeAll()
         
-        fadeIn(withDuration: 0.25){}
+        Task {@MainActor [weak self] in
+            await self?.fadeIn(withDuration: 0.25)
+        }
     }
     
-    public func dismiss(completion: (() -> Void)? = nil) {
-        fadeOut {
-            self.removeFromSuperview()
-            completion?()
-        }
+    @MainActor
+    public func dismiss() async {
+        await fadeOut()
+        self.removeFromSuperview()
     }
     
     private func setInitialWidth() {
@@ -234,12 +235,12 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
         // new iv indicator
         if newItems.contains(where: {$0.name == listItem.name }) {
             cell.newItemIndicatorView.hide(false)
-//            cell.selectedItemIVHeight.constant = newItemIndicatorHeight
-//            if !addedNewItemIndicatorIVWidth {
-//                addedNewItemIndicatorIVWidth = true
-//                widthToAdd += cell.newItemIndicatorIVHeight.constant
-//                widthToAdd += cell.parentSV.spacing
-//            }
+            //            cell.selectedItemIVHeight.constant = newItemIndicatorHeight
+            //            if !addedNewItemIndicatorIVWidth {
+            //                addedNewItemIndicatorIVWidth = true
+            //                widthToAdd += cell.newItemIndicatorIVHeight.constant
+            //                widthToAdd += cell.parentSV.spacing
+            //            }
         } else {
             cell.newItemIndicatorView.hide(true)
         }
@@ -265,7 +266,7 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
         if widthToAdd != 0 {
             widthConstr.constant += widthToAdd
         }
-//        updateWidthIfRequired(cell: cell, item: listItem)
+        //        updateWidthIfRequired(cell: cell, item: listItem)
         
         // set line above cell index
         if let lineAboveCellIdx = lineAboveCellIdx, lineAboveCellIdx == indexPath.row {
@@ -283,7 +284,7 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
     }
-
+    
     
     /// If contains iv or indicator, will update width of the whole table view here
     private func updateWidthIfRequired(cell: UIFloatingTableViewCellView, item: FloatingTableViewItem) {
@@ -310,14 +311,14 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
         }
         
         
-//        if !cell.newItemIndicatorView.isHidden {
-//            if !addedSelectedIndiactorIVWidth {
-//                addedSelectedIndiactorIVWidth = true
-//                shouldUpdateWidth = true
-//                widthToAdd += cell.selectedItemIVHeight.constant
-//                widthToAdd += cell.parentSV.spacing
-//            }
-//        }
+        //        if !cell.newItemIndicatorView.isHidden {
+        //            if !addedSelectedIndiactorIVWidth {
+        //                addedSelectedIndiactorIVWidth = true
+        //                shouldUpdateWidth = true
+        //                widthToAdd += cell.selectedItemIVHeight.constant
+        //                widthToAdd += cell.parentSV.spacing
+        //            }
+        //        }
         
         
         if shouldUpdateWidth {
@@ -329,7 +330,10 @@ extension UIFloatingTableView: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let item = itemsStore.getItemAt(indexPath.row) else {return}
         
-        dismiss()
+        Task {[weak self] in
+            guard let self = self else {return}
+            await dismiss()
+        }
         itemDidTap?(item, item.id == selectedItem?.id)
     }
     
